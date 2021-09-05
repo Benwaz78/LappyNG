@@ -1,0 +1,5 @@
+.env
+_pycache_
+prairiemartapp/__pycache__
+prairiemartapp/migrations/__pycache__
+prairiemart/__pycache__
