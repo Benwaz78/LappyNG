@@ -18,11 +18,16 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from lappyng_app import views
 from django.urls import path, include
+from filebrowser.sites import site
 
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('jet/', include('jet.urls')),
+    path('jet/dashboard/', include('jet.dashboard.urls','jet-dashboard')),
     path('pages/', include('lappyng_app.urls')),
+    path('tinymce/', include('tinymce.urls')),
+    path('admin/filebrowser/', site.urls),
     path('admin/', admin.site.urls),
 
 ]
