@@ -1,0 +1,110 @@
+     <!-- Sidebar -->
+     <div class="col-md-3 col-md-pull-9   col-sidebar">
+
+        <!-- Block  bestseller products-->
+        <div class="block-sidebar block-sidebar-categorie">
+            <div class="block-title">
+                <strong>PRODUCT TYPES</strong>
+            </div>
+            <div class="block-content">
+                <ul class="items">
+                    <li class="parent">
+                        <a href="">Dress</a>
+                        <span class="toggle-submenu"></span>
+                        <ul class="subcategory">
+                            <li >
+                                <a href="">subcategory 1</a>
+                                
+                            </li>
+                            <li><a href="">subcategory 1</a></li>
+                            <li><a href="">subcategory 1</a></li>
+                            <li><a href="">subcategory 1</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">Bags</a>
+                    </li>
+                    <li class="parent">
+                        <a href="">Cost &amp; Jackets</a>
+                        <span class="toggle-submenu"></span>
+                        <ul class="subcategory">
+                            <li><a href="">subcategory 1</a></li>
+                            <li><a href="">subcategory 1</a></li>
+                            <li><a href="">subcategory 1</a></li>
+                            <li><a href="">subcategory 1</a></li>
+                        </ul>
+                    </li>
+                    <li class="parent">
+                        <a href="">Beauty</a>
+                        <span class="toggle-submenu"></span>
+                        <ul class="subcategory">
+                            <li><a href="">subcategory 1</a></li>
+                            <li><a href="">subcategory 1</a></li>
+                            <li><a href="">subcategory 1</a></li>
+                            <li><a href="">subcategory 1</a></li>
+                        </ul>
+                    </li>
+                    <li class="parent">
+                        <a href="">Jewellery</a>
+                        <span class="toggle-submenu"></span>
+                        <ul class="subcategory">
+                            <li><a href="">subcategory 1</a></li>
+                            <li><a href="">subcategory 1</a></li>
+                            <li><a href="">subcategory 1</a></li>
+                            <li><a href="">subcategory 1</a></li>
+                        </ul>
+                    </li>
+                    <li class="parent">
+                        <a href="">Nightwear</a>
+                        <span class="toggle-submenu"></span>
+                        <ul class="subcategory">
+                            <li><a href="">subcategory 1</a></li>
+                            <li><a href="">subcategory 1</a></li>
+                            <li><a href="">subcategory 1</a></li>
+                            <li><a href="">subcategory 1</a></li>
+                        </ul>
+                    </li>
+                    <li class="parent">
+                        <a href="">Jumpers &amp; Cardigans</a>
+                        <span class="toggle-submenu"></span>
+                        <ul class="subcategory">
+                            <li><a href="">subcategory 1</a></li>
+                            <li><a href="">subcategory 1</a></li>
+                            <li><a href="">subcategory 1</a></li>
+                            <li><a href="">subcategory 1</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- Block  bestseller products-->
+
+        
+
+        <!-- block slide top -->
+        <div class="block-sidebar block-banner-sidebar">
+            {% for a in abt %}
+            <div class="owl-carousel" 
+                data-nav="false" 
+                data-dots="true" 
+                data-margin="0" 
+                data-items='1' 
+                data-autoplayTimeout="700" 
+                data-autoplay="true" 
+                data-loop="true">
+                <div class="item item1" >
+                   <img src="{{ a.abt_img1 }}" alt="images">
+                </div>
+                <div class="item item2" >
+                   <img src="{{ a.abt_img2 }}" alt="images">
+                </div>
+                <div class="item item3" >
+                   <img src="{{ a.abt_img3 }}" alt="images">
+                </div>
+            </div>
+            {% endfor %}
+        </div><!-- block slide top -->
+
+       
+
+
+    </div><!-- Sidebar -->
