@@ -37,8 +37,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'lappyng_app',
-    'jet.dashboard',
-    'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
