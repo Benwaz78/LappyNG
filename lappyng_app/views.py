@@ -22,13 +22,14 @@ def index(request):
     new_product = Products.objects.filter(new_product=True)[:4]
     hot_deal = Products.objects.filter(hot_deal=True)[:3]
     new = Products.objects.filter(new=True)[:5]
-
+    products = Products.objects.all()
     context ={
     'news':news, 
     'new_product': new_product,
     'banner':banner,
     'hots': hot_deal,
-    'new': new
+    'new': new,
+    'products':products
     }
     return render(request, 'frontend/index.html', context)
 
@@ -107,13 +108,14 @@ def category_grid(request,  category_slug):
     products = Products.objects.filter(category=category)
     paginated_filter = Paginator(products, 16)
     page_number = request.GET.get('page')
-    
+    about_us = About.objects.all()
     person_page_obj = paginated_filter.get_page(page_number)
 
     context = {
         'category' : category, 
         'products' : products, 
         'person_page_obj': products,
+        'about_us':about_us
     }
 
     context['person_page_obj'] = person_page_obj  

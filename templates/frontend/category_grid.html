@@ -188,85 +188,11 @@
                     </div><!-- Main Content -->
                    
                     <!-- Sidebar -->
+                    
+                    {% include 'frontend/sidebar.html' %}
                     <div class="col-md-3 col-md-pull-9  col-sidebar">
 
-                        <!-- Block  bestseller products-->
-                        <div class="block-sidebar block-sidebar-categorie">
-                            <div class="block-title">
-                                <strong>PRODUCT TYPES</strong>
-                            </div>
-                            <div class="block-content">
-                                <ul class="items">
-                                    <li class="parent">
-                                        <a href="">Dress</a>
-                                        <span class="toggle-submenu"></span>
-                                        <ul class="subcategory">
-                                            <li >
-                                                <a href="">subcategory 1</a>
-                                                
-                                            </li>
-                                            <li><a href="">subcategory 1</a></li>
-                                            <li><a href="">subcategory 1</a></li>
-                                            <li><a href="">subcategory 1</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="">Bags</a>
-                                    </li>
-                                    <li class="parent">
-                                        <a href="">Cost &amp; Jackets</a>
-                                        <span class="toggle-submenu"></span>
-                                        <ul class="subcategory">
-                                            <li><a href="">subcategory 1</a></li>
-                                            <li><a href="">subcategory 1</a></li>
-                                            <li><a href="">subcategory 1</a></li>
-                                            <li><a href="">subcategory 1</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="parent">
-                                        <a href="">Beauty</a>
-                                        <span class="toggle-submenu"></span>
-                                        <ul class="subcategory">
-                                            <li><a href="">subcategory 1</a></li>
-                                            <li><a href="">subcategory 1</a></li>
-                                            <li><a href="">subcategory 1</a></li>
-                                            <li><a href="">subcategory 1</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="parent">
-                                        <a href="">Jewellery</a>
-                                        <span class="toggle-submenu"></span>
-                                        <ul class="subcategory">
-                                            <li><a href="">subcategory 1</a></li>
-                                            <li><a href="">subcategory 1</a></li>
-                                            <li><a href="">subcategory 1</a></li>
-                                            <li><a href="">subcategory 1</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="parent">
-                                        <a href="">Nightwear</a>
-                                        <span class="toggle-submenu"></span>
-                                        <ul class="subcategory">
-                                            <li><a href="">subcategory 1</a></li>
-                                            <li><a href="">subcategory 1</a></li>
-                                            <li><a href="">subcategory 1</a></li>
-                                            <li><a href="">subcategory 1</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="parent">
-                                        <a href="">Jumpers &amp; Cardigans</a>
-                                        <span class="toggle-submenu"></span>
-                                        <ul class="subcategory">
-                                            <li><a href="">subcategory 1</a></li>
-                                            <li><a href="">subcategory 1</a></li>
-                                            <li><a href="">subcategory 1</a></li>
-                                            <li><a href="">subcategory 1</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div><!-- Block  bestseller products-->
-
+                      
                         <!-- block filter products -->
                         <div id="layered-filter-block" class="block-sidebar block-filter no-hide">
                             <div class="close-filter-products"><i class="fa fa-times" aria-hidden="true"></i></div>
@@ -280,46 +206,13 @@
                                     <div class="filter-options-title">Categories</div>
                                     <div class="filter-options-content">
                                         <ol class="items">
-                                            <li class="item ">
+                                            {% for c in categories %}
+                                            <li class="item " {% if category.slug == c.slug %}class="selected" {% endif %}>
                                                 <label>
-                                                    <input type="checkbox"><span>Tops <span class="count">(20)</span></span>
+                                                    <input type="checkbox"><span> {{ c.cat_name }} <span class="count"></span></span>
                                                 </label>
                                             </li>
-                                            <li class="item ">
-                                                <label>
-                                                    <input type="checkbox"><span>Network & Computer <span class="count">(20)</span></span>
-                                                </label>
-                                            </li>
-                                            <li class="item ">
-                                                <label>
-                                                    <input type="checkbox"><span>Batteries & Chargers <span class="count">(20)</span></span>
-                                                </label>
-                                            </li>
-                                            <li class="item ">
-                                                <label>
-                                                    <input type="checkbox"><span>Dresses <span class="count">(20)</span></span>
-                                                </label>
-                                            </li>
-                                            <li class="item ">
-                                                <label>
-                                                    <input type="checkbox"><span>Knitted <span class="count">(20)</span></span>
-                                                </label>
-                                            </li>
-                                            <li class="item ">
-                                                <label>
-                                                    <input type="checkbox"><span>Pants <span class="count">(20)</span></span>
-                                                </label>
-                                            </li>
-                                            <li class="item ">
-                                                <label>
-                                                    <input type="checkbox"><span>Best selling <span class="count">(20)</span></span>
-                                                </label>
-                                            </li>
-                                            <li class="item ">
-                                                <label>
-                                                    <input type="checkbox"><span>Headphone & Headset <span class="count">(20)</span></span>
-                                                </label>
-                                            </li>
+                                            {% endfor %}
                                         </ol>
                                     </div>
                                 </div><!-- Filter Item  categori-->
@@ -407,63 +300,6 @@
                             </div>
                         </div><!-- Filter -->
 
-                        <!-- block slide top -->
-                        <div class="block-sidebar block-banner-sidebar">
-                            <div class="owl-carousel" 
-                                data-nav="false" 
-                                data-dots="true" 
-                                data-margin="0" 
-                                data-items='1' 
-                                data-autoplayTimeout="700" 
-                                data-autoplay="true" 
-                                data-loop="true">
-                                <div class="item item1" >
-                                   <img src="{% static 'frontend/images/media/banner-sidebar1.jpg' %}" alt="images">
-                                </div>
-                                <div class="item item2" >
-                                   <img src="{% static 'frontend/images/media/banner-sidebar1.jpg' %}" alt="images">
-                                </div>
-                                <div class="item item3" >
-                                   <img src="{% static 'frontend/images/media/banner-sidebar1.jpg' %}" alt="images">
-                                </div>
-                            </div>
-                        </div><!-- block slide top -->
-
-                        <!-- Block  bestseller products-->
-                        <div class="block-sidebar block-sidebar-products">
-                            <div class="block-title">
-                                <strong>SPECIAL PRODUCTS</strong>
-                            </div>
-                            <div class="block-content">
-                                <div class="product-item product-item-opt-1">
-                                    <div class="product-item-info">
-                                        <div class="product-item-photo">
-                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/floor5-1.jpg' %}"></a>
-                                        </div>
-                                        <div class="product-item-detail">
-                                            <strong class="product-item-name"><a href="">Security Camera Size Flared</a></strong>
-                                            <div class="clearfix">
-                                                <div class="product-item-price">
-                                                    <span class="price">$45.00</span>
-                                                </div>
-                                                <div class="product-reviews-summary">
-                                                    <div class="rating-summary">
-                                                        <div title="70%" class="rating-result">
-                                                            <span style="width:70%">
-                                                                <span><span>70</span>% of <span>100</span></span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center">
-                                    <a href="" class="btn all-products">All products <i aria-hidden="true" class="fa fa-angle-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div><!-- Block  bestseller products-->
 
                        
                     </div><!-- Sidebar -->
