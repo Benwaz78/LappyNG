@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 {% block title%}
-Product
+{{ product_detail.title }}
 {% endblock %}
 
 {% block content %}          	
@@ -35,7 +35,7 @@ Product
 
                                     <div class="image_preview_container images-large">
 
-                                        <img id="img_zoom" data-zoom-image="../../static/frontend/images/media/detail/thumb-lag1.jpg" src="../../static/frontend/images/media/detail/thumb-img1.jpg" alt="">
+                                        <img id="img_zoom" data-zoom-image="{{ product_detail.show_image1 }}" src="{{ product_detail.show_image1 }}" alt="">
 
                                         <button class="btn-zoom open_qv"><span>zoom</span></button>
 
@@ -45,28 +45,23 @@ Product
 
                                         <div class="owl-carousel thumbnails_carousel" id="thumbnails"  data-nav="true" data-dots="false" data-margin="10" data-responsive='{"0":{"items":3},"480":{"items":4},"600":{"items":5},"768":{"items":3}}'>
                                             
-                                            <a href="#" data-image="../../static/frontend/images/media/detail/thumb-img1.jpg" data-zoom-image="../../static/frontend/images/media/detail/thumb-lag1.jpg">
+                                            <a href="#" data-image="{{ product_detail.show_image1 }}" data-zoom-image="{{ product_detail.show_image1 }}">
 
-                                                <img src="../../static/frontend/images/media/detail/thumb1.jpg" data-large-image="../../static/frontend/images/media/detail/thumb-img1.jpg" alt="">
-
-                                            </a>
-
-                                            <a href="#" data-image="../../static/frontend/images/media/detail/thumb-img2.jpg" data-zoom-image="../../static/frontend/images/media/detail/thumb-lag2.jpg">
-
-                                                <img src="../../static/frontend/images/media/detail/thumb2.jpg" data-large-image="../../static/frontend/images/media/detail/thumb-img2.jpg" alt="">
-
-                                            </a>
-                                            <a href="#" data-image="../../static/frontend/images/media/detail/thumb-img3.jpg" data-zoom-image="../../static/frontend/images/media/detail/thumb-lag3.jpg">
-
-                                                <img src="../../static/frontend/images/media/detail/thumb3.jpg" data-large-image="../../static/frontend/images/media/detail/thumb-img3.jpg" alt="">
-
-                                            </a>
-                                            <a href="#" data-image="../../static/frontend/images/media/detail/thumb-img1.jpg" data-zoom-image="../../static/frontend/images/media/detail/thumb-lag1.jpg">
-
-                                                <img src="../../static/frontend/images/media/detail/thumb1.jpg" data-large-image="../../static/frontend/images/media/detail/thumb-img1.jpg" alt="">
+                                                <img src="{{ product_detail.show_image1 }}" data-large-image="{{ product_detail.show_image1 }}" alt="">
 
                                             </a>
 
+                                            <a href="#" data-image="{{ product_detail.show_image2 }}" data-zoom-image="{{ product_detail.show_image2 }}">
+
+                                                <img src="{{ product_detail.show_image2 }}" data-large-image="{{ product_detail.show_image2 }}" alt="">
+
+                                            </a>
+                                            <a href="#" data-image="{{ product_detail.show_image3 }}" data-zoom-image="{{ product_detail.show_image3 }}">
+
+                                                <img src="{{ product_detail.show_image3 }}" data-large-image="{{ product_detail.show_image3 }}" alt="">
+
+                                            </a>
+                                           
                                         </div><!--/ .owl-carousel-->
 
                                     </div><!--/ .product_preview-->
@@ -75,11 +70,11 @@ Product
                             </div>
 
                             <div class="col-sm-6 col-md-6 col-lg-6"> 
-
+                                {% if product_detail %}
                                 <div class="product-info-main">
 
                                     <h1 class="page-title">
-                                        Advanced Dark Blue Coast
+                                        {{ product_detail.title }}
                                     </h1>
                                     <div class="product-reviews-summary">
                                         <div class="rating-summary">
@@ -97,64 +92,40 @@ Product
                                    
                                     <div class="product-info-price">
                                         <div class="price-box">
-                                            <span class="price">$38.95   </span>
-                                            <span class="old-price">$52.00</span>
-                                            <span class="label-sale">-30%</span>
+                                            <span class="price">&#8358;{{ product_detail.price }} </span>
+                                            <span class="old-price">&#8358;{{ product_detail.old_price }}</span>
+                                            <span class="label-sale">- 30%</span>
                                         </div>
                                     </div>  
-                                    <div class="product-code">
-                                        Item Code: #453217907 :  
-                                    </div> 
                                     <div class="product-info-stock">
                                         <div class="stock available">
-                                            <span class="label">Availability: </span>In stock
+                                            <span class="label">Availability: </span> 
+                                            {% if product_detail.in_stock == True %} In stock {% else %} Out Of Stock {% endif %}
                                         </div>
                                     </div>
-                                    <div class="product-condition">
-                                        Condition: New
-                                    </div>
+                                    {% if product_detail.new_product == True %} 
+                                        <div class="product-condition">
+                                            Condition: <span class="text-success">New</span>
+                                        </div>
+                                    {% endif %}
                                     <div class="product-overview">
                                         <div class="overview-content">
-                                            Vestibulum eu odio. Suspendisse potenti. Morbi mollis tellus ac sapien. Praesent egestas tristique nibh. Nullam dictum felis eu pede mollis pretium. Fusce egestas elit eget lorem. 
+                                            {{ product_detail.contents|safe|truncatewords:15 }}
                                         </div>
                                     </div>
 
                                     <div class="product-add-form">
-                                        <p>Available Options:</p>
-                                        <form>
+                                        <form method="POST">
                                             <div class="contact-form-box">
+                                                {% include 'frontend/form-snippet.html' with form=request_form %}
                                                 <div class="form-selector">
-                                                    <label>Name</label>
-                                                   <input type="text" id="name" class="form-control input-sm">
-                                                </div>
-                                                <div class="form-selector">
-                                                    <label>Email address</label>
-                                                    <input type="text" id="email" class="form-control input-sm">
-                                                </div>
-                                                <div class="form-selector">
-                                                    <label>Phone Number</label>
-                                                    <input type="tel" id="phone_number" class="form-control input-sm">
-                                                </div>
-                                                <div class="form-selector">
-                                                    <label>Description</label>
-                                                    <textarea id="message" rows="10" class="form-control input-sm"></textarea>
-                                                </div>
-                                                <div class="form-selector">
-                                                    <button class="btn" id="btn-send-contact">Send</button>
+                                                    <input type="submit" name="request_form" class="btn" id="btn-send-contact" value="Send">
                                                 </div>
                                             </div>
-                                          
-
                                         </form>
                                     </div>
-                                    <div class="product-addto-links-second">
-                                        <a href="" class="action action-print">Print</a>
-                                        <a href="" class="action action-friend">Send to a friend</a>
-                                    </div>
-                                    <div class="share">
-                                        <img src="../../static/frontend/images/media/index1/share.png" alt="share">
-                                    </div>
                                 </div><!-- detail- product -->
+                                {% endif %}
 
                             </div><!-- Main detail -->
 
@@ -167,66 +138,113 @@ Product
                             <!-- Nav tabs -->
                             <ul class="nav nav-pills" role="tablist">
                                 <li role="presentation" class="active"><a href="#description"  role="tab" data-toggle="tab">Product Details   </a></li>
-                                <li role="presentation"><a href="#tags"  role="tab" data-toggle="tab">information </a></li>
-                                <li role="presentation"><a href="#reviews"  role="tab" data-toggle="tab">reviews</a></li>
-                                <li role="presentation"><a href="#additional"  role="tab" data-toggle="tab">Extra Tabs</a></li>
-                                <li role="presentation"><a href="#tab-cust"  role="tab" data-toggle="tab">Guarantees</a></li>
+                                <li role="presentation"><a href="#reviews"  role="tab" data-toggle="tab">Reviews</a></li>
                             </ul>
 
                             <!-- Tab panes -->
-                            <div class="tab-content">
+                            <div class="tab-content" id="productDetailTab">
                                 <div role="tabpanel" class="tab-pane active" id="description">
-                                    <div class="block-title">Product Details</div>
                                     <div class="block-content">
-                                        <p>Morbi mollis tellus ac sapien. Nunc nec neque. Praesent nec nisl a purus blandit viverra. Nunc nec neque. Pellentesque auctor neque nec urna.</p>
-                                        <br>
-                                        <p>Curabitur suscipit suscipit tellus. Cras id dui. Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Maecenas vestibulum mollis diam.</p>
-                                        <br>
-                                        <p>Vestibulum facilisis, purus nec pulvinar iaculis, ligula mi congue nunc, vitae euismod ligula urna in dolor. Sed lectus. Phasellus leo dolor, tempus non, auctor et, hendrerit quis, nisi. Nam at tortor in tellus interdum sagittis. Pellentesque egestas, neque sit amet convallis pulvinar, justo nulla eleifend augue, ac auctor orci leo non est.</p>
-                                        <br>
-                                        <p>Morbi mollis tellus ac sapien. Nunc nec neque. Praesent nec nisl a purus blandit viverra. Nunc nec neque. Pellentesque auctor neque nec urna.</p>
-                                   
-                                    </div>
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="tags">
-                                    <div class="block-title">information</div>
-                                    <div class="block-content">
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
-                                       
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="block-title">Product Details</div>
+                                            </div>
+                                        </div>
+                                    </div>  
                                     
-                                    </div>
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="reviews">
-                                    <div class="block-title">reviews</div>
                                     <div class="block-content">
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
-                                       
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
-                                    </div>
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="additional">
-                                    <div class="block-title">Extra Tabs</div>
-                                    <div class="block-content">
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
-                                       
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
-                                    </div>
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="tab-cust">
-                                    <div class="block-title">Guarantees</div>
-                                    <div class="block-content">
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
-                                        
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also Aldus PageMaker including versions of Lorem Ipsum</p>
+                                       {{ product_detail.contents|safe }}
                                    
                                     </div>
                                 </div>
+                              
+                                <div role="tabpanel" class="tab-pane" id="reviews">
+                                    <div class="block-content">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="block-title">Reviews</div>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                    <div class="block-content">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="product-reviews-summary">
+                                                    <div class="rating-summary">
+                                                        <div class="rating-result" title="70%">
+                                                            <span style="width:70%">
+                                                                <span><span>70</span>% of <span>100</span></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="review-comment">
+                                                    <h3>Amadi Amaiher</h3>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, iure amet hic aperiam voluptatibus incidunt porro voluptas? 
+                                                        Laudantium nostrum recusandae temporibus suscipit possimus, aliquid exercitationem nobis voluptatum cumque deleniti animi.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="block-content">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="product-reviews-summary">
+                                                    <div class="rating-summary">
+                                                        <div class="rating-result" title="70%">
+                                                            <span style="width:70%">
+                                                                <span><span>70</span>% of <span>100</span></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="review-comment">
+                                                    <h3>Amadi Amaiher</h3>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, iure amet hic aperiam voluptatibus incidunt porro voluptas? 
+                                                        Laudantium nostrum recusandae temporibus suscipit possimus, aliquid exercitationem nobis voluptatum cumque deleniti animi.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="block-content">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="product-reviews-summary">
+                                                    <div class="rating-summary">
+                                                        <div class="rating-result" title="70%">
+                                                            <span style="width:70%">
+                                                                <span><span>70</span>% of <span>100</span></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="review-comment">
+                                                    <h3>Amadi Amaiher</h3>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, iure amet hic aperiam voluptatibus incidunt porro voluptas? 
+                                                        Laudantium nostrum recusandae temporibus suscipit possimus, aliquid exercitationem nobis voluptatum cumque deleniti animi.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="block-content">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                
+                                                <form  method="POST">
+                                                   {% include 'frontend/form-snippet.html' with form=form %}
+                                                    <input type="submit" name="name_rating" class="btn" value="Your Rating">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>  
                         <!-- product tab info -->

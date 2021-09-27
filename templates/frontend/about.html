@@ -26,16 +26,14 @@ About
                         <h2 class="page-heading">
                             <span class="page-heading-title2">About Us</span>
                         </h2>
-                        {% if abt %}
-                        {% for a in abt %}
-                        <div class="content-text clearfix">
+                        {% if content %}
+                            <div class="content-text clearfix">
 
-                            <img width="310" alt="" class="alignleft" src="{{ a.abt_img }}">
+                                <img width="310" alt="" class="alignleft" src="{{ content.abt_img }}">
 
-                            <p>{{ a.abt_content |safe }}</p>
+                                <p>{{ content.abt_content |safe }}</p>
 
-                        </div>
-                        {% endfor %}
+                            </div>
                         {% endif %}
 
                     </div><!-- Main Content -->

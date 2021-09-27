@@ -32,7 +32,7 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse('lappyng_app:category_grid', args=[self.slug])
 
-    def _str_(self):
+    def __str__(self):
         return self.cat_name
 
     
@@ -51,7 +51,7 @@ class Brand(models.Model):
     brand_img = models.ImageField(blank=True, null=True, verbose_name='Brand Image', help_text='Use this Image dimension 157px X 88px')
     created = models.DateTimeField(auto_now_add=True)
 
-    def _str_(self):
+    def __str__(self):
         return self.brand_name
 
     class Meta():
@@ -83,6 +83,9 @@ class Products(models.Model):
     old_price = models.DecimalField(max_digits=20, decimal_places=2, verbose_name='Old Price')
     in_stock = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
+    new_product = models.BooleanField()
+    hot_deal = models.BooleanField( verbose_name='Hot Deals of this Week', blank=True, null=True)
+    best_seller = models.BooleanField(blank=True, null=True, default=False)
     image1 = models.ImageField(upload_to='uploads/', blank=True, null=True)
     image2 = models.ImageField(upload_to='uploads/', blank=True, null=True)
     image3 = models.ImageField(upload_to='uploads/', blank=True, null=True)
@@ -91,9 +94,7 @@ class Products(models.Model):
     updated = models.DateTimeField(auto_now=True)
     objects = models.Manager()
     products = models.Manager()
-    new_product = models.BooleanField()
-    hot_deal = models.BooleanField( verbose_name='Hot Deals of this Week')
-    new = models.BooleanField( verbose_name='New Arrivals')
+    
     
 
     class Meta:
@@ -119,11 +120,53 @@ class Products(models.Model):
             return 'prairiemartapp/images/media/index1/top-brand2.png'
     
     def get_absolute_url(self):
-        return reverse('prairiemartapp:product_detail', args=[self.slug])
+        return reverse('lappyng_app:product', args=[self.slug])
 
-    def _str_(self):
+    def __str__(self):
         return self.title
 
+class ProductRequest(models.Model):
+    name = models.CharField(max_length=150)
+    email = models.EmailField()
+    phone = models.CharField(max_length=15)
+    product = models.ForeignKey(Products, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural='Product Request'
+        ordering = ('-created',)
+
+class ProductReview(models.Model):
+
+    ONE = '1'
+    TWO = '2'
+    THREE = '3'
+    FOUR = '4'
+    FIVE = '5'
+    CHOOSE = ''
+    RATING_LIST = [
+        (ONE, 1),
+        (TWO, 2),
+        (THREE, 3),
+        (FOUR, 4),
+        (FIVE, 5),
+        (CHOOSE, 'Choose Rating'),
+    ]
+    full_name = models.CharField(max_length=150)
+    email = models.EmailField(blank=True, null=True)
+    rating = models.CharField(max_length=10, choices=RATING_LIST, default=CHOOSE)
+    product = models.ForeignKey(Products, on_delete=models.CASCADE, blank=True, null=True)
+    review = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+    def __str__(self):
+        return self.full_name
 
 class About(models.Model):
     title = models.CharField(max_length=50)
@@ -244,4 +287,4 @@ class Banner(models.Model):
           return self.slide_img.url
 
     class Meta():
-        verbose_name_plural = '7. Banner'
+        verbose_name_plural = 'Banner'

@@ -1,0 +1,18 @@
+IMAGE SIZES
+1. Top Row Design (870px X 200px)
+2. Repeated Row (870px X 200px)
+3. Design before blog (570px X 200px)
+4. Product Detail (420px 512px)
+
+TODO 
+1.  Change URL
+1.  Change Favicon
+2.  Display Top Seller and New Arrival
+3.  Products from brand
+4.  New Products on Home Side bar
+5.  Sidebar home page banner
+6.  Detail Page
+7.  Make Detail Page Sidebar Reusable
+8.  Detail Content, Product Review
+9.  Come back and display review
+10. Finalize product with review on home page

@@ -5,6 +5,8 @@ from django.utils.html import format_html
 
 admin.site.site_header = 'LappyNG'
 
+
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     def show_cat_img(self, obj):
@@ -21,6 +23,18 @@ class CategoryAdmin(admin.ModelAdmin):
 
         ]
     prepopulated_fields = {'slug': ('cat_name',)}
+
+@admin.register(ProductReview)
+class ProductReviewAdmin(admin.ModelAdmin):
+    list_display = [
+        'full_name',
+        'email',
+        'rating',
+        'product',
+        'review',
+        'created_at',
+        'updated',
+        ]
 
 
 @admin.register(Brand)
@@ -51,18 +65,13 @@ class ProductsAdmin(admin.ModelAdmin):
     list_display = [
 
         'title',
-        'category',
         'slug',
-        'brand',
         'show_image1',
         'price',
-        'old_price',
         'in_stock',
         'is_active',
-        'created_by',
+        'best_seller',
         'created',
-        'updated',
-
         ]
     prepopulated_fields = {'slug': ('title',)}
 

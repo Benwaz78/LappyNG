@@ -22,10 +22,10 @@ from filebrowser.sites import site
 
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    # path('jet/', include('jet.urls')),
-    # path('jet/dashboard/', include('jet.dashboard.urls','jet-dashboard')),
-    path('pages/', include('lappyng_app.urls')),
+    path('', views.Home.as_view(), name='index'),
+     path('about/', views.about, name='about'),
+     path('contact/', views.contact, name='contact'),
+    path('products/', include('lappyng_app.urls')),
     path('tinymce/', include('tinymce.urls')),
     path('admin/filebrowser/', site.urls),
     path('admin/', admin.site.urls),

@@ -1,5 +1,6 @@
+from multiprocessing import get_context
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from lappyng_app.models import *
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
@@ -15,27 +16,38 @@ from django.db.models import Count, Q
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+from django.views.generic import(
+    ListView, DetailView,
+    CreateView, FormView,
+    TemplateView, View
+)
 
-def index(request):
-    news  = BlogPost.objects.order_by('-created')[:4]
-    banner = Banner.objects.order_by('-created')
-    new_product = Products.objects.filter(new_product=True)[:4]
-    hot_deal = Products.objects.filter(hot_deal=True)[:3]
-    new = Products.objects.filter(new=True)[:5]
-    products = Products.objects.all()
-    context ={
-    'news':news, 
-    'new_product': new_product,
-    'banner':banner,
-    'hots': hot_deal,
-    'new': new,
-    'products':products
-    }
-    return render(request, 'frontend/index.html', context)
+
+class Home(TemplateView):
+    template_name = 'frontend/index.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        all_prod = []
+        prod_dict = Products.objects.values('brand', 'id')
+        brands = {product['brand'] for product in prod_dict}
+        for brand in brands:
+            prod_brand = Products.objects.filter(brand=brand)
+            all_prod.append([prod_brand,])
+        context['prod_brand'] = all_prod
+        context['news'] = BlogPost.objects.order_by('-created')[:4]
+        context['banner'] = Banner.objects.order_by('-created')
+        context['new_arrival'] = Products.objects.order_by('-created')[:5]
+        context['hots'] = Products.objects.filter(hot_deal=True)[:3]
+        context['best_seller'] = Products.objects.filter(best_seller=True)[:5]
+        context['brand'] = Brand.objects.all()
+        context['products'] = Products.objects.all()
+        return context
+
 
 def about(request):
+    content = About.objects.first()
     about_us = About.objects.all()
-    return render(request, 'frontend/about.html',  {'abt':about_us})
+    return render(request, 'frontend/about.html',  {'abt':about_us, 'content':content})
 
 def blog(request):
     count_post = BlogPost.objects.filter().count()    
@@ -78,7 +90,6 @@ def blog_details(request, pk):
             comment.post = single_post
             comment.save()
             return redirect('lappyng_app:blog_details', pk=single_post.pk)
-
     else:
         form = CommentForm()     
 
@@ -99,8 +110,37 @@ def contact(request):
     return render(request, 'frontend/contact.html')
 
 
-def product(request):
-    return render(request, 'frontend/product.html')
+def product_detail(request, slug):
+    product = Products.objects.get(slug=slug)
+    if 'name_rating' in request.POST:
+        form1 = ProductReviewForm(request.POST or None)
+        product = Products.objects.get(slug=slug)
+        if form1.is_valid():
+            form1.save(commit=False)
+            form1.product = product
+            form1.save()
+            messages.success(request, 'Reviews Added')
+    else:
+        form1 = ProductReviewForm()
+
+    if 'request_form' in request.POST:
+        form2 = ProductRequestForm(request.POST or None)
+        print(slug)
+        product = Products.objects.get(slug=slug)
+        print(product)
+        if form2.is_valid():
+            form2.save(commit=False)
+            form2.product = product
+            form2.save()
+            messages.success(request, 'Request Added')
+    else:
+        form2 = ProductRequestForm()
+    return render(request, 'frontend/product.html', {'product_detail':product, 'form':form1, 'request_form':form2})
+
+
+
+    
+    
 
 
 def category_grid(request,  category_slug):
@@ -127,3 +167,4 @@ def category_list(request):
 
 def login(request):
     return render(request, 'frontend/login.html')
+

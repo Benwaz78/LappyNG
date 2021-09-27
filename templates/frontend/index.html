@@ -49,7 +49,7 @@ Home
                                 {% for b in banner %}
                                 {% if forloop.counter == 1 %}
                                 <div class="item">
-                                    <img src="{{ b.post_img }}" style="max-height:600px; min-height:600px;" alt="slide1" class="img-slide">
+                                    <img src="{{ b.post_img }}" alt="slide1" class="img-slide">
                                     <div class="description">
                                         {% if b.slide_content1 %}
                                         <span class="subtitle " >{{ b.slide_content1 }} </span>
@@ -61,7 +61,7 @@ Home
                                 </div>
                                 {% else %}
                                 <div class="item">
-                                    <img src="{{ b.post_img }}" style="max-height:600px; min-height:600px;" alt="slide1" class="img-slide">
+                                    <img src="{{ b.post_img }}" alt="slide1" class="img-slide">
                                     <div class="description">
                                         {% if b.slide_content1 %}
                                         <span class="subtitle" >{{ b.slide_content1 }} </span>
@@ -97,407 +97,113 @@ Home
                             <div class="block-title ">
 
                                 <ul  class="nav-links">
-                                    <li role="presentation" class="active"><a href="#floor1-1"  role="tab" data-toggle="tab">Best Seller </a></li>
-                                    <li role="presentation"><a href="#floor1-2"  role="tab" data-toggle="tab">New Arrivals </a></li>
-                                    <li role="presentation"><a href="#floor1-3"  role="tab" data-toggle="tab">Most Reviews </a></li>
-                                   
+                                    <li role="presentation" class="active"><a href="#newArrival"  role="tab" data-toggle="tab">New Arrival </a></li>
+                                    <li role="presentation"><a href="#bestSeller"  role="tab" data-toggle="tab">Best Seller </a></li>
                                 </ul>
                             </div>
 
                             <div class="block-content">
 
                                 <div class="tab-content">
-
                                     <!-- tab 1 -->
-                                    <div class="tab-pane active in   " id="floor1-1" role="tabpanel">
-                                        <div class="owl-carousel" 
-                                            data-nav="true" 
-                                            data-dots="false" 
-                                            data-margin="30" 
-                                            data-responsive='{
-                                            "0":{"items":1},
-                                            "420":{"items":2},
-                                            "600":{"items":3},
-                                            "768":{"items":3},
-                                            "992":{"items":3},
-                                            "1200":{"items":4}
-                                        }'>
-                                            
-                                            <div class=" product-item product-item-opt-13">
-                                                <div class="product-item-info">
-                                                    
-                                                    <div class="product-item-photo">
-                                                        <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index12/floor1-1.jpg' %}"></a>
-                                                        <div class="product-item-actions">
-                                                            <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                            <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                            <a class="btn btn-quickview" href=""><span>quickview</span></a>
+                                    {% if new_arrival %}
+                                        {% for n in new_arrival %}
+                                        <div class="tab-pane active in" id="newArrival" role="tabpanel">
+                                            <div class="owl-carousel" 
+                                                data-nav="true" 
+                                                data-dots="false" 
+                                                data-margin="30" 
+                                                data-responsive='{
+                                                "0":{"items":1},
+                                                "420":{"items":2},
+                                                "600":{"items":3},
+                                                "768":{"items":3},
+                                                "992":{"items":3},
+                                                "1200":{"items":4}
+                                            }'>
+                                                
+                                                <div class=" product-item product-item-opt-13">
+                                                    <div class="product-item-info">
+                                                        
+                                                        <div class="product-item-photo">
+                                                            <a class="product-item-img" href=""><img alt="{{ n.title }}" src="{{ n.show_image1 }}"></a>
+                                                           
+                                                           
                                                         </div>
-                                                       
-                                                    </div>
-                                                    <div class="product-item-detail">
-                                                        <strong class="product-item-name"><a href="">Sexy Red Dress </a></strong>
-                                                        <div class="product-item-price">
-                                                            <span class="price">$138,95</span>
-                                                            <span class="old-price">$140.00</span>
-                                                        </div>
-                                                        <div class="product-reviews-summary">
-                                                            <div class="rating-summary">
-                                                                <div title="80%" class="rating-result">
-                                                                    <span style="width:80%">
-                                                                        <span><span>80</span>% of <span>100</span></span>
-                                                                    </span>
+                                                        <div class="product-item-detail">
+                                                            <strong class="product-item-name"><a href="">{{ n.title }} </a></strong>
+                                                            <div class="product-item-price">
+                                                                <span class="price">&#8358; {{ n.price }}</span>
+                                                                <span class="old-price">&#8358; {{ n.old_price }}</span>
+                                                            </div>
+                                                            <div class="product-reviews-summary">
+                                                                <div class="rating-summary">
+                                                                    <div title="80%" class="rating-result">
+                                                                        <span style="width:80%">
+                                                                            <span><span>80</span>% of <span>100</span></span>
+                                                                        </span>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+    
+                                                
                                             </div>
-
-                                            <div class=" product-item product-item-opt-13">
-                                                <div class="product-item-info">
-                                                    
-                                                    <div class="product-item-photo">
-                                                        <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index12/floor1-2.jpg' %}"></a>
-                                                        <div class="product-item-actions">
-                                                            <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                            <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                            <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                        </div>
-                                                       
-
-                                                        <span class="product-item-label label-new">new</span>
-                                                    </div>
-                                                    <div class="product-item-detail">
-                                                        <strong class="product-item-name"><a href="">Sexy Red Dress </a></strong>
-                                                        <div class="product-item-price">
-                                                            <span class="price">$138,95</span>
-                                                        </div>
-                                                        <div class="product-reviews-summary">
-                                                            <div class="rating-summary">
-                                                                <div title="80%" class="rating-result">
-                                                                    <span style="width:80%">
-                                                                        <span><span>80</span>% of <span>100</span></span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                       
-                                            <div class=" product-item product-item-opt-13">
-                                                <div class="product-item-info">
-                                                    
-                                                    <div class="product-item-photo">
-                                                        <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index12/floor1-3.jpg' %}"></a>
-                                                        <div class="product-item-actions">
-                                                            <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                            <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                            <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                        </div>
-                                                       
-                                                    </div>
-                                                    <div class="product-item-detail">
-                                                        <strong class="product-item-name"><a href="">Sexy Red Dress </a></strong>
-                                                        <div class="product-item-price">
-                                                            <span class="price">$138,95</span>
-                                                        </div>
-                                                        <div class="product-reviews-summary">
-                                                            <div class="rating-summary">
-                                                                <div title="80%" class="rating-result">
-                                                                    <span style="width:80%">
-                                                                        <span><span>80</span>% of <span>100</span></span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class=" product-item product-item-opt-13">
-                                                <div class="product-item-info">
-                                                    
-                                                    <div class="product-item-photo">
-                                                        <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index12/floor1-4.jpg' %}"></a>
-                                                        <div class="product-item-actions">
-                                                            <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                            <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                            <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                        </div>
-                                                       
-                                                    </div>
-                                                    <div class="product-item-detail">
-                                                        <strong class="product-item-name"><a href="">Sexy Red Dress </a></strong>
-                                                        <div class="product-item-price">
-                                                            <span class="price">$138,95</span>
-                                                        </div>
-                                                        <div class="product-reviews-summary">
-                                                            <div class="rating-summary">
-                                                                <div title="80%" class="rating-result">
-                                                                    <span style="width:80%">
-                                                                        <span><span>80</span>% of <span>100</span></span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class=" product-item product-item-opt-13">
-                                                <div class="product-item-info">
-                                                    
-                                                    <div class="product-item-photo">
-                                                        <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index12/floor1-5.jpg' %}"></a>
-                                                        <div class="product-item-actions">
-                                                            <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                            <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                            <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                        </div>
-                                                       
-                                                    </div>
-                                                    <div class="product-item-detail">
-                                                        <strong class="product-item-name"><a href="">Sexy Red Dress </a></strong>
-                                                        <div class="product-item-price">
-                                                            <span class="price">$138,95</span>
-                                                        </div>
-                                                        <div class="product-reviews-summary">
-                                                            <div class="rating-summary">
-                                                                <div title="80%" class="rating-result">
-                                                                    <span style="width:80%">
-                                                                        <span><span>80</span>% of <span>100</span></span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                           
                                         </div>
-                                    </div>
+                                        {% endfor %}
+                                    {% endif %}
 
-                                    <!-- tab 2-->
-                                
-                                    <div class="tab-pane  " id="floor1-2" role="tabpanel">
-                                        
-                                        <div class="owl-carousel" 
-                                            data-nav="true" 
-                                            data-dots="false" 
-                                            data-margin="30" 
-                                            data-responsive='{
-                                            "0":{"items":1},
-                                            "420":{"items":2},
-                                            "600":{"items":3},
-                                            "768":{"items":3},
-                                            "992":{"items":3},
-                                            "1200":{"items":4}
-                                        }'>
-                                        {% for new in new %}
-                                            <div class=" product-item product-item-opt-13">
-                                                <div class="product-item-info" style="max-height: 400px;min-height: 400px; ">
-                                                    
-                                                    <div class="product-item-photo">
-                                                        <a class="product-item-img" href=""><img alt="product name" src="{{new.show_image1}}" style="max-height: 300px;min-height: 300px; "></a>
-                                                       
-                                                       
-                                                    </div>
-                                                    <div class="product-item-detail">
-                                                        <strong class="product-item-name"><a href="">{{ new.title}}</a></strong>
-                                                        <div class="product-item-price">
-                                                            <span class="price">&#8358;{{new.price}}</span>
-                                                            <span class="old-price">&#8358;{{new.old_price}}</span>
+                                    {% if best_seller %}
+                                        {% for n in best_seller %}
+                                        <div class="tab-pane" id="bestSeller" role="tabpanel">
+                                            <div class="owl-carousel" 
+                                                data-nav="true" 
+                                                data-dots="false" 
+                                                data-margin="30" 
+                                                data-responsive='{
+                                                "0":{"items":1},
+                                                "420":{"items":2},
+                                                "600":{"items":3},
+                                                "768":{"items":3},
+                                                "992":{"items":3},
+                                                "1200":{"items":4}
+                                            }'>
+                                                
+                                                <div class=" product-item product-item-opt-13">
+                                                    <div class="product-item-info">
+                                                        
+                                                        <div class="product-item-photo">
+                                                            <a class="product-item-img" href=""><img alt="{{ n.title }}" src="{{ n.show_image1 }}"></a>
+                                                           
+                                                           
                                                         </div>
-                                                        <div class="product-reviews-summary">
-                                                            <div class="rating-summary">
-                                                                <div title="80%" class="rating-result">
-                                                                    <span style="width:80%">
-                                                                        <span><span>80</span>% of <span>100</span></span>
-                                                                    </span>
+                                                        <div class="product-item-detail">
+                                                            <strong class="product-item-name"><a href="">{{ n.title }} </a></strong>
+                                                            <div class="product-item-price">
+                                                                <span class="price">&#8358;{{ n.price }}</span>
+                                                                <span class="old-price">&#8358;{{ n.old_price }}</span>
+                                                            </div>
+                                                            <div class="product-reviews-summary">
+                                                                <div class="rating-summary">
+                                                                    <div title="80%" class="rating-result">
+                                                                        <span style="width:80%">
+                                                                            <span><span>80</span>% of <span>100</span></span>
+                                                                        </span>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+    
+                                                
                                             </div>
-
-                                            {% endfor %}
                                         </div>
-                                    </div>
-                               
-                                    <!-- tab 3 -->
-                                    <div class="tab-pane  " id="floor1-3" role="tabpanel">
-                                        <div class="owl-carousel" 
-                                            data-nav="true" 
-                                            data-dots="false" 
-                                            data-margin="30" 
-                                            data-responsive='{
-                                            "0":{"items":1},
-                                            "420":{"items":2},
-                                            "600":{"items":3},
-                                            "768":{"items":3},
-                                            "992":{"items":3},
-                                            "1200":{"items":4}
-                                        }'>
-                                            
-                                            <div class=" product-item product-item-opt-13">
-                                                <div class="product-item-info">
-                                                    
-                                                    <div class="product-item-photo">
-                                                        <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index12/floor1-1.jpg' %}"></a>
-                                                        <div class="product-item-actions">
-                                                            <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                            <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                            <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                        </div>
-                                                       
-                                                    </div>
-                                                    <div class="product-item-detail">
-                                                        <strong class="product-item-name"><a href="">Sexy Red Dress </a></strong>
-                                                        <div class="product-item-price">
-                                                            <span class="price">$138,95</span>
-                                                            <span class="old-price">$140.00</span>
-                                                        </div>
-                                                        <div class="product-reviews-summary">
-                                                            <div class="rating-summary">
-                                                                <div title="80%" class="rating-result">
-                                                                    <span style="width:80%">
-                                                                        <span><span>80</span>% of <span>100</span></span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class=" product-item product-item-opt-13">
-                                                <div class="product-item-info">
-                                                    
-                                                    <div class="product-item-photo">
-                                                        <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index12/floor1-2.jpg' %}"></a>
-                                                        <div class="product-item-actions">
-                                                            <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                            <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                            <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                        </div>
-                                                       
-
-                                                        <span class="product-item-label label-new">new</span>
-                                                    </div>
-                                                    <div class="product-item-detail">
-                                                        <strong class="product-item-name"><a href="">Sexy Red Dress </a></strong>
-                                                        <div class="product-item-price">
-                                                            <span class="price">$138,95</span>
-                                                        </div>
-                                                        <div class="product-reviews-summary">
-                                                            <div class="rating-summary">
-                                                                <div title="80%" class="rating-result">
-                                                                    <span style="width:80%">
-                                                                        <span><span>80</span>% of <span>100</span></span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                       
-                                            <div class=" product-item product-item-opt-13">
-                                                <div class="product-item-info">
-                                                    
-                                                    <div class="product-item-photo">
-                                                        <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index12/floor1-3.jpg' %}"></a>
-                                                        <div class="product-item-actions">
-                                                            <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                            <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                            <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                        </div>
-                                                       
-                                                    </div>
-                                                    <div class="product-item-detail">
-                                                        <strong class="product-item-name"><a href="">Sexy Red Dress </a></strong>
-                                                        <div class="product-item-price">
-                                                            <span class="price">$138,95</span>
-                                                        </div>
-                                                        <div class="product-reviews-summary">
-                                                            <div class="rating-summary">
-                                                                <div title="80%" class="rating-result">
-                                                                    <span style="width:80%">
-                                                                        <span><span>80</span>% of <span>100</span></span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class=" product-item product-item-opt-13">
-                                                <div class="product-item-info">
-                                                    
-                                                    <div class="product-item-photo">
-                                                        <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index12/floor1-4.jpg' %}"></a>
-                                                        <div class="product-item-actions">
-                                                            <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                            <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                            <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                        </div>
-                                                       
-                                                    </div>
-                                                    <div class="product-item-detail">
-                                                        <strong class="product-item-name"><a href="">Sexy Red Dress </a></strong>
-                                                        <div class="product-item-price">
-                                                            <span class="price">$138,95</span>
-                                                        </div>
-                                                        <div class="product-reviews-summary">
-                                                            <div class="rating-summary">
-                                                                <div title="80%" class="rating-result">
-                                                                    <span style="width:80%">
-                                                                        <span><span>80</span>% of <span>100</span></span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class=" product-item product-item-opt-13">
-                                                <div class="product-item-info">
-                                                    
-                                                    <div class="product-item-photo">
-                                                        <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index12/floor1-5.jpg' %}"></a>
-                                                        <div class="product-item-actions">
-                                                            <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                            <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                            <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                        </div>
-                                                       
-                                                    </div>
-                                                    <div class="product-item-detail">
-                                                        <strong class="product-item-name"><a href="">Sexy Red Dress </a></strong>
-                                                        <div class="product-item-price">
-                                                            <span class="price">$138,95</span>
-                                                        </div>
-                                                        <div class="product-reviews-summary">
-                                                            <div class="rating-summary">
-                                                                <div title="80%" class="rating-result">
-                                                                    <span style="width:80%">
-                                                                        <span><span>80</span>% of <span>100</span></span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                           
-                                        </div>
-                                    </div>
-
+                                        {% endfor %}
+                                    {% endif %}
+                                    
                                 </div>
 
                             </div>
@@ -506,7 +212,7 @@ Home
 
                         <!-- banner -->
                         <div class="block-banner-bottom-opt13">
-                           <a href="#" class="box-img"><img src="../../static/frontend/images/icon/jonathan-francisca-7httEEXyxrc-unsplash.jpg" style="max-height: 300px; min-height: 300px;" alt="img"></a>
+                           <a href="#" class="box-img"><img src="../../static/frontend/images/icon/advert-banner.jpg"  alt="img"></a>
                         </div><!-- banner -->
 
                        
@@ -524,724 +230,76 @@ Home
                                         
                                        
                                         <ul  class="slide-top-brand">
-                                            <li role="presentation" class="active">
-                                                <a href="#hot-1"  role="tab" data-toggle="tab"><img src="{% static 'frontend/images/media/index13/top-brand1.png' %}" alt="img"></a>
-                                            </li>
-                                            <li role="presentation" class="">
-                                                <a href="#hot-2"  role="tab" data-toggle="tab"><img src="{% static 'frontend/images/media/index13/top-brand2.png' %}" alt="img"></a>
-                                            </li>
-                                            <li role="presentation" class="">
-                                                <a href="#hot-3"  role="tab" data-toggle="tab"><img src="{% static 'frontend/images/media/index13/top-brand3.png' %}" alt="img"></a>
-                                            </li>
-                                            <li role="presentation" class="">
-                                                <a href="#hot-4"  role="tab" data-toggle="tab"><img src="{% static 'frontend/images/media/index13/top-brand4.png' %}" alt="img"></a>
-                                            </li>
-                                            <li role="presentation" class="">
-                                                <a href="#hot-5"  role="tab" data-toggle="tab"><img src="{% static 'frontend/images/media/index13/top-brand3.png' %}" alt="img"></a>
-                                            </li>
-                                            
+                                            {% if brand %}
+                                                {% for b in brand %}
+                                                    {% if forloop.counter == 1 %}
+                                                        <li role="presentation" class="active">
+                                                            <a href="#{{ b.id }}"  role="tab" data-toggle="tab"><img src="{{ b.show_brand_img }}" alt="img"></a>
+                                                        </li>
+                                                    {% else %}
+                                                    <li role="presentation">
+                                                        <a href="#{{ b.id }}"  role="tab" data-toggle="tab"><img src="{{ b.show_brand_img }}" alt="img"></a>
+                                                    </li>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
                                         </ul>
                                         
                                     </div>
                                 </div>
 
                                 <div class="block-content ">
-
                                     <div class="tab-content">
+                                        {% for b in brand %}
+                                            <div class="tab-pane {% if forloop.counter == 1 %} active in {% else %}  {% endif %} fade " id="{{ b.id }}" role="tabpanel">
 
-                                        <div class="tab-pane active in  fade " id="hot-1" role="tabpanel">
-
-                                            <div class="owl-carousel" 
-                                                data-nav="true" 
-                                                data-dots="false" 
-                                                data-margin="30" 
-                                                data-responsive='{
-                                                "0":{"items":1},
-                                                "480":{"items":1},
-                                                "600":{"items":2},
-                                                "768":{"items":2},
-                                                "992":{"items":2},
-                                                "1200":{"items":3}
-                                            }'>
-
-                                                <div class="product-item  product-item-opt-13 ">
-                                                    <div class="product-item-info">
-                                                        <div class="product-item-photo">
-                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index13/top-brand1.jpg' %}"></a>
-                                                            <div class="product-item-actions">
-                                                                <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                                <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                                <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                            </div>
-                                                           
-                                                            <span class="product-item-label label-sale">sale</span>
-                                                        </div>
-                                                        <div class="product-item-detail">
-                                                            <strong class="product-item-name"><a href="">Sexy Red Dress  </a></strong>
-                                                           
-                                                            <div class="product-item-price">
-                                                                <span class="price">$138,95</span>
-                                                                <span class="old-price"> $ 150,00</span>
-                                                            </div>
-                                                            
-                                                            <div class="product-reviews-summary">
-                                                                <div class="rating-summary">
-                                                                    <div title="80%" class="rating-result">
-                                                                        <span style="width:80%">
-                                                                            <span><span>80</span>% of <span>100</span></span>
-                                                                        </span>
+                                                <div class="owl-carousel" 
+                                                    data-nav="true" 
+                                                    data-dots="false" 
+                                                    data-margin="30" 
+                                                    data-responsive='{
+                                                    "0":{"items":1},
+                                                    "480":{"items":1},
+                                                    "600":{"items":2},
+                                                    "768":{"items":2},
+                                                    "992":{"items":2},
+                                                    "1200":{"items":3}
+                                                }'>
+                                                    
+                                                        {% for p in prod_brand %}
+                                                            <div class="product-item  product-item-opt-13">
+                                                                <div class="product-item-info">
+                                                                    <div class="product-item-photo">
+                                                                        <a class="product-item-img" href=""><img alt="{{ p.title }}" src="{{ p.show_image1 }}"></a>
+                                                                        
+                                                                    
+                                                                    </div>
+                                                                    <div class="product-item-detail">
+                                                                        <strong class="product-item-name"><a href=""> {{ p.title }}  </a></strong>
+                                                                    
+                                                                        <div class="product-item-price">
+                                                                            <span class="price">&#8358; {{ p.price }}</span>
+                                                                            <span class="old-price"> &#8358; {{ p.old_price }}</span>
+                                                                        </div>
+                                                                        
+                                                                        <div class="product-reviews-summary">
+                                                                            <div class="rating-summary">
+                                                                                <div title="80%" class="rating-result">
+                                                                                    <span style="width:80%">
+                                                                                        <span><span>80</span>% of <span>100</span></span>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
+                                                        {% endfor %}
                                                 </div>
-                                                <div class="product-item  product-item-opt-13 ">
-                                                    <div class="product-item-info">
-                                                        <div class="product-item-photo">
-                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index13/top-brand2.jpg' %}"></a>
-                                                            <div class="product-item-actions">
-                                                                <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                                <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                                <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                            </div>
-                                                           
-                                                        </div>
-                                                        <div class="product-item-detail">
-                                                            <strong class="product-item-name"><a href="">Sexy Red Dress</a></strong>
-                                                            
-                                                            <div class="product-item-price">
-                                                                <span class="price">$45.00</span>
-                                                            </div>
-                                                            <div class="product-reviews-summary">
-                                                                <div class="rating-summary">
-                                                                    <div title="80%" class="rating-result">
-                                                                        <span style="width:80%">
-                                                                            <span><span>80</span>% of <span>100</span></span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-item  product-item-opt-13 ">
-                                                    <div class="product-item-info">
-                                                        <div class="product-item-photo">
-                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index3/deals3.jpg' %}"></a>
-                                                            <div class="product-item-actions">
-                                                                <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                                <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                                <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                            </div>
-                                                           
-                                                            <span class="product-item-label label-new">new</span>
-                                                        </div>
-                                                        <div class="product-item-detail">
-                                                            <strong class="product-item-name"><a href="">Sexy Red Dress</a></strong>
-                                                            <div class="product-item-price">
-                                                                <span class="price">$45.00</span>
-                                                            </div>
-                                                            <div class="product-reviews-summary">
-                                                                <div class="rating-summary">
-                                                                    <div title="80%" class="rating-result">
-                                                                        <span style="width:80%">
-                                                                            <span><span>80</span>% of <span>100</span></span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-item  product-item-opt-13 ">
-                                                    <div class="product-item-info">
-                                                        <div class="product-item-photo">
-                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index3/deals3.jpg' %}"></a>
-                                                            <div class="product-item-actions">
-                                                                <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                                <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                                <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                            </div>
-                                                           
-                                                            <span class="product-item-label label-new">new</span>
-                                                        </div>
-                                                        <div class="product-item-detail">
-                                                            <strong class="product-item-name"><a href="">Sexy Red Dress</a></strong>
-                                                            <div class="product-item-price">
-                                                                <span class="price">$45.00</span>
-                                                            </div>
-                                                            <div class="product-reviews-summary">
-                                                                <div class="rating-summary">
-                                                                    <div title="80%" class="rating-result">
-                                                                        <span style="width:80%">
-                                                                            <span><span>80</span>% of <span>100</span></span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
                                             </div>
-                                        </div>
-
-                                        <div class="tab-pane  fade " id="hot-2" role="tabpanel">
-
-                                            <div class="owl-carousel" 
-                                                data-nav="true" 
-                                                data-dots="false" 
-                                                data-margin="30" 
-                                                data-responsive='{
-                                                "0":{"items":1},
-                                                "480":{"items":1},
-                                                "600":{"items":2},
-                                                "768":{"items":2},
-                                                "992":{"items":2},
-                                                "1200":{"items":3}
-                                            }'>
-
-                                                <div class="product-item  product-item-opt-13 ">
-                                                    <div class="product-item-info">
-                                                        <div class="product-item-photo">
-                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index13/top-brand1.jpg' %}"></a>
-                                                            <div class="product-item-actions">
-                                                                <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                                <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                                <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                            </div>
-                                                           
-                                                            <span class="product-item-label label-sale">sale</span>
-                                                        </div>
-                                                        <div class="product-item-detail">
-                                                            <strong class="product-item-name"><a href="">Sexy Red Dress  </a></strong>
-                                                           
-                                                            <div class="product-item-price">
-                                                                <span class="price">$138,95</span>
-                                                                <span class="old-price"> $ 150,00</span>
-                                                            </div>
-                                                            
-                                                            <div class="product-reviews-summary">
-                                                                <div class="rating-summary">
-                                                                    <div title="80%" class="rating-result">
-                                                                        <span style="width:80%">
-                                                                            <span><span>80</span>% of <span>100</span></span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-item  product-item-opt-13 ">
-                                                    <div class="product-item-info">
-                                                        <div class="product-item-photo">
-                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index13/top-brand2.jpg' %}"></a>
-                                                            <div class="product-item-actions">
-                                                                <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                                <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                                <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                            </div>
-                                                           
-                                                        </div>
-                                                        <div class="product-item-detail">
-                                                            <strong class="product-item-name"><a href="">Sexy Red Dress</a></strong>
-                                                            
-                                                            <div class="product-item-price">
-                                                                <span class="price">$45.00</span>
-                                                            </div>
-                                                            <div class="product-reviews-summary">
-                                                                <div class="rating-summary">
-                                                                    <div title="80%" class="rating-result">
-                                                                        <span style="width:80%">
-                                                                            <span><span>80</span>% of <span>100</span></span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-item  product-item-opt-13 ">
-                                                    <div class="product-item-info">
-                                                        <div class="product-item-photo">
-                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index3/deals3.jpg' %}"></a>
-                                                            <div class="product-item-actions">
-                                                                <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                                <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                                <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                            </div>
-                                                           
-                                                            <span class="product-item-label label-new">new</span>
-                                                        </div>
-                                                        <div class="product-item-detail">
-                                                            <strong class="product-item-name"><a href="">Sexy Red Dress</a></strong>
-                                                            <div class="product-item-price">
-                                                                <span class="price">$45.00</span>
-                                                            </div>
-                                                            <div class="product-reviews-summary">
-                                                                <div class="rating-summary">
-                                                                    <div title="80%" class="rating-result">
-                                                                        <span style="width:80%">
-                                                                            <span><span>80</span>% of <span>100</span></span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-item  product-item-opt-13 ">
-                                                    <div class="product-item-info">
-                                                        <div class="product-item-photo">
-                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index3/deals3.jpg' %}"></a>
-                                                            <div class="product-item-actions">
-                                                                <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                                <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                                <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                            </div>
-                                                           
-                                                            <span class="product-item-label label-new">new</span>
-                                                        </div>
-                                                        <div class="product-item-detail">
-                                                            <strong class="product-item-name"><a href="">Sexy Red Dress</a></strong>
-                                                            <div class="product-item-price">
-                                                                <span class="price">$45.00</span>
-                                                            </div>
-                                                            <div class="product-reviews-summary">
-                                                                <div class="rating-summary">
-                                                                    <div title="80%" class="rating-result">
-                                                                        <span style="width:80%">
-                                                                            <span><span>80</span>% of <span>100</span></span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="tab-pane  fade " id="hot-3" role="tabpanel">
-
-                                            <div class="owl-carousel" 
-                                                data-nav="true" 
-                                                data-dots="false" 
-                                                data-margin="30" 
-                                                data-responsive='{
-                                                "0":{"items":1},
-                                                "480":{"items":1},
-                                                "600":{"items":2},
-                                                "768":{"items":2},
-                                                "992":{"items":2},
-                                                "1200":{"items":3}
-                                            }'>
-
-                                                <div class="product-item  product-item-opt-13 ">
-                                                    <div class="product-item-info">
-                                                        <div class="product-item-photo">
-                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index13/top-brand1.jpg' %}"></a>
-                                                            <div class="product-item-actions">
-                                                                <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                                <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                                <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                            </div>
-                                                           
-                                                            <span class="product-item-label label-sale">sale</span>
-                                                        </div>
-                                                        <div class="product-item-detail">
-                                                            <strong class="product-item-name"><a href="">Sexy Red Dress  </a></strong>
-                                                           
-                                                            <div class="product-item-price">
-                                                                <span class="price">$138,95</span>
-                                                                <span class="old-price"> $ 150,00</span>
-                                                            </div>
-                                                            
-                                                            <div class="product-reviews-summary">
-                                                                <div class="rating-summary">
-                                                                    <div title="80%" class="rating-result">
-                                                                        <span style="width:80%">
-                                                                            <span><span>80</span>% of <span>100</span></span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-item  product-item-opt-13 ">
-                                                    <div class="product-item-info">
-                                                        <div class="product-item-photo">
-                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index13/top-brand2.jpg' %}"></a>
-                                                            <div class="product-item-actions">
-                                                                <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                                <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                                <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                            </div>
-                                                           
-                                                        </div>
-                                                        <div class="product-item-detail">
-                                                            <strong class="product-item-name"><a href="">Sexy Red Dress</a></strong>
-                                                            
-                                                            <div class="product-item-price">
-                                                                <span class="price">$45.00</span>
-                                                            </div>
-                                                            <div class="product-reviews-summary">
-                                                                <div class="rating-summary">
-                                                                    <div title="80%" class="rating-result">
-                                                                        <span style="width:80%">
-                                                                            <span><span>80</span>% of <span>100</span></span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-item  product-item-opt-13 ">
-                                                    <div class="product-item-info">
-                                                        <div class="product-item-photo">
-                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index3/deals3.jpg' %}"></a>
-                                                            <div class="product-item-actions">
-                                                                <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                                <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                                <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                            </div>
-                                                           
-                                                            <span class="product-item-label label-new">new</span>
-                                                        </div>
-                                                        <div class="product-item-detail">
-                                                            <strong class="product-item-name"><a href="">Sexy Red Dress</a></strong>
-                                                            <div class="product-item-price">
-                                                                <span class="price">$45.00</span>
-                                                            </div>
-                                                            <div class="product-reviews-summary">
-                                                                <div class="rating-summary">
-                                                                    <div title="80%" class="rating-result">
-                                                                        <span style="width:80%">
-                                                                            <span><span>80</span>% of <span>100</span></span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-item  product-item-opt-13 ">
-                                                    <div class="product-item-info">
-                                                        <div class="product-item-photo">
-                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index3/deals3.jpg' %}"></a>
-                                                            <div class="product-item-actions">
-                                                                <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                                <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                                <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                            </div>
-                                                           
-                                                            <span class="product-item-label label-new">new</span>
-                                                        </div>
-                                                        <div class="product-item-detail">
-                                                            <strong class="product-item-name"><a href="">Sexy Red Dress</a></strong>
-                                                            <div class="product-item-price">
-                                                                <span class="price">$45.00</span>
-                                                            </div>
-                                                            <div class="product-reviews-summary">
-                                                                <div class="rating-summary">
-                                                                    <div title="80%" class="rating-result">
-                                                                        <span style="width:80%">
-                                                                            <span><span>80</span>% of <span>100</span></span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="tab-pane  fade " id="hot-4" role="tabpanel">
-
-                                            <div class="owl-carousel" 
-                                                data-nav="true" 
-                                                data-dots="false" 
-                                                data-margin="30" 
-                                                data-responsive='{
-                                                "0":{"items":1},
-                                                "480":{"items":1},
-                                                "600":{"items":2},
-                                                "768":{"items":2},
-                                                "992":{"items":2},
-                                                "1200":{"items":3}
-                                            }'>
-
-                                                <div class="product-item  product-item-opt-13 ">
-                                                    <div class="product-item-info">
-                                                        <div class="product-item-photo">
-                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index13/top-brand1.jpg' %}"></a>
-                                                            <div class="product-item-actions">
-                                                                <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                                <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                                <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                            </div>
-                                                           
-                                                            <span class="product-item-label label-sale">sale</span>
-                                                        </div>
-                                                        <div class="product-item-detail">
-                                                            <strong class="product-item-name"><a href="">Sexy Red Dress  </a></strong>
-                                                           
-                                                            <div class="product-item-price">
-                                                                <span class="price">$138,95</span>
-                                                                <span class="old-price"> $ 150,00</span>
-                                                            </div>
-                                                            
-                                                            <div class="product-reviews-summary">
-                                                                <div class="rating-summary">
-                                                                    <div title="80%" class="rating-result">
-                                                                        <span style="width:80%">
-                                                                            <span><span>80</span>% of <span>100</span></span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-item  product-item-opt-13 ">
-                                                    <div class="product-item-info">
-                                                        <div class="product-item-photo">
-                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index13/top-brand2.jpg' %}"></a>
-                                                            <div class="product-item-actions">
-                                                                <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                                <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                                <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                            </div>
-                                                           
-                                                        </div>
-                                                        <div class="product-item-detail">
-                                                            <strong class="product-item-name"><a href="">Sexy Red Dress</a></strong>
-                                                            
-                                                            <div class="product-item-price">
-                                                                <span class="price">$45.00</span>
-                                                            </div>
-                                                            <div class="product-reviews-summary">
-                                                                <div class="rating-summary">
-                                                                    <div title="80%" class="rating-result">
-                                                                        <span style="width:80%">
-                                                                            <span><span>80</span>% of <span>100</span></span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-item  product-item-opt-13 ">
-                                                    <div class="product-item-info">
-                                                        <div class="product-item-photo">
-                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index3/deals3.jpg' %}"></a>
-                                                            <div class="product-item-actions">
-                                                                <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                                <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                                <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                            </div>
-                                                           
-                                                            <span class="product-item-label label-new">new</span>
-                                                        </div>
-                                                        <div class="product-item-detail">
-                                                            <strong class="product-item-name"><a href="">Sexy Red Dress</a></strong>
-                                                            <div class="product-item-price">
-                                                                <span class="price">$45.00</span>
-                                                            </div>
-                                                            <div class="product-reviews-summary">
-                                                                <div class="rating-summary">
-                                                                    <div title="80%" class="rating-result">
-                                                                        <span style="width:80%">
-                                                                            <span><span>80</span>% of <span>100</span></span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-item  product-item-opt-13 ">
-                                                    <div class="product-item-info">
-                                                        <div class="product-item-photo">
-                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index3/deals3.jpg' %}"></a>
-                                                            <div class="product-item-actions">
-                                                                <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                                <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                                <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                            </div>
-                                                           
-                                                            <span class="product-item-label label-new">new</span>
-                                                        </div>
-                                                        <div class="product-item-detail">
-                                                            <strong class="product-item-name"><a href="">Sexy Red Dress</a></strong>
-                                                            <div class="product-item-price">
-                                                                <span class="price">$45.00</span>
-                                                            </div>
-                                                            <div class="product-reviews-summary">
-                                                                <div class="rating-summary">
-                                                                    <div title="80%" class="rating-result">
-                                                                        <span style="width:80%">
-                                                                            <span><span>80</span>% of <span>100</span></span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="tab-pane  fade " id="hot-5" role="tabpanel">
-
-                                            <div class="owl-carousel" 
-                                                data-nav="true" 
-                                                data-dots="false" 
-                                                data-margin="30" 
-                                                data-responsive='{
-                                                "0":{"items":1},
-                                                "480":{"items":1},
-                                                "600":{"items":2},
-                                                "768":{"items":2},
-                                                "992":{"items":2},
-                                                "1200":{"items":3}
-                                            }'>
-
-                                                <div class="product-item  product-item-opt-13 ">
-                                                    <div class="product-item-info">
-                                                        <div class="product-item-photo">
-                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index13/top-brand1.jpg' %}"></a>
-                                                            <div class="product-item-actions">
-                                                                <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                                <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                                <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                            </div>
-                                                           
-                                                            <span class="product-item-label label-sale">sale</span>
-                                                        </div>
-                                                        <div class="product-item-detail">
-                                                            <strong class="product-item-name"><a href="">Sexy Red Dress  </a></strong>
-                                                           
-                                                            <div class="product-item-price">
-                                                                <span class="price">$138,95</span>
-                                                                <span class="old-price"> $ 150,00</span>
-                                                            </div>
-                                                            
-                                                            <div class="product-reviews-summary">
-                                                                <div class="rating-summary">
-                                                                    <div title="80%" class="rating-result">
-                                                                        <span style="width:80%">
-                                                                            <span><span>80</span>% of <span>100</span></span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-item  product-item-opt-13 ">
-                                                    <div class="product-item-info">
-                                                        <div class="product-item-photo">
-                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index13/top-brand2.jpg' %}"></a>
-                                                            <div class="product-item-actions">
-                                                                <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                                <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                                <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                            </div>
-                                                           
-                                                        </div>
-                                                        <div class="product-item-detail">
-                                                            <strong class="product-item-name"><a href="">Sexy Red Dress</a></strong>
-                                                            
-                                                            <div class="product-item-price">
-                                                                <span class="price">$45.00</span>
-                                                            </div>
-                                                            <div class="product-reviews-summary">
-                                                                <div class="rating-summary">
-                                                                    <div title="80%" class="rating-result">
-                                                                        <span style="width:80%">
-                                                                            <span><span>80</span>% of <span>100</span></span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-item  product-item-opt-13 ">
-                                                    <div class="product-item-info">
-                                                        <div class="product-item-photo">
-                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index3/deals3.jpg' %}"></a>
-                                                            <div class="product-item-actions">
-                                                                <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                                <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                                <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                            </div>
-                                                           
-                                                            <span class="product-item-label label-new">new</span>
-                                                        </div>
-                                                        <div class="product-item-detail">
-                                                            <strong class="product-item-name"><a href="">Sexy Red Dress</a></strong>
-                                                            <div class="product-item-price">
-                                                                <span class="price">$45.00</span>
-                                                            </div>
-                                                            <div class="product-reviews-summary">
-                                                                <div class="rating-summary">
-                                                                    <div title="80%" class="rating-result">
-                                                                        <span style="width:80%">
-                                                                            <span><span>80</span>% of <span>100</span></span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-item  product-item-opt-13 ">
-                                                    <div class="product-item-info">
-                                                        <div class="product-item-photo">
-                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index3/deals3.jpg' %}"></a>
-                                                            <div class="product-item-actions">
-                                                                <a class="btn btn-wishlist" href=""><span>wishlist</span></a>
-                                                                <a class="btn btn-compare" href=""><span>compare</span></a>
-                                                                <a class="btn btn-quickview" href=""><span>quickview</span></a>
-                                                            </div>
-                                                           
-                                                            <span class="product-item-label label-new">new</span>
-                                                        </div>
-                                                        <div class="product-item-detail">
-                                                            <strong class="product-item-name"><a href="">Sexy Red Dress</a></strong>
-                                                            <div class="product-item-price">
-                                                                <span class="price">$45.00</span>
-                                                            </div>
-                                                            <div class="product-reviews-summary">
-                                                                <div class="rating-summary">
-                                                                    <div title="80%" class="rating-result">
-                                                                        <span style="width:80%">
-                                                                            <span><span>80</span>% of <span>100</span></span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-
+                                        {% endfor %}
+                                        
                                     </div>
-
                                 </div>
 
                             </div>
@@ -1254,7 +312,7 @@ Home
 
                         <!-- banner -->
                         <div class="block-banner-sidebar effect-banner3">
-                            <a href="" class="box-img"><img src="../../static/frontend/images/icon/logoss.jpg" alt="img"></a>
+                            <a href="" class="box-img"><img src="../../static/frontend/images/icon/left-sidebar.jpg" alt="img"></a>
                         </div>
                         <!-- banner -->
 
@@ -1313,8 +371,8 @@ Home
                             </div>
 
                             <div class="block-content">
-                                {% if new_product %}
-					                {% for f in new_product %}
+                                {% if new_arrival %}
+					                {% for f in new_arrival %}
                                 <div class="owl-carousel callback-page1" 
                                     data-nav="true" 
                                     data-dots="false" 
@@ -1383,11 +441,11 @@ Home
                     <div class="row">
 
                         <div class="col-md-6">
-                            <a href="" class="box-img"><img src="../../static/frontend/images/icon/pakata-goh-Ovb-MejXjOg-unsplash.jpg" style="min-height: 250px; max-height: 250px;" alt="img"></a>
+                            <a href="" class="box-img"><img src="../../static/frontend/images/icon/left-banner.jpg"  alt="img"></a>
                         </div>
 
                         <div class="col-md-6">
-                            <a href="" class="box-img"><img src="../../static/frontend/images/icon/jonathan-francisca-7httEEXyxrc-unsplash.jpg" style="min-height: 250px; max-height: 250px;" alt="img"></a>
+                            <a href="" class="box-img"><img src="../../static/frontend/images/icon/right-banner.jpg" alt="img"></a>
                         </div>
 
                     </div>

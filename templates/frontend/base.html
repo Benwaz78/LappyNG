@@ -14,7 +14,9 @@
 
     <!-- Style CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'frontend/css/style.css' %}">
-    <link rel="shortcut icon" type="image/x-icon" href="../../static/frontend/images/icon/logoss.jpg">
+    <link rel="stylesheet" type="text/css" href="{% static 'frontend/css/new-style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'frontend/css/custom.css' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="../../static/frontend/images/icon/favicon.png">
 
 </head>
 <body class="cms-index-index index-opt-13">
@@ -55,8 +57,8 @@
                         <div class="nav-left">
                             <!-- logo -->
                             <strong class="logo">
-                                <a href=""><img src="{% static 'frontend/images/icon/logoss.jpg' %}" 
-                                    style="max-width: 230px; min-width: 230px; min-height: 150px; max-height: 150px;" alt="logo"></a>
+                                <a href="{% url 'index' %}"><img src="{% static 'frontend/images/logo.png' %}" 
+                                    alt="logo"></a>
                             </strong><!-- logo -->
                         </div>
 
@@ -238,7 +240,6 @@
                                                 <ul class="list-submenu">
                                                     
                                                     <li><a href="{% url 'lappyng_app:category_list' %}">Category 2</a></li>
-                                                    <li><a href="{% url 'lappyng_app:product' %}">Product 1</a></li>
                                                     <li><a href="Product2.html">Product 2</a></li>
                                                     <li><a href="Product3.html">Product 3</a></li>
                                                    
@@ -247,10 +248,10 @@
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="{% url 'lappyng_app:about' %}">About</a></li>
+                                <li><a href="{% url 'about' %}">About</a></li>
                                 <li><a href="#">Product </a></li>
 
-                                <li><a href="{% url 'lappyng_app:contact' %}">Contact</a></li>
+                                <li><a href="{% url 'contact' %}">Contact</a></li>
                                
                                 <li><a href="{% url 'lappyng_app:blog' %}">Blog</a></li>
                             </ul>
