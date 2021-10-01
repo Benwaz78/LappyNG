@@ -1,4 +1,5 @@
 from django import forms
+from blog.models import *
 from lappyng_app.models import *
 from django.core import validators
 
