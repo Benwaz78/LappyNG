@@ -18,11 +18,16 @@ class CommentForm(forms.ModelForm):
 
 
 class ProductReviewForm(forms.ModelForm):
-    ONE = 1
-    TWO = 2
-    THREE = 3
-    FOUR = 4
-    FIVE = 5
+    ONE = '10'
+    TWO = '20'
+    THREE = '30'
+    FOUR = '40'
+    FIVE = '50'
+    SIX = '60'
+    SEVEN = '70'
+    EIGHT = '80'
+    NINE = '90'
+    TEN = '100'
     CHOOSE = ''
     RATING_LIST = [
         (ONE, 1),
@@ -30,8 +35,14 @@ class ProductReviewForm(forms.ModelForm):
         (THREE, 3),
         (FOUR, 4),
         (FIVE, 5),
+        (SIX, 6),
+        (SEVEN, 7),
+        (EIGHT, 8),
+        (NINE, 9),
+        (TEN, 10),
         (CHOOSE, 'Choose Rating'),
     ]
+    
 
     full_name = forms.CharField(
                 widget = forms.TextInput(
@@ -49,6 +60,7 @@ class ProductReviewForm(forms.ModelForm):
                     choices=RATING_LIST,
                 ),
                 )
+    
     review = forms.CharField(
                 widget = forms.Textarea(
                     attrs={'class':'form-control',}

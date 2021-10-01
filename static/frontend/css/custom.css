@@ -141,8 +141,13 @@
 }
 
 #productDetailTab .tab-pane{
-    background-color: rgb(245, 243, 243);
+    background-color:#FCFCFC;
     padding: 15px 0;
+}
+
+.block-related, .block-upsell {
+    margin-bottom: 37px;
+    padding-top: 30px;
 }
 
 #productDetailTab .block-content{

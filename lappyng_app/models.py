@@ -1,10 +1,12 @@
 from django.db import models
+from django.db.models import Q
 from django.utils import timezone
 from django.conf import settings
 from django.urls import reverse
 from django.contrib.auth.models import User
 from tinymce import HTMLField
 import datetime
+from decimal import Decimal as D
 
 class Category(models.Model):
     parent = models.ForeignKey('self', related_name='children', on_delete=models.CASCADE, blank=True, null=True)
@@ -71,7 +73,7 @@ class Brand(models.Model):
 
 class ProductManager(models.Manager):
     def get_queryset(self):
-        return super(ProductManager, self).get_queryset().filter(is_active=True)
+        return super(ProductManager, self).get_queryset().filter(Q(is_active=True) | Q(percent=True))
 
 class Products(models.Model):
     title = models.CharField(max_length=300)
@@ -79,8 +81,8 @@ class Products(models.Model):
     category = models.ForeignKey(Category, related_name='product', on_delete=models.CASCADE)
     brand = models.ForeignKey(Brand, related_name='product_brand', null=True, blank=True, on_delete=models.CASCADE)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='product_creator')
-    price = models.DecimalField(max_digits=20, decimal_places=2, verbose_name='New Price')
-    old_price = models.DecimalField(max_digits=20, decimal_places=2, verbose_name='Old Price')
+    price = models.FloatField(verbose_name='Price')
+    percent = models.PositiveIntegerField(blank=True, null=True, verbose_name='Percentage Discount', help_text='Example 30%')
     in_stock = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
     new_product = models.BooleanField()
@@ -100,6 +102,12 @@ class Products(models.Model):
     class Meta:
         verbose_name_plural='3. Products'
         ordering = ('-created',)
+    
+
+    def discount_prize(self):
+        if self.percent is not None:
+            dis = self.price - self.price * self.percent/100
+            return dis
 
     def show_image1(self):
         if self.image1:
@@ -129,7 +137,7 @@ class ProductRequest(models.Model):
     name = models.CharField(max_length=150)
     email = models.EmailField()
     phone = models.CharField(max_length=15)
-    product = models.ForeignKey(Products, on_delete=models.CASCADE)
+    product = models.ForeignKey(Products, on_delete=models.CASCADE, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     description = models.TextField()
@@ -143,11 +151,16 @@ class ProductRequest(models.Model):
 
 class ProductReview(models.Model):
 
-    ONE = '1'
-    TWO = '2'
-    THREE = '3'
-    FOUR = '4'
-    FIVE = '5'
+    ONE = '10'
+    TWO = '20'
+    THREE = '30'
+    FOUR = '40'
+    FIVE = '50'
+    SIX = '60'
+    SEVEN = '70'
+    EIGHT = '80'
+    NINE = '90'
+    TEN = '100'
     CHOOSE = ''
     RATING_LIST = [
         (ONE, 1),
@@ -155,6 +168,11 @@ class ProductReview(models.Model):
         (THREE, 3),
         (FOUR, 4),
         (FIVE, 5),
+        (SIX, 6),
+        (SEVEN, 7),
+        (EIGHT, 8),
+        (NINE, 9),
+        (TEN, 10),
         (CHOOSE, 'Choose Rating'),
     ]
     full_name = models.CharField(max_length=150)
@@ -165,6 +183,28 @@ class ProductReview(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     updated = models.DateTimeField(auto_now=True, null=True, blank=True)
 
+    def get_ratings(self):
+        if self.rating == '10':
+            return '10'
+        elif self.rating == '20':
+            return '20'
+        elif self.rating == '30':
+            return '30'
+        elif self.rating == '40':
+            return '40'
+        elif self.rating == '50':
+            return '50'
+        elif self.rating == '60':
+            return '60'
+        elif self.rating == '70':
+            return '70'
+        elif self.rating == '80':
+            return '80'
+        elif self.rating == '90':
+            return '90'
+        elif self.rating == '100':
+            return '100'
+    
     def __str__(self):
         return self.full_name
 
@@ -288,3 +328,5 @@ class Banner(models.Model):
 
     class Meta():
         verbose_name_plural = 'Banner'
+
+

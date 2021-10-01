@@ -36,6 +36,17 @@ class ProductReviewAdmin(admin.ModelAdmin):
         'updated',
         ]
 
+@admin.register(ProductRequest)
+class ProductRequestAdmin(admin.ModelAdmin):
+    list_display = [
+        'name',
+        'email',
+        'phone',
+        'product',
+        'created',
+        'modified',
+        ]
+
 
 @admin.register(Brand)
 class BrandAdmin(admin.ModelAdmin):

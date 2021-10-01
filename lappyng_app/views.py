@@ -1,9 +1,10 @@
 from multiprocessing import get_context
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, JsonResponse
 from lappyng_app.models import *
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
+import sys
 
 from django.core import mail
 from django.template.loader import render_to_string
@@ -112,35 +113,49 @@ def contact(request):
 
 def product_detail(request, slug):
     product = Products.objects.get(slug=slug)
-    if 'name_rating' in request.POST:
-        form1 = ProductReviewForm(request.POST or None)
-        product = Products.objects.get(slug=slug)
+    category = product.category
+    get_product_category = Products.objects.filter(category=category)
+    top_sales_sidebar_page1 = Products.objects.filter(best_seller=True)[0:5]
+    top_sales_sidebar_page2 = Products.objects.filter(best_seller=True)[5:]
+    get_sale_products = Products.objects.filter(is_active=True)
+    form1 = ProductReviewForm(prefix='review')
+    form2 = ProductRequestForm(prefix='request')
+    review_data = ProductReview.objects.filter(product__slug=slug).order_by('-created_at')
+    slug = product.slug
+    data = {}
+    if request.method and request.POST.get('hidden_form') == 'review_hidden':
+        form1 = ProductReviewForm(request.POST, prefix='review')
         if form1.is_valid():
             form1.save(commit=False)
-            form1.product = product
+            form1.instance.product = product
             form1.save()
-            messages.success(request, 'Reviews Added')
-    else:
-        form1 = ProductReviewForm()
-
-    if 'request_form' in request.POST:
-        form2 = ProductRequestForm(request.POST or None)
-        print(slug)
-        product = Products.objects.get(slug=slug)
-        print(product)
+            data['success'] = 'Review Created'
+            data['html_data'] = render_to_string('frontend/review-partial.html', {'review_data':review_data, 'slug':slug})
+            return JsonResponse(data)
+        form2 = ProductRequestForm(prefix='review')
+    elif request.method and request.POST.get('hidden_form') == 'request_hidden':
+        form2 = ProductRequestForm(request.POST, prefix='request')
         if form2.is_valid():
             form2.save(commit=False)
-            form2.product = product
+            form2.instance.product = product
             form2.save()
+            print(form2)
             messages.success(request, 'Request Added')
-    else:
-        form2 = ProductRequestForm()
-    return render(request, 'frontend/product.html', {'product_detail':product, 'form':form1, 'request_form':form2})
+        form1 = ProductReviewForm(prefix='review')
+        
+    context = {
+                'product_detail':product, 
+                'slug':slug, 
+                'review':form1, 
+                'request_form':form2,
+                'review_data':review_data,
+                'get_prod_cat':get_product_category,
+                'sidebar_page1':top_sales_sidebar_page1,
+                'sidebar_page2':top_sales_sidebar_page2,
+                'get_sale':get_sale_products
+                }
+    return render(request, 'frontend/product.html', context)
 
-
-
-    
-    
 
 
 def category_grid(request,  category_slug):
