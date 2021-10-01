@@ -64,6 +64,9 @@ class Brand(models.Model):
         else:
             return 'prairiemartapp/images/media/index1/top-brand2.png'
 
+    def get_absolute_url(self):
+        return reverse('lappyng_app:brand_list', args=[self.slug])
+
     def save(self, *args, **kwargs):
         self.cat_name = self.brand_name.capitalize()
         return super().save(*args, **kwargs)

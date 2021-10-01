@@ -41,6 +41,9 @@ class Home(TemplateView):
         context['best_seller'] = Products.objects.filter(best_seller=True)[:5]
         context['brand'] = Brand.objects.all()
         context['products'] = Products.objects.all()
+        context['abt'] = About.objects.all()
+        
+       
         return context
 
 
@@ -161,6 +164,25 @@ def category_grid(request,  category_slug):
     context['person_page_obj'] = person_page_obj  
     person_page_obj = paginated_filter.get_page(page_number)
     return render(request, 'frontend/category_grid.html' , context)
+
+def brand_list(request,  brand_slug):
+    brand = get_object_or_404(Brand, slug=brand_slug)
+    products = Products.objects.filter(brand=brand)
+    paginated_filter = Paginator(products, 16)
+    page_number = request.GET.get('page')
+    about_us = About.objects.all()
+    person_page_obj = paginated_filter.get_page(page_number)
+
+    context = {
+        'brand' : brand, 
+        'products' : products, 
+        'person_page_obj': products,
+        'about_us':about_us
+    }
+
+    context['person_page_obj'] = person_page_obj  
+    person_page_obj = paginated_filter.get_page(page_number)
+    return render(request, 'frontend/brand-list.html' , context)
 
 def category_list(request):
     return render(request, 'frontend/category_list.html')

@@ -106,8 +106,7 @@ Home
 
                                 <div class="tab-content">
                                     <!-- tab 1 -->
-                                    {% if new_arrival %}
-                                        {% for n in new_arrival %}
+                                  
                                         <div class="tab-pane active in" id="newArrival" role="tabpanel">
                                             <div class="owl-carousel" 
                                                 data-nav="true" 
@@ -121,7 +120,8 @@ Home
                                                 "992":{"items":3},
                                                 "1200":{"items":4}
                                             }'>
-                                                
+                                            {% if new_arrival %}
+                                            {% for n in new_arrival %}
                                                 <div class=" product-item product-item-opt-13">
                                                     <div class="product-item-info">
                                                         
@@ -148,15 +148,14 @@ Home
                                                         </div>
                                                     </div>
                                                 </div>
-    
+                                                {% endfor %}
+                                                {% endif %}
+            
                                                 
                                             </div>
                                         </div>
-                                        {% endfor %}
-                                    {% endif %}
-
-                                    {% if best_seller %}
-                                        {% for n in best_seller %}
+                                    
+                                   
                                         <div class="tab-pane" id="bestSeller" role="tabpanel">
                                             <div class="owl-carousel" 
                                                 data-nav="true" 
@@ -170,7 +169,8 @@ Home
                                                 "992":{"items":3},
                                                 "1200":{"items":4}
                                             }'>
-                                                
+                                            {% if best_seller %}
+                                            {% for n in best_seller %}
                                                 <div class=" product-item product-item-opt-13">
                                                     <div class="product-item-info">
                                                         
@@ -198,11 +198,11 @@ Home
                                                     </div>
                                                 </div>
     
-                                                
+                                                {% endfor %}
+                                                {% endif %}
                                             </div>
                                         </div>
-                                        {% endfor %}
-                                    {% endif %}
+                                      
                                     
                                 </div>
 
@@ -265,7 +265,7 @@ Home
                                                     "992":{"items":2},
                                                     "1200":{"items":3}
                                                 }'>
-                                                    
+                                                        
                                                         {% for p in prod_brand %}
                                                             <div class="product-item  product-item-opt-13">
                                                                 <div class="product-item-info">

@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 
 {% block title%}
-{% if category %}
-    {{ category.name }}
+{% if brand %}
+    {{ brand.brand_name }}
 {% else %}
     Products
 {% endif %}
@@ -39,11 +39,11 @@
                                 data-autoplayTimeout="700" 
                                 data-autoplay="true" 
                                 data-loop="true">
-                                {% for c in category.show_cat_img_banner %}
+                                <!-- {% for b in brand.show_brand_img %}
                                 <div class="item " >
-                                   <a href=""><img src="{{ category.show_cat_img_banner}}" alt="category-images"></a>
+                                   <a href=""><img src="{{ brand.show_brand_img}}" alt="category-images"></a>
                                 </div>
-                            {% endfor%}
+                            {% endfor%} -->
                             </div>
                         </div><!-- images categori -->
 
@@ -55,7 +55,7 @@
                                 <span>Filter</span>
                             </div>
 
-                            <h1 class="cate-title" style="text-transform: capitalize;">{{ category.cat_name }}</h1>
+                            <h1 class="cate-title" style="text-transform: capitalize;">{{brand.brand_name }}</h1>
                            
                             
 
@@ -92,7 +92,7 @@
                         <div class="products  products-grid">
                             <ol class="product-items row">
                                 {% if not products %}
-                                <h3>No Products yet for this category. </h3>
+                                <h3>No Products yet for this brand. </h3>
                                 {% else %}
                                 {% for product in products %}
                                 <li class="col-sm-4 product-item ">

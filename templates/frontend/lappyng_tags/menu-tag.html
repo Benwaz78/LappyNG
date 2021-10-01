@@ -1,0 +1,11 @@
+{% load static %}
+{% load lappyng_tags %}
+{% if categories_on_menu  %}
+{% for c in categories_on_menu %}
+    <li class="parent parent-submenu">
+        <a href="{{ c.get_absolute_url }}"> {{ c.cat_name }}  </a>
+      
+       
+    </li>
+{% endfor %}
+{% endif %}

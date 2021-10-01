@@ -1,0 +1,10 @@
+
+{% if brands %}
+{% for b in brands %}
+<li class="item ">
+    <label>
+        <a href="{{ b.get_absolute_url }}"><span>{{ b.brand_name }} </a> </span>
+    </label>
+</li>
+{% endfor %}
+{% endif %}
