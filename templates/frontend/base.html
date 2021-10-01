@@ -1,4 +1,5 @@
 {% load static %}
+{% load lappyng_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -248,12 +249,31 @@
                                         </ul>
                                     </div>
                                 </li>
+                                <li class="parent parent-megamenu">
+                                    <a href="#">Product Category</a>
+                                    <span class="toggle-submenu"></span>
+                                    <div class="megamenu drop-menu " style="width: 200%;">
+                                        <ul>
+                                              
+                                    
+                                            <li class="col-md-12">
+                                                <strong class="title"><a href=""><span>Page </span></a></strong>
+                                                <ul class="list-submenu">
+                                                    
+                                                    {% display_menu %}
+                                                   
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
                                 <li><a href="{% url 'about' %}">About</a></li>
-                                <li><a href="#">Product </a></li>
-
+                              
                                 <li><a href="{% url 'contact' %}">Contact</a></li>
+                            
+                                <li><a href="{% url 'lappyng_app:blog' %}">Blog</a></li> 
                                
-                                <li><a href="{% url 'lappyng_app:blog' %}">Blog</a></li>
+                               
                             </ul>
 
                         </div><!-- menu -->
@@ -279,29 +299,21 @@
                             
                             <div class="col-md-4  col-sm-4">
                                 <div class="links">
-                                    <h3 class="title">Kuteshop</h3>
+                                    <h3 class="title">Pages</h3>
                                     <ul >
-                                        <li><a href="#">About us</a></li>
-                                        <li><a href="#">Customer Service</a></li>
-                                        <li><a href="#">New Collection</a></li>
-                                        <li><a href="#">Manufacturers</a></li>
-                                        <li><a href="#">Privacy policy</a></li>
-                                        <li><a href="#">Terms & condition</a></li>
-                                        <li><a href="#">Blog</a></li>
-                                    </ul>
+                                    <li><a href="{% url 'about' %}">About</a></li>
+                                    <li><a href="#">Product </a></li>
+
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                                
+                                    <li><a href="{% url 'lappyng_app:blog' %}">Blog</a></li>                                    </ul>
                                 </div>
                             </div>
                             <div class="col-md-4  col-sm-4">
                                 <div class="links">
                                     <h3 class="title">products</h3>
                                     <ul >
-                                        <li><a href="#">New In</a></li>
-                                        <li><a href="#">Women</a></li>
-                                        <li><a href="#">Men</a></li>
-                                        <li><a href="#">Best Sellers</a></li>
-                                        <li><a href="#">Top Brands</a></li>
-                                        <li><a href="#">Sale &amp; Special Offers</a></li>
-                                        <li><a href="#">Lookbook</a></li>
+                                        {% display_menu %}
                                     </ul>
                                 </div>
                             </div>
