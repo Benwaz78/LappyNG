@@ -14,7 +14,7 @@
                         
                 <ol class="breadcrumb no-hide">
                     <li><a href="{% url 'index' %}">Home    </a></li>
-                    <li><a href="{% url 'lappyng_app:blog' %}">Blog    </a></li>
+                    <li><a href="{% url blog:blog' %}">Blog    </a></li>
                     <li class="active">{{ single.pst_title }}</li>
                 </ol><!-- Block  Breadcrumb-->
 
@@ -124,10 +124,10 @@
                                     {% for pop in pop %}
                                     <li>
                                         <div class="post-thumb">
-                                            <a href="{% url 'lappyng_app:blog_details' pop.id %}"><img alt="Blog" src="{{ pop.img_url }}"></a>
+                                            <a href="{% url blog:blog_details' pop.id %}"><img alt="Blog" src="{{ pop.img_url }}"></a>
                                         </div>
                                         <div class="post-info">
-                                            <h5 class="entry_title"><a href="{% url 'lappyng_app:blog_details' pop.id %}">{{ pop.pst_title}}</a></h5>
+                                            <h5 class="entry_title"><a href="{% url blog:blog_details' pop.id %}">{{ pop.pst_title}}</a></h5>
                                             <div class="post-meta">
                                                 <span class="date"><i class="fa fa-calendar"></i>{{ pop.created }}</span>
                                                
