@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from tinymce import HTMLField
 import datetime
 from decimal import Decimal as D
+from django.utils.html import format_html
 
 class Category(models.Model):
     parent = models.ForeignKey('self', related_name='children', on_delete=models.CASCADE, blank=True, null=True)
@@ -99,14 +100,45 @@ class Products(models.Model):
     updated = models.DateTimeField(auto_now=True)
     objects = models.Manager()
     products = models.Manager()
-    
-    
 
+    
+    def get_discount_price(self):
+        if self.percent:
+            return format_html(f'<span class="price">&#8358;{self.discount_prize()} </span>')
+        else:
+            return ''
+
+    def get_square_label(self):
+        if self.percent:
+            return format_html(f'<span class="label-sale">-{self.percent}%</span>')       
+        else:
+            return ''
+
+    def circle_label(self):
+        if self.percent:
+            return format_html(f'<span class="product-item-label label-price">{self.percent}% <span>off</span></span>')
+        else:
+            return ''
+
+    def check_availability(self):
+        if self.in_stock == True:
+            return 'In Stock'
+        else:
+            return 'Out Of Stock'
+
+    def get_price(self):
+        if self.percent:
+            return format_html(f'<span class="old-price">&#8358;{self.price} </span>')
+        else:
+            return format_html(f'<span class="price">&#8358;{self.price} </span>')
+
+    
+    
     class Meta:
         verbose_name_plural='3. Products'
         ordering = ('-created',)
     
-
+    
     def discount_prize(self):
         if self.percent is not None:
             dis = self.price - self.price * self.percent/100

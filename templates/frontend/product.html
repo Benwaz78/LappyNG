@@ -85,17 +85,15 @@
                                    
                                     <div class="product-info-price">
                                         <div class="price-box">
-                                            {% if product_detail.percent %}
-                                                <span class="price">&#8358;{{ product_detail.discount_prize  }} </span>
-                                            {% endif %}
-                                            <span {% if product_detail.percent %} class="old-price" {% else %} class="price" {% endif %}>&#8358;{{ product_detail.price }}</span>
-                                            <span class="label-sale">- 30%</span>
+                                            {{ product_detail.get_discount_price }}
+                                            {{ product_detail.get_price }}
+                                            {{ product_detail.get_square_label}}
                                         </div>
                                     </div>  
                                     <div class="product-info-stock">
                                         <div class="stock available">
                                             <span class="label">Availability: </span> 
-                                            {% if product_detail.in_stock == True %} In stock {% else %} Out Of Stock {% endif %}
+                                            {{ product_detail.check_availability }}
                                         </div>
                                     </div>
                                     {% if product_detail.new_product == True %} 
@@ -191,10 +189,8 @@
                                                         <strong class="product-item-name"><a href="{{ g.get_absolute_url }}">{{ g.title }}</a></strong>
                                                         <div class="clearfix">
                                                             <div class="product-item-price">
-                                                                {% if g.percent %}
-                                                                    <span class="price">&#8358;{{ g.discount_prize  }} </span>
-                                                                {% endif %}
-                                                                <span {% if g.percent %} class="old-price" {% else %} class="price" {% endif %}>&#8358;{{ g.price }}</span>
+                                                                {{ g.get_discount_price }}
+                                                                {{ g.get_price }}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -244,10 +240,8 @@
                                                             <strong class="product-item-name"><a href="{{ s.get_absolute_url }}">{{ s.title }}</a></strong>
                                                             <div class="clearfix">
                                                                 <div class="product-item-price">
-                                                                    {% if s.percent %}
-                                                                        <span class="price">&#8358;{{ s.discount_prize }}</span>
-                                                                    {% endif %}
-                                                                    <span class="old-price">&#8358;{{ s.price }}</span>
+                                                                    {{ s.get_discount_price }}
+                                                                    {{ s.get_price }}
                                                                 </div>
                                                                 
                                                             </div>
@@ -270,7 +264,8 @@
                                                             <strong class="{{ s.title }}"><a href="{{ s.get_absolute_url }}">{{ s.title }}</a></strong>
                                                             <div class="clearfix">
                                                                 <div class="product-item-price">
-                                                                    <span class="price">&#8358; {{ s.price }}</span>
+                                                                   {{ s.get_discount_price }}
+                                                                   {{ s.get_price }}
                                                                 </div>
                                                                 
                                                             </div>
@@ -316,15 +311,15 @@
                                                     <div class="product-item-info">
                                                         <div class="product-item-photo">
                                                             <a href="{{ g.get_absolute_url }}" class="product-item-img"><img src="{{ g.show_image1 }}" alt="{{ g.title }}"></a>
-                                                            <span class="product-item-label label-price">{{ g.percent }}% <span>off</span></span>
+                                                            {{ g.circle_label }}
                                                             
                                                         </div>
                                                         <div class="product-item-detail">
                                                             <strong class="product-item-name"><a href="{{ g.get_absolute_url }}">{{ g.title }}</a></strong>
                                                             <div class="clearfix">
                                                                 <div class="product-item-price">
-                                                                    <span class="price">&#8358;{{ g.discount_prize }}</span>
-                                                                    <span class="old-price">&#8358;{{ g.price }}</span>
+                                                                   {{ g.get_discount_price }}
+                                                                    {{ g.get_price }}
                                                                 </div>
                                                                
                                                             </div>
