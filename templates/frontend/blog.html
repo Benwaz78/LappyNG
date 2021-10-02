@@ -82,7 +82,7 @@ Blog
                                         </div>
                                         <div class="col-sm-7">
                                             <div class="entry-ci">
-                                                <h3 class="entry-title"><a href="{% url 'lappyng_app:blog_details' e.id %}">{{ e.pst_title}}</a></h3>
+                                                <h3 class="entry-title"><a href="{% url 'blog:blog_details' e.id %}">{{ e.pst_title}}</a></h3>
                                                 <div class="entry-meta-data">
                                                     <span class="author">
                                                     <i class="fa fa-user"></i> 
@@ -96,7 +96,7 @@ Blog
                                                     {{ e.content|safe|truncatewords:100| slice:":400"  }}
                                                 </div>
                                                 <div class="entry-more">
-                                                    <a href="{% url 'lappyng_app:blog_details' e.id %}">Read more</a>
+                                                    <a href="{% url 'blog:blog_details' e.id %}">Read more</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -156,11 +156,11 @@ Blog
                                 <ul class="blog-list-sidebar clearfix">
                                     <li>
                                         <div class="post-thumb">
-                                            <a href="{% url 'lappyng_app:blog_details' b.id %}"><img alt="Blog" src="{{ b.img_url}}" style="min-height: 50px; max-height: 50px;
+                                            <a href="{% url 'blog:blog_details' b.id %}"><img alt="Blog" src="{{ b.img_url}}" style="min-height: 50px; max-height: 50px;
                                                 max-width: 70px; min-width: 70px;"></a>
                                         </div>
                                         <div class="post-info">
-                                            <h5 class="entry_title"><a href="{% url 'lappyng_app:blog_details' b.id %}">{{ b.pst_title}}</a></h5>
+                                            <h5 class="entry_title"><a href="{% url 'blog:blog_details' b.id %}">{{ b.pst_title}}</a></h5>
                                             <div class="post-meta">
                                                 <span class="date"><i class="fa fa-calendar"></i> {{b.created }}</span>
                                                 <!-- <span class="comment-count">

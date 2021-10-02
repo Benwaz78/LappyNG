@@ -4,8 +4,6 @@ from lappyng_app import views
 app_name = 'lappyng_app'
 
 urlpatterns = [
-    path('blog-page/', views.blog, name='blog'),
-    path('blog-slug/<int:pk>', views.blog_details, name='blog_details'),
     path('category/<slug:category_slug>/', views.category_grid, name='category_grid'),
     path('brand/<slug:brand_slug>/', views.brand_list, name='brand_list'),
     path('<slug:slug>/', views.product_detail, name='product'),

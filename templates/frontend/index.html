@@ -477,7 +477,7 @@ Home
                             <div class="blog-item">
                                 
                                 <div class="blog-photo">
-                                    <a href="{% url 'lappyng_app:blog_details' n.id %}"><img src="{{ n.img_url }}" style="max-height: 292px; min-height: 292px;" alt="blog"></a>
+                                    <a href="{% url 'blog:blog_details' n.id %}"><img src="{{ n.img_url }}" style="max-height: 292px; min-height: 292px;" alt="blog"></a>
                                     
                                 </div>
                                 <div class="blog-detail">
@@ -485,10 +485,10 @@ Home
                                     <div class="blog-info">
                                         <div class="blog-date"><span>{{n.created.day}} {{ n.current_month }} {{n.created.year}}</span></div>
                                     </div>
-                                    <strong class="blog-name"><a href="{% url 'lappyng_app:blog_details' n.id %}">{{ n.pst_title }}</a></strong>
+                                    <strong class="blog-name"><a href="{% url 'blog:blog_details' n.id %}">{{ n.pst_title }}</a></strong>
                                    
                                     <div class="blog-actions">
-                                        <a href="{% url 'lappyng_app:blog_details' n.id %}" >Read more</a>
+                                        <a href="{% url 'blog:blog_details' n.id %}" >Read more</a>
                                         
                                     </div>
                                 </div>
