@@ -50,12 +50,12 @@ def blog(request):
     
     return render(request, 'frontend/blog.html', context)
 
-def blog_details(request, pk):
+def blog_details(request, slug):
     about_us = About.objects.all()
     most_recent = BlogPost.objects.order_by('created')[:6]
-    most_recent_comment = Comment.objects.filter(post=pk).order_by('-created_on')[:4]
-    single_post = get_object_or_404(BlogPost,  pk=pk)
-    comments = Comment.objects.filter(post=pk).order_by('-created_on')
+    # most_recent_comment = Comment.objects.filter(post=pk).order_by('-created_on')[:4]
+    single_post = get_object_or_404(BlogPost,  slug=slug)
+    # comments = Comment.objects.filter(post=pk).order_by('-created_on')
     popular = BlogPost.objects.filter(popular=True)[:4]
     
     
@@ -70,13 +70,13 @@ def blog_details(request, pk):
         form = CommentForm()     
 
     return render(request, 'frontend/blog_post.html',{'most_recent':most_recent, 
-        'comm':comments, 
+        # 'comm':comments, 
         'form':form,
         'single':single_post, 
-        'abt':about_us, 
+        # 'abt':about_us, 
         'sipst':single_post,
-        'most_recent_comment':most_recent_comment,
-        'pop':popular
+        # 'most_recent_comment':most_recent_comment,
+        # 'pop':popular
 
         
         })

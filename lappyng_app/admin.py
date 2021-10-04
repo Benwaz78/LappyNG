@@ -64,6 +64,44 @@ class BrandAdmin(admin.ModelAdmin):
         ]
     prepopulated_fields = {'slug': ('brand_name',)}
 
+@admin.register(HomeTopBanner)
+class HomeTopBannerAdmin(admin.ModelAdmin):
+    def get_banner(self, obj):
+        return format_html('<img src="{}" width="100" />'.format(obj.banner.url))
+
+    get_banner.short_description = 'Banner'
+
+    
+
+    list_display = [
+        'get_banner',
+        'link',
+        ]
+
+@admin.register(HomeTwoSideBanner)
+class HomeTwoSideBannerAdmin(admin.ModelAdmin):
+    def get_banner(self, obj):
+        return format_html('<img src="{}" width="100" />'.format(obj.banner.url))
+
+    get_banner.short_description = 'Banner'
+
+    list_display = [
+        'get_banner',
+        'link',
+        ]
+
+@admin.register(HomeSideBanner)
+class HomeSideBannerAdmin(admin.ModelAdmin):
+    def get_banner(self, obj):
+        return format_html('<img src="{}" width="100" />'.format(obj.banner.url))
+
+    get_banner.short_description = 'Banner'
+
+    list_display = [
+        'get_banner',
+        'link',
+        ]
+
 
 
 @admin.register(Products)
@@ -79,6 +117,7 @@ class ProductsAdmin(admin.ModelAdmin):
         'slug',
         'show_image1',
         'price',
+        'brand',
         'in_stock',
         'is_active',
         'best_seller',

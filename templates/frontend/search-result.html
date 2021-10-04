@@ -1,0 +1,219 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+{% load lappyng_tags %}
+<!DOCTYPE html>
+
+{% block title%}
+{% if category %}
+    {{ category.name }}
+{% else %}
+    Products
+{% endif %}
+{% endblock %}
+
+{% block content %}
+		<!-- MAIN -->
+		<main class="site-main">
+
+            <div class="columns container">
+                <!-- Block  Breadcrumb-->
+                        
+                <ol class="breadcrumb no-hide">
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li class="active">{{ category }}</li>
+                </ol><!-- Block  Breadcrumb-->
+
+                <div class="row">
+                   
+                    <!-- Main Content -->
+                    <div class="col-md-9 col-md-push-3  col-main">
+
+                        <!-- images categori -->
+                        <div class="category-view">
+                            <div class="owl-carousel " 
+                                data-nav="true" 
+                                data-dots="false" 
+                                data-margin="0" 
+                                data-items='1' 
+                                data-autoplayTimeout="700" 
+                                data-autoplay="true" 
+                                data-loop="true">
+                                {% for c in category.show_cat_img_banner %}
+                                <div class="item " >
+                                   <a href=""><img src="{{ category.show_cat_img_banner}}" alt="category-images"></a>
+                                </div>
+                            {% endfor%}
+                            </div>
+                        </div><!-- images categori -->
+
+                   
+                        <!-- Toolbar -->
+                        <div class=" toolbar-products toolbar-top">
+
+                            <div class="btn-filter-products">
+                                <span>Filter</span>
+                            </div>
+
+                            <h1 class="cate-title" style="text-transform: capitalize;">{{ category.cat_name }}</h1>
+                           
+                            
+
+                            <ul class="pagination">
+                                {% if person_page_obj.has_previous %}
+                                <li>
+                                  <a href="?page={{ person_page_obj.previous_page_number }}" aria-label="Previous">
+                                    <span aria-hidden="true">&raquo; Previous </span>
+                                  </a>
+                                </li>
+                                {% endif %}
+                                {% for i in person_page_obj.paginator.page_range %}
+                                {% if movies.number == i %}
+                                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                {% else %}
+                                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                                 {% endfor %}
+                                {% if person_page_obj.has_next %}
+                                <li>
+                                  <a href="?page={{ person_page_obj.next_page_number }}" aria-label="Next">
+                                    <span aria-hidden="true">Next &raquo;</span>
+                                  </a>
+                                </li>
+                                {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
+                                </li>
+                                {% endif %}
+                              </ul>
+                        </div><!-- Toolbar -->
+
+                        <!-- List Products -->
+                        <div class="products  products-grid">
+                            <ol class="product-items row">
+                                {% if not products %}
+                                <h3>No Products yet for this category. </h3>
+                                {% else %}
+                                {% for product in query %}
+                                <li class="col-sm-4 product-item ">
+                                    <div class="product-item-opt-1">
+                                        <div class="product-item-info">
+                                            <div class="product-item-photo">
+                                                <a href="{{ product.get_absolute_url  }}" class="product-item-img"><img src="{{product.show_image1 }}" alt="{{ product.title }}"></a>
+                                               {{ product.circle_label }}
+                                            </div>
+                                            <div class="product-item-detail">
+                                                <strong class="product-item-name"><a href="{{ product.get_absolute_url  }}">{{product.title}}</a></strong>
+                                                <div class="clearfix">
+                                                    <div class="product-item-price">
+                                                        {{ product.get_discount_price }}
+                                                        {{ product.get_price }}
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="product-item-stock">
+                                                    <span class="title">Availability:</span>
+                                                    {{ product.check_availability }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                                {% endif %}
+
+                                
+                            </ol><!-- list product -->
+                        </div> <!-- List Products -->
+
+                        <!-- Toolbar -->
+                        <div class=" toolbar-products toolbar-bottom">
+
+                            <div class="modes">
+                                <strong  class="label">View as:</strong>
+                                <strong  class="modes-mode active mode-grid" title="Grid">
+                                    <span>grid</span>
+                                </strong>
+                                <a  href="Category2.html" title="List" class="modes-mode mode-list">
+                                    <span>list</span>
+                                </a>
+                            </div><!-- View as -->
+                           
+                           
+                            <ul class="pagination">
+                                {% if person_page_obj.has_previous %}
+                                <li>
+                                  <a href="?page={{ person_page_obj.previous_page_number }}" aria-label="Previous">
+                                    <span aria-hidden="true">&raquo; Previous </span>
+                                  </a>
+                                </li>
+                                {% endif %}
+                                {% for i in person_page_obj.paginator.page_range %}
+                                {% if movies.number == i %}
+                                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                {% else %}
+                                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                                 {% endfor %}
+                                {% if person_page_obj.has_next %}
+                                <li>
+                                  <a href="?page={{ person_page_obj.next_page_number }}" aria-label="Next">
+                                    <span aria-hidden="true">Next &raquo;</span>
+                                  </a>
+                                </li>
+                                {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
+                                </li>
+                                {% endif %}
+                              </ul>
+
+                        </div><!-- Toolbar -->
+
+                    </div><!-- Main Content -->
+                   
+                    <!-- Sidebar -->
+                    
+                    {% include 'frontend/sidebar.html' %}
+                    <div class="col-md-3 col-md-pull-9  col-sidebar">
+
+                      
+                        <!-- block filter products -->
+                        <div id="layered-filter-block" class="block-sidebar block-filter no-hide">
+                            <div class="close-filter-products"><i class="fa fa-times" aria-hidden="true"></i></div>
+                            <div class="block-title">
+                                <strong>FILTER SELECTION</strong>
+                            </div>
+                            <div class="block-content">
+
+                                <!-- Filter Item  categori-->
+                                
+                                <!-- filter brad-->
+                                <div class="filter-options-item filter-options-brand">
+                                    <div class="filter-options-title">BRAND</div>
+                                    <div class="filter-options-content">
+                                        <ol class="items">
+                                           {% list_brand_on_sidebar %}
+                                           
+                                        </ol>
+                                    </div>
+                                </div><!-- Filter Item -->
+
+                              
+                              
+
+                            </div>
+                        </div><!-- Filter -->
+
+
+                       
+                    </div><!-- Sidebar -->
+
+                    
+                    
+                </div>
+            </div>
+
+
+		</main><!-- end MAIN -->
+
+{% endblock %}

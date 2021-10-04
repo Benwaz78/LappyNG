@@ -28,23 +28,27 @@ class Home(TemplateView):
     template_name = 'frontend/index.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        all_prod = []
-        prod_dict = Products.objects.values('brand', 'id')
-        brands = {product['brand'] for product in prod_dict}
-        for brand in brands:
-            prod_brand = Products.objects.filter(brand=brand)
-            all_prod.append([prod_brand,])
-        context['prod_brand'] = all_prod
+       
+        
         context['news'] = BlogPost.objects.order_by('-created')[:4]
         context['banner'] = Banner.objects.order_by('-created')
-        context['new_arrival'] = Products.objects.order_by('-created')[:5]
-        context['hots'] = Products.objects.filter(hot_deal=True)[:3]
+        context['new_arrival'] = Products.objects.order_by('-created')
         context['best_seller'] = Products.objects.filter(best_seller=True)[:5]
+        context['new_arrival1'] = Products.objects.order_by('-created')[0:3]
+        context['new_arrival2'] = Products.objects.order_by('-created')[3:5]
+        context['hots'] = Products.objects.filter(hot_deal=True)[:3]
         context['brand'] = Brand.objects.all()
         context['products'] = Products.objects.all()
         context['abt'] = About.objects.all()
-        
-       
+        context['top_banner1'] = HomeTopBanner.objects.first()
+        context['top_banner2'] = HomeTopBanner.objects.all()[1]
+        context['two_side_banner'] = HomeTwoSideBanner.objects.all()[:2]
+        context['sidebar_banner'] = HomeSideBanner.objects.first()
+        context['lenovo'] = Products.objects.filter(brand__id=4)[:5]
+        context['dell'] = Products.objects.filter(brand__id=3)[:5]
+        context['toshiba'] = Products.objects.filter(brand__id=5)[:5]
+        context['hp'] = Products.objects.filter(brand__id=2)[:5]
+        context['ibm'] = Products.objects.filter(brand__id=1)[:5]
         return context
 
 
@@ -62,8 +66,8 @@ def product_detail(request, slug):
     product = Products.objects.get(slug=slug)
     category = product.category
     get_product_category = Products.objects.filter(category=category)
-    top_sales_sidebar_page1 = Products.objects.filter(best_seller=True)[0:5]
-    top_sales_sidebar_page2 = Products.objects.filter(best_seller=True)[5:]
+    top_sales_sidebar_page1 = Products.objects.filter(best_seller=True)[0:3]
+    top_sales_sidebar_page2 = Products.objects.filter(best_seller=True)[3:]
     get_sale_products = Products.objects.filter(is_active=True)
     form1 = ProductReviewForm(prefix='review')
     form2 = ProductRequestForm(prefix='request')
@@ -95,6 +99,7 @@ def product_detail(request, slug):
                 'slug':slug, 
                 'review':form1, 
                 'request_form':form2,
+                'get_category':category,
                 'review_data':review_data,
                 'get_prod_cat':get_product_category,
                 'sidebar_page1':top_sales_sidebar_page1,
@@ -102,6 +107,17 @@ def product_detail(request, slug):
                 'get_sale':get_sale_products
                 }
     return render(request, 'frontend/product.html', context)
+
+
+def search_result(request):
+    if request.method == 'GET':
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            title = form.cleaned_data.get('title')
+            category = form.cleaned_data.get('category')
+            query_filter = Products.objects.filter(Q(title__contains=title) | Q(category__contains=category))
+            return render(request, 'frontend/result.html', {'query':query_filter})
+    return render(request, 'frontend/result.html')
 
 
 

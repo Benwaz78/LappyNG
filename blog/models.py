@@ -50,7 +50,7 @@ class BlogPost(models.Model):
         return self.comments.count
 
     def get_post_url(self):
-        return reverse('lappyng_app:blog_details', kwargs={
+        return reverse('blog:blog_details', kwargs={
             'slug': self.slug,
         })
 

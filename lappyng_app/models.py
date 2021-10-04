@@ -1,3 +1,4 @@
+from tabnanny import verbose
 from django.db import models
 from django.db.models import Q
 from django.utils import timezone
@@ -127,10 +128,11 @@ class Products(models.Model):
             return 'Out Of Stock'
 
     def get_price(self):
+        format_number = "{:,}".format(self.price)
         if self.percent:
-            return format_html(f'<span class="old-price">&#8358;{self.price} </span>')
+            return format_html(f'<span class="old-price">&#8358;{format_number} </span>')
         else:
-            return format_html(f'<span class="price">&#8358;{self.price} </span>')
+            return format_html(f'<span class="price">&#8358;{format_number} </span>')
 
     
     
@@ -142,7 +144,8 @@ class Products(models.Model):
     def discount_prize(self):
         if self.percent is not None:
             dis = self.price - self.price * self.percent/100
-            return dis
+            format_number = "{:,}".format(dis)
+            return format_number
 
     def show_image1(self):
         if self.image1:
@@ -295,6 +298,54 @@ class Banner(models.Model):
           return self.slide_img.url
 
     class Meta():
-        verbose_name_plural = 'Banner'
+        verbose_name_plural = 'Home Slider'
 
 
+
+
+class HomeTopBanner(models.Model):
+    banner = models.ImageField(upload_to='uploads/')
+    link = models.URLField(null=True, blank=True)
+   
+
+    class Meta():
+        verbose_name_plural = 'Home Top Banner'
+
+    def get_banner(self):
+        if self.banner:
+            return self.banner.url
+    
+   
+    
+    def __str__(self):
+        return 'Home Banner'
+
+class HomeSideBanner(models.Model):
+    banner = models.ImageField(upload_to='uploads/')
+    link = models.URLField(null=True, blank=True)
+
+    class Meta():
+        verbose_name_plural = 'Home Side Banner'
+
+    def get_banner(self):
+        if self.banner:
+            return self.banner.url
+    
+    def __str__(self):
+        return 'Home Side Banner'
+
+class HomeTwoSideBanner(models.Model):
+    banner = models.ImageField(upload_to='uploads/')
+    link = models.URLField(null=True, blank=True)
+    
+
+    class Meta():
+        verbose_name_plural = 'Home Two SideBanner'
+
+    def get_banner(self):
+        if self.banner:
+            return self.banner.url
+    
+    
+    def __str__(self):
+        return 'Home Banner'

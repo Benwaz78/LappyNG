@@ -14,7 +14,7 @@
                         
                 <ol class="breadcrumb no-hide">
                     <li><a href="{% url 'index' %}">Home    </a></li>
-                    <li><a href="{% url blog:blog' %}">Blog    </a></li>
+                    <li><a href="{% url 'blog:blog' %}">Blog    </a></li>
                     <li class="active">{{ single.pst_title }}</li>
                 </ol><!-- Block  Breadcrumb-->
 
@@ -111,65 +111,7 @@
                         <!-- ./Comment -->
                     </div><!-- Main Content -->
                     
-                    <!-- Sidebar -->
-                    <div class=" col-md-3 col-md-pull-9   col-sidebar">
-                         <!-- Block  Popular Posts-->
-                        <div class="block-sidebar block-PopularPosts">
-                            <div class="block-title">
-                                <strong>Popular Posts</strong>
-                            </div>
-                            <div class="block-content">
-                               
-                                <ul class="blog-list-sidebar clearfix">
-                                    {% for pop in pop %}
-                                    <li>
-                                        <div class="post-thumb">
-                                            <a href="{% url blog:blog_details' pop.id %}"><img alt="Blog" src="{{ pop.img_url }}"></a>
-                                        </div>
-                                        <div class="post-info">
-                                            <h5 class="entry_title"><a href="{% url blog:blog_details' pop.id %}">{{ pop.pst_title}}</a></h5>
-                                            <div class="post-meta">
-                                                <span class="date"><i class="fa fa-calendar"></i>{{ pop.created }}</span>
-                                               
-                                            </div>
-                                            <span class="author">
-                                                <i class="fa fa-user"></i> 
-                                                by: <a href="#">{{ pop.user }}</a></span>
-                                        </div>
-                                    </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        </div><!-- Block  Popular Posts-->
-
-                        <!-- Block RecentComments-->
-                        <div class="block-sidebar block-sidebar-RecentComments">
-                            <div class="block-title">
-                                <strong>Recent Comments</strong>
-                            </div>
-                            <div class="block-content">
-                                <ul class="recent-comment-list">
-                                    {% if not comm %}
-                                    <h6>No Recent Comments yet....</h6>
-                                    {% else %}
-                                    {% for comment in comm %}
-                                    {% for d in most_recent_comment %}
-                                    <li>
-                                        <h5><a href="#"></a></h5>
-                                        <div class="comment">
-                                            "{{ d.body }}"
-                                        </div>
-                                        <div class="author">Posted by <a href="#">{{ d.name }}</a></div>
-                                    </li>
-                                  {% endfor %}
-                                  {% endfor %}
-                                  {% endif %}
-                                </ul>
-                            </div>
-                        </div><!-- Block  RecentComments-->
-
-               
-                    </div><!-- Sidebar -->
+                    
                     
                     {% include 'frontend/sidebar.html' %}
 

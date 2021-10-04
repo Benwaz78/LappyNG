@@ -1,3 +1,5 @@
+from dataclasses import fields
+from unicodedata import category
 from django import forms
 from blog.models import *
 from lappyng_app.models import *
@@ -108,5 +110,27 @@ class ProductRequestForm(forms.ModelForm):
     class Meta:
         model = ProductRequest
         exclude = ('created', 'modified', 'product')
+
+
+class SearchForm(forms.ModelForm):
+    title = forms.CharField(widget=forms.TextInput(
+        attrs={'class':'form-control', 'placeholder':'Search your site'}
+    ))
+    category = forms.ModelChoiceField(
+        queryset=Category.objects.all(),
+        empty_label='All Categories',
+        widget=forms.Select(attrs={'class':'categori-search-option'})
+    )
+    botcatcher = forms.CharField(
+        required=False, 
+        widget=forms.HiddenInput, 
+        validators=[validators.MaxLengthValidator(0)])
+
+    
+    class Meta():
+        model = Products
+        fields = ['title', 'category']
+
+
 
         
