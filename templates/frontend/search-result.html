@@ -20,7 +20,7 @@
                         
                 <ol class="breadcrumb no-hide">
                     <li><a href="{% url 'index' %}">Home</a></li>
-                    <li class="active">{{ category }}</li>
+                    <li class="active"></li>
                 </ol><!-- Block  Breadcrumb-->
 
                 <div class="row">
@@ -90,7 +90,7 @@
                         <!-- List Products -->
                         <div class="products  products-grid">
                             <ol class="product-items row">
-                                {% if not products %}
+                                {% if not query %}
                                 <h3>No Products yet for this category. </h3>
                                 {% else %}
                                 {% for product in query %}
