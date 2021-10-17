@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -46,8 +47,22 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tinymce',
     'filebrowser',
-
+    'newsletter',
 ]
+
+# EMAIL_HOST = 'smtp.sendgrid.net'
+# EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST_USER = 'apikey' 
+EMAIL_HOST_USER = config('EMAIL_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+FROM_HOST = 'Lappyng <slimchibenedict@gmail.com>'
+RECIEVER_MAIL = ['nonwaz78@gmail.com',]
+# SENDGRID_API_KEY = config('SENDGRIG_API')
+
 
 
 TINYMCE_DEFAULT_CONFIG = {
