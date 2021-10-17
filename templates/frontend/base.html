@@ -31,12 +31,20 @@
                 <div class="container">
 
                     <ul class="nav-left">
-                        <li><a href="{% url 'lappyng_app:login' %}">Login</a></li>
-                        <li><a href="">Register </a></li>
+                        <li class="hotline">
+                            <span><i class="fa fa-phone"></i>Hotline: 09057277551</span>
+                            
+                        </li>
+                        <li class="hotline">
+                            <span><i class="fa fa-phone"></i>Hotline: 08156035584</span>
+                        </li>
+                        <li class="hotline">
+                            <span style="text-transform: lowercase !important;"><i class="fa fa-envelope"></i>lappyng@gmail.com</span>
+                        </li>
                     </ul>
 
                     <ul class="nav-right" >
-                        <li class="hotline"><span><i class="fa fa-phone"></i>Hotline: + 106 258 658</span></li>
+                        
                         <li class="top-social">
                             <span class="">
                                 <a title="Facebook" href="#"><i class="fa fa-facebook"></i></a>
@@ -74,25 +82,18 @@
                                     <span>Search</span>
                                 </div>
                                 <div class="block-content">
-                                    <div class="categori-search  ">
-                                        <select data-placeholder="All Categories" class="categori-search-option">
-                                            <option>All Categories</option>
-                                            <option>Fashion</option>
-                                            <option>Tops Blouses</option>
-                                            <option>Clothing</option>
-                                            <option>Furniture</option>
-                                            <option>Bathtime Goods</option>
-                                            <option>Shower Curtains</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-search">
-                                        <form>
-                                            <div class="box-group">
-                                                <input type="text" class="form-control" placeholder="Search your products">
-                                                <button class="btn btn-search" type="button"><span>search</span></button>
-                                            </div>
-                                        </form>
-                                    </div>
+                                    <form method="GET" action="{% url 'lappyng_app:search_result' %}">
+                                        <div class="categori-search  ">
+                                            {{ form.category }}
+                                        </div>
+                                        <div class="form-search">
+                                                <div class="box-group">
+                                                    {{ form.title}}
+                                                    <button class="btn btn-search" type="submit"><span>search</span></button>
+                                                </div>
+                                                {% csrf_token %}
+                                        </div>
+                                </form>
                                 </div>
                             </div>
 
@@ -229,25 +230,12 @@
                         <div class="block-nav-menu">
                             <div class="clearfix"><span data-action="close-nav" class="close-nav"><span>close</span></span></div>
                             <ul class="ui-menu">
-                                <li class="parent parent-megamenu active">
+                                {% url 'index' as Home %}
+                                {% url 'about' as About %}
+                                {% url 'contact' as Contact %}
+                                {% url 'blog:blog' as Blog %}
+                                <li {% if request.path == Home %} class="active" {% endif %}>
                                     <a href="{% url 'index' %}">Home</a>
-                                    <span class="toggle-submenu"></span>
-                                    <div class="megamenu drop-menu " style="width: 300%;">
-                                        <ul>
-                                              
-                                    
-                                            <li class="col-md-12">
-                                                <strong class="title"><a href=""><span>Page </span></a></strong>
-                                                <ul class="list-submenu">
-                                                    
-                                                    <li><a href="{% url 'lappyng_app:category_list' %}">Category 2</a></li>
-                                                    <li><a href="Product2.html">Product 2</a></li>
-                                                    <li><a href="Product3.html">Product 3</a></li>
-                                                   
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
                                 </li>
                                 <li class="parent parent-megamenu">
                                     <a href="#">Product Category</a>
@@ -257,21 +245,19 @@
                                               
                                     
                                             <li class="col-md-12">
-                                                <strong class="title"><a href=""><span>Page </span></a></strong>
+                                                <strong class="title"><a href=""><span>Categories </span></a></strong>
                                                 <ul class="list-submenu">
-                                                    
                                                     {% display_menu %}
-                                                   
                                                 </ul>
                                             </li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="{% url 'about' %}">About</a></li>
+                                <li {% if request.path == About %} class="active" {% endif %}><a href="{% url 'about' %}">About</a></li>
                               
-                                <li><a href="{% url 'contact' %}">Contact</a></li>
+                                <li {% if request.path == Contact %} class="active" {% endif %}><a href="{% url 'contact' %}">Contact</a></li>
                             
-                                <li><a href="{% url 'lappyng_app:blog' %}">Blog</a></li> 
+                                <li {% if request.path == Blog %} class="active" {% endif %}><a href="{% url 'blog:blog' %}">Blog</a></li> 
                                
                                
                             </ul>
@@ -306,12 +292,12 @@
 
                                     <li><a href="{% url 'contact' %}">Contact</a></li>
                                 
-                                    <li><a href="{% url 'lappyng_app:blog' %}">Blog</a></li>                                    </ul>
+                                    <li><a href="{% url 'blog:blog' %}">Blog</a></li>                                    </ul>
                                 </div>
                             </div>
                             <div class="col-md-4  col-sm-4">
                                 <div class="links">
-                                    <h3 class="title">products</h3>
+                                    <h3 class="title">Categories</h3>
                                     <ul >
                                         {% display_menu %}
                                     </ul>
@@ -319,15 +305,9 @@
                             </div>
                             <div class="col-md-4  col-sm-4">
                                 <div class="links">
-                                    <h3 class="title">customer service</h3>
+                                    <h3 class="title">Brands</h3>
                                     <ul >
-                                        <li><a href="#">Advanced Search</a></li>
-                                        <li><a href="#">Orders and Returns</a></li>
-                                        <li><a href="#">Contact Us</a></li>
-                                        <li><a href="#">RSS</a></li>
-                                        <li><a href="#">Help & FAQs</a></li>
-                                        <li><a href="#">Consultant</a></li>
-                                        <li><a href="#">Store Locations</a></li>
+                                        {% list_brand_on_sidebar %}
                                     </ul>
                                 </div>
                             </div>
@@ -350,13 +330,16 @@
                         <div class="block-newletter">
                             <div class="block-title">SIGN UP FOR NEWSLETTER</div>
                             <div class="block-content">
-                                <form>
+                                <form action="{% url 'newsletter:newsletters_email' %}" method="POST" id="emailForm">
+                                    <div id="reviewSuccess"></div>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Your email address...">
+                                        <input type="email" class="form-control" name="email" placeholder="Your email address...">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-subcribe" type="button"><span>subscrible</span></button>
+                                            <input class="btn btn-subcribe" type="submit" value="Subscribe">
+                                            <!-- <button class="btn btn-subcribe" type="submit"><span>Subscribe</span></button> -->
                                         </span>
                                     </div>
+                                    {% csrf_token %}
                                 </form>
                             </div>
                             
@@ -364,68 +347,21 @@
                         
                     </div>
                 </div>
-                <div class="payment-methods">
-                    <img alt="payment" src="{% static 'frontend/images/media/index12/payment1.jpg' %}">
-                    <img alt="payment" src="{% static 'frontend/images/media/index12/payment2.jpg' %}">
-                    <img alt="payment" src="{% static 'frontend/images/media/index12/payment3.jpg' %}">
-                    <img alt="payment" src="{% static 'frontend/images/media/index12/payment4.jpg' %}">
-                    <img alt="payment" src="{% static 'frontend/images/media/index12/payment5.jpg' %}">
-                    <img alt="payment" src="{% static 'frontend/images/media/index12/payment6.jpg' %}">
-                    <img alt="payment" src="{% static 'frontend/images/media/index12/payment7.jpg' %}">
-                    <img alt="payment" src="{% static 'frontend/images/media/index12/payment8.jpg' %}">
-                    <img alt="payment" src="{% static 'frontend/images/media/index12/payment9.jpg' %}">
-                    <img alt="payment" src="{% static 'frontend/images/media/index12/payment10.jpg' %}">
-                    <img alt="payment" src="{% static 'frontend/images/media/index12/payment11.jpg' %}">
-                    <img alt="payment" src="{% static 'frontend/images/media/index12/payment12.jpg' %}">
-                    <img alt="payment" src="{% static 'frontend/images/media/index12/payment13.jpg' %}">
-                    <img alt="payment" src="{% static 'frontend/images/media/index12/payment14.jpg' %}">
-                </div>
+                
                 <div class="footer-bottom">
 
                     
 
-                    <div class="links">
-                        
-                        <ul>
-                            <li><a href="">Online Shopping </a></li>
-                            <li><a href="">Promotions </a></li>
-                            <li><a href="">My Orders  </a></li>
-                            <li><a href="">Help  </a></li>
-                            <li><a href="">Site Map </a></li>
-                            <li><a href="">Customer Service </a></li>
-                            <li><a href="">Support  </a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="">Most Populars </a></li>
-                            <li><a href="">Best Sellers  </a></li>
-                            <li><a href="">New Arrivals  </a></li>
-                            <li><a href="">Special Products  </a></li>
-                            <li><a href=""> Manufacturers     </a></li>
-                            <li><a href="">Our Stores   </a></li>
-                            <li><a href="">Shipping      </a></li>
-                            <li><a href="">Payments      </a></li>
-                            <li><a href="">Payments      </a></li>
-                            <li><a href="">Refunds  </a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="">Terms & Conditions  </a></li>
-                            <li><a href="">Policy      </a></li>
-                            <li><a href="">Policy      </a></li>
-                            <li><a href=""> Shipping     </a></li>
-                            <li><a href="">Payments      </a></li>
-                            <li><a href="">Returns      </a></li>
-                            <li><a href="">Refunds      </a></li>
-                            <li><a href="">Warrantee      </a></li>
-                            <li><a href="">FAQ      </a></li>
-                            <li><a href="">Contact  </a></li>
-                        </ul>
-                    </div>
+                    
                     
                     <div class="copyright">
                         
-                        Copyright © 2015 KuteShop. All Rights Reserved. Designed by KuteThemes.com
+                        Copyright © <span id="year"></span> All Rights Reserved. Designed by lappy.ng
                        
                     </div>
+                    <script>
+                        document.getElementById("year").innerHTML = new Date().getFullYear();
+                    </script>
 
                 </div>
 
@@ -440,7 +376,8 @@
     </div>
 
     <!-- jQuery -->    
-    <script type="text/javascript" src="{% static 'frontend/js/jquery.min.js' %}"></script>
+    <!-- <script type="text/javascript" src="{% static 'frontend/js/jquery.min.js' %}"></script> -->
+    <script type="text/javascript" src="{% static 'frontend/js/my.jquery.js' %}"></script>
 
     <!-- sticky -->
     <script type="text/javascript" src="{% static 'frontend/js/jquery.sticky.js' %}"></script>
@@ -479,6 +416,7 @@
     
     <!-- Main -->  
     <script type="text/javascript" src="{% static 'frontend/js/main.js' %}"></script>
+    <script type="text/javascript" src="{% static 'frontend/js/custom.js' %}"></script>
 
 </body>
 </html>

@@ -1,4 +1,5 @@
 from django import template
+from django.db.models import Count, Sum
 from lappyng_app.models import *
 
 register = template.Library()

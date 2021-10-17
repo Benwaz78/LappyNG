@@ -1,11 +1,12 @@
      <!-- Sidebar -->
      {% load lappyng_tags %}
+     {% load blog_tags %}
+     {% load static %}
      <div class="col-md-3 col-md-pull-9   col-sidebar">
-
-        <!-- Block  bestseller products-->
+              <!-- Block  bestseller products-->
         <div class="block-sidebar block-sidebar-categorie">
             <div class="block-title">
-                <strong>PRODUCT TYPES</strong>
+                <strong>PRODUCT CATEGORIES</strong>
             </div>
             <div class="block-content">
                 <ul class="items">
@@ -18,34 +19,45 @@
                 </ul>
             </div>
         </div><!-- Block  bestseller products-->
-
-        
-
-        <!-- block slide top -->
-        <div class="block-sidebar block-banner-sidebar">
-            {% for a in abt %}
-            <div class="owl-carousel" 
-                data-nav="false" 
-                data-dots="true" 
-                data-margin="0" 
-                data-items='1' 
-                data-autoplayTimeout="700" 
-                data-autoplay="true" 
-                data-loop="true">
-                <div class="item item1" >
-                   <img src="{{ a.abt_img1 }}" alt="images">
-                </div>
-                <div class="item item2" >
-                   <img src="{{ a.abt_img2 }}" alt="images">
-                </div>
-                <div class="item item3" >
-                   <img src="{{ a.abt_img3 }}" alt="images">
-                </div>
+           <!-- block filter products -->
+           <div id="layered-filter-block" class="block-sidebar block-filter no-hide">
+            <div class="close-filter-products"><i class="fa fa-times" aria-hidden="true"></i></div>
+            <div class="block-title">
+                <strong>FILTER SELECTION</strong>
             </div>
-            {% endfor %}
-        </div><!-- block slide top -->
+            <div class="block-content">
 
+                <!-- Filter Item  categori-->
+                
+                <!-- filter brad-->
+                <div class="filter-options-item filter-options-brand">
+                    <div class="filter-options-title">BRAND</div>
+                    <div class="filter-options-content">
+                        <ol class="items">
+                           {% list_brand_on_sidebar %}
+                           
+                        </ol>
+                    </div>
+                </div><!-- Filter Item -->
+            </div>
+        </div><!-- Filter -->
        
 
 
+        <!-- Block  Popular Posts-->
+        <div class="block-sidebar block-PopularPosts">
+            <div class="block-title">
+                <strong>Recent Posts</strong>
+            </div>
+            <div class="block-content">
+               
+                <ul class="blog-list-sidebar clearfix">
+                    {% recent_post %}
+                </ul>
+            </div>
+        </div>
+        <!-- Block  Popular Posts-->
+
+       
+       
     </div><!-- Sidebar -->

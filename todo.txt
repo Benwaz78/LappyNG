@@ -5,14 +5,16 @@ IMAGE SIZES
 4. Product Detail (420px 512px)
 
 TODO 
-1.  Change URL
-1.  Change Favicon
+
+
 2.  Display Top Seller and New Arrival
 3.  Products from brand
-4.  New Products on Home Side bar
 5.  Sidebar home page banner
 6.  Detail Page
+7. Use JS to Dispplay product review success message
+8. Use JS to display  error message
+9. Display product reviews
+10. Display review counts
 7.  Make Detail Page Sidebar Reusable
-8.  Detail Content, Product Review
 9.  Come back and display review
 10. Finalize product with review on home page

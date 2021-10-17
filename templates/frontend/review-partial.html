@@ -1,0 +1,67 @@
+{% if review_data %}
+    {% for r in review_data %}
+        <div class="block-content">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="product-reviews-summary">
+                        <div class="rating-summary">
+                            <div class="rating-result" title="70%">
+                                <span style="width:{{ r.get_ratings }}%">
+                                    <span><span>{{ r.get_ratings }}</span>% of <span>100</span></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-comment">
+                        <h3>{{ r.full_name }}</h3>
+                        <p>
+                            {{ r.review }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
+<div class="block-content">
+    <div class="row">
+        <div class="col-sm-12">
+            <form method="POST" id="reviewForm" data-review-url="{% url 'lappyng_app:product' slug %}">
+                {% if review.non_field_errors %}
+                {% for field in review.non_field_errors %}
+                    <span class="text-danger">{{ field }}</span><br>
+                {% endfor %}
+                {% endif %}
+                {% for hidden_field in review.hidden_fields %}
+                <span class="text-danger">{{ hidden_field.errors }}</span>
+                {{ hidden_field }}
+                {% endfor %}
+    
+            {% for my_field in review.visible_fields %}
+            <!-- THIS IS FOR ERROR IN THE FORM -->
+              {% if my_field.errors %}
+                  {% for err in my_field.errors %}
+                  <span class="text-danger">{{ err }}</span>
+                  {% endfor %}
+              {% endif %}
+             <!-- THIS IS FOR THE FIELDS -->
+            <div class="form-group col-sm-12">
+                {{ my_field.label_tag }}
+                {{ my_field }}
+                {% if my_field.help_text %}
+                <span class="help-block text-muted">{{ my_field.help_text }}</span>
+                {% endif %}
+            </div>
+         
+              <!-- END THE FIELDS -->
+          {% endfor %}
+        
+          {% csrf_token %}
+                <div class="form-group col-sm-12">
+                    <input type="hidden" name="hidden_form" value="review_hidden">
+                    <input type="submit" name="review_form" class="btn" id="btn-send-contact" value="Send">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

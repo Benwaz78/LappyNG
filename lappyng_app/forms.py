@@ -1,4 +1,7 @@
+from dataclasses import fields
+from unicodedata import category
 from django import forms
+from blog.models import *
 from lappyng_app.models import *
 from django.core import validators
 
@@ -18,11 +21,16 @@ class CommentForm(forms.ModelForm):
 
 
 class ProductReviewForm(forms.ModelForm):
-    ONE = 1
-    TWO = 2
-    THREE = 3
-    FOUR = 4
-    FIVE = 5
+    ONE = '10'
+    TWO = '20'
+    THREE = '30'
+    FOUR = '40'
+    FIVE = '50'
+    SIX = '60'
+    SEVEN = '70'
+    EIGHT = '80'
+    NINE = '90'
+    TEN = '100'
     CHOOSE = ''
     RATING_LIST = [
         (ONE, 1),
@@ -30,8 +38,14 @@ class ProductReviewForm(forms.ModelForm):
         (THREE, 3),
         (FOUR, 4),
         (FIVE, 5),
+        (SIX, 6),
+        (SEVEN, 7),
+        (EIGHT, 8),
+        (NINE, 9),
+        (TEN, 10),
         (CHOOSE, 'Choose Rating'),
     ]
+    
 
     full_name = forms.CharField(
                 widget = forms.TextInput(
@@ -49,6 +63,7 @@ class ProductReviewForm(forms.ModelForm):
                     choices=RATING_LIST,
                 ),
                 )
+    
     review = forms.CharField(
                 widget = forms.Textarea(
                     attrs={'class':'form-control',}
@@ -95,5 +110,27 @@ class ProductRequestForm(forms.ModelForm):
     class Meta:
         model = ProductRequest
         exclude = ('created', 'modified', 'product')
+
+
+class SearchForm(forms.ModelForm):
+    title = forms.CharField(widget=forms.TextInput(
+        attrs={'class':'form-control', 'placeholder':'Search your site'}
+    ))
+    category = forms.ModelChoiceField(
+        queryset=Category.objects.all(),
+        empty_label='All Categories',
+        widget=forms.Select(attrs={'class':'categori-search-option'})
+    )
+    botcatcher = forms.CharField(
+        required=False, 
+        widget=forms.HiddenInput, 
+        validators=[validators.MaxLengthValidator(0)])
+
+    
+    class Meta():
+        model = Products
+        fields = ['title', 'category']
+
+
 
         

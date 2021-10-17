@@ -1,9 +1,10 @@
 from multiprocessing import get_context
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, JsonResponse
 from lappyng_app.models import *
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
+import sys
 
 from django.core import mail
 from django.template.loader import render_to_string
@@ -27,23 +28,27 @@ class Home(TemplateView):
     template_name = 'frontend/index.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        all_prod = []
-        prod_dict = Products.objects.values('brand', 'id')
-        brands = {product['brand'] for product in prod_dict}
-        for brand in brands:
-            prod_brand = Products.objects.filter(brand=brand)
-            all_prod.append([prod_brand,])
-        context['prod_brand'] = all_prod
+       
+        
         context['news'] = BlogPost.objects.order_by('-created')[:4]
         context['banner'] = Banner.objects.order_by('-created')
-        context['new_arrival'] = Products.objects.order_by('-created')[:5]
-        context['hots'] = Products.objects.filter(hot_deal=True)[:3]
+        context['new_arrival'] = Products.objects.order_by('-created')
         context['best_seller'] = Products.objects.filter(best_seller=True)[:5]
+        context['new_arrival1'] = Products.objects.order_by('-created')[0:3]
+        context['new_arrival2'] = Products.objects.order_by('-created')[3:5]
+        context['hots'] = Products.objects.filter(hot_deal=True)[:3]
         context['brand'] = Brand.objects.all()
         context['products'] = Products.objects.all()
         context['abt'] = About.objects.all()
-        
-       
+        context['top_banner1'] = HomeTopBanner.objects.first()
+        context['top_banner2'] = HomeTopBanner.objects.all()[1]
+        context['two_side_banner'] = HomeTwoSideBanner.objects.all()[:2]
+        context['sidebar_banner'] = HomeSideBanner.objects.first()
+        context['lenovo'] = Products.objects.filter(brand__id=4)[:5]
+        context['dell'] = Products.objects.filter(brand__id=3)[:5]
+        context['toshiba'] = Products.objects.filter(brand__id=5)[:5]
+        context['hp'] = Products.objects.filter(brand__id=2)[:5]
+        context['ibm'] = Products.objects.filter(brand__id=1)[:5]
         return context
 
 
@@ -52,62 +57,6 @@ def about(request):
     about_us = About.objects.all()
     return render(request, 'frontend/about.html',  {'abt':about_us, 'content':content})
 
-def blog(request):
-    count_post = BlogPost.objects.filter().count()    
-    about_us = About.objects.all()
-    most_recent = BlogPost.objects.order_by('created')[:4]
-    posts = BlogPost.objects.order_by('-created')
-    paginated_filter = Paginator(posts, 6)
-    page_number = request.GET.get('page')
-    comments = Comment.objects.filter()
-    person_page_obj = paginated_filter.get_page(page_number)
-
-    context = {
-        'person_page_obj': posts, 
-        'most_recent': most_recent,
-        'post':posts,
-        'abt':about_us,
-        'counts': count_post,
-        'comm':comments
-        
-    
-    }
-    context['person_page_obj'] = person_page_obj  
-    person_page_obj = paginated_filter.get_page(page_number)
-    
-    return render(request, 'frontend/blog.html', context)
-
-def blog_details(request, pk):
-    about_us = About.objects.all()
-    most_recent = BlogPost.objects.order_by('created')[:6]
-    most_recent_comment = Comment.objects.filter(post=pk).order_by('-created_on')[:4]
-    single_post = get_object_or_404(BlogPost,  pk=pk)
-    comments = Comment.objects.filter(post=pk).order_by('-created_on')
-    popular = BlogPost.objects.filter(popular=True)[:4]
-    
-    
-    if request.method == "POST":
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False) 
-            comment.post = single_post
-            comment.save()
-            return redirect('lappyng_app:blog_details', pk=single_post.pk)
-    else:
-        form = CommentForm()     
-
-    return render(request, 'frontend/blog_post.html',{'most_recent':most_recent, 
-        'comm':comments, 
-        'form':form,
-        'single':single_post, 
-        'abt':about_us, 
-        'sipst':single_post,
-        'most_recent_comment':most_recent_comment,
-        'pop':popular
-
-        
-        })
-    
 
 def contact(request):
     return render(request, 'frontend/contact.html')
@@ -115,35 +64,63 @@ def contact(request):
 
 def product_detail(request, slug):
     product = Products.objects.get(slug=slug)
-    if 'name_rating' in request.POST:
-        form1 = ProductReviewForm(request.POST or None)
-        product = Products.objects.get(slug=slug)
+    category = product.category
+    get_product_category = Products.objects.filter(category=category)
+    top_sales_sidebar_page1 = Products.objects.filter(best_seller=True)[0:3]
+    top_sales_sidebar_page2 = Products.objects.filter(best_seller=True)[3:]
+    get_sale_products = Products.objects.filter(is_active=True)
+    form1 = ProductReviewForm(prefix='review')
+    form2 = ProductRequestForm(prefix='request')
+    review_data = ProductReview.objects.filter(product__slug=slug).order_by('-created_at')
+    slug = product.slug
+    data = {}
+    if request.method and request.POST.get('hidden_form') == 'review_hidden':
+        form1 = ProductReviewForm(request.POST, prefix='review')
         if form1.is_valid():
             form1.save(commit=False)
-            form1.product = product
+            form1.instance.product = product
             form1.save()
-            messages.success(request, 'Reviews Added')
-    else:
-        form1 = ProductReviewForm()
-
-    if 'request_form' in request.POST:
-        form2 = ProductRequestForm(request.POST or None)
-        print(slug)
-        product = Products.objects.get(slug=slug)
-        print(product)
+            data['success'] = 'Review Created'
+            data['html_data'] = render_to_string('frontend/review-partial.html', {'review_data':review_data, 'slug':slug})
+            return JsonResponse(data)
+        form2 = ProductRequestForm(prefix='review')
+    elif request.method and request.POST.get('hidden_form') == 'request_hidden':
+        form2 = ProductRequestForm(request.POST, prefix='request')
         if form2.is_valid():
             form2.save(commit=False)
-            form2.product = product
+            form2.instance.product = product
             form2.save()
+            print(form2)
             messages.success(request, 'Request Added')
-    else:
-        form2 = ProductRequestForm()
-    return render(request, 'frontend/product.html', {'product_detail':product, 'form':form1, 'request_form':form2})
+        form1 = ProductReviewForm(prefix='review')
+        
+    context = {
+                'product_detail':product, 
+                'slug':slug, 
+                'review':form1, 
+                'request_form':form2,
+                'get_category':category,
+                'review_data':review_data,
+                'get_prod_cat':get_product_category,
+                'sidebar_page1':top_sales_sidebar_page1,
+                'sidebar_page2':top_sales_sidebar_page2,
+                'get_sale':get_sale_products
+                }
+    return render(request, 'frontend/product.html', context)
 
 
 
-    
-    
+
+def search_result(request):
+    if request.method == 'GET':
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            title = form.cleaned_data.get('title')
+            category = form.cleaned_data.get('category')
+            query_filter = Products.objects.filter(Q(title__contains=title) | Q(category=category))
+            return render(request, 'frontend/search-result.html', {'query':query_filter})
+    return render(request, 'frontend/search-result.html')
+
 
 
 def category_grid(request,  category_slug):

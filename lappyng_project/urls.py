@@ -24,8 +24,10 @@ from filebrowser.sites import site
 urlpatterns = [
     path('', views.Home.as_view(), name='index'),
      path('about/', views.about, name='about'),
+     path('posts/', include('blog.urls')),
      path('contact/', views.contact, name='contact'),
     path('products/', include('lappyng_app.urls')),
+    path('newsletter/', include('newsletter.urls')),
     path('tinymce/', include('tinymce.urls')),
     path('admin/filebrowser/', site.urls),
     path('admin/', admin.site.urls),

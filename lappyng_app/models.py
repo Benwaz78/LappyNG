@@ -1,10 +1,14 @@
+from tabnanny import verbose
 from django.db import models
+from django.db.models import Q
 from django.utils import timezone
 from django.conf import settings
 from django.urls import reverse
 from django.contrib.auth.models import User
 from tinymce import HTMLField
 import datetime
+from decimal import Decimal as D
+from django.utils.html import format_html
 
 class Category(models.Model):
     parent = models.ForeignKey('self', related_name='children', on_delete=models.CASCADE, blank=True, null=True)
@@ -74,7 +78,7 @@ class Brand(models.Model):
 
 class ProductManager(models.Manager):
     def get_queryset(self):
-        return super(ProductManager, self).get_queryset().filter(is_active=True)
+        return super(ProductManager, self).get_queryset().filter(Q(is_active=True) | Q(percent=True))
 
 class Products(models.Model):
     title = models.CharField(max_length=300)
@@ -82,8 +86,8 @@ class Products(models.Model):
     category = models.ForeignKey(Category, related_name='product', on_delete=models.CASCADE)
     brand = models.ForeignKey(Brand, related_name='product_brand', null=True, blank=True, on_delete=models.CASCADE)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='product_creator')
-    price = models.DecimalField(max_digits=20, decimal_places=2, verbose_name='New Price')
-    old_price = models.DecimalField(max_digits=20, decimal_places=2, verbose_name='Old Price')
+    price = models.FloatField(verbose_name='Price')
+    percent = models.PositiveIntegerField(blank=True, null=True, verbose_name='Percentage Discount', help_text='Example 30%')
     in_stock = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
     new_product = models.BooleanField()
@@ -97,12 +101,51 @@ class Products(models.Model):
     updated = models.DateTimeField(auto_now=True)
     objects = models.Manager()
     products = models.Manager()
-    
-    
 
+    
+    def get_discount_price(self):
+        if self.percent:
+            return format_html(f'<span class="price">&#8358;{self.discount_prize()} </span>')
+        else:
+            return ''
+
+    def get_square_label(self):
+        if self.percent:
+            return format_html(f'<span class="label-sale">-{self.percent}%</span>')       
+        else:
+            return ''
+
+    def circle_label(self):
+        if self.percent:
+            return format_html(f'<span class="product-item-label label-price">{self.percent}% <span>off</span></span>')
+        else:
+            return ''
+
+    def check_availability(self):
+        if self.in_stock == True:
+            return 'In Stock'
+        else:
+            return 'Out Of Stock'
+
+    def get_price(self):
+        format_number = "{:,}".format(self.price)
+        if self.percent:
+            return format_html(f'<span class="old-price">&#8358;{format_number} </span>')
+        else:
+            return format_html(f'<span class="price">&#8358;{format_number} </span>')
+
+    
+    
     class Meta:
         verbose_name_plural='3. Products'
         ordering = ('-created',)
+    
+    
+    def discount_prize(self):
+        if self.percent is not None:
+            dis = self.price - self.price * self.percent/100
+            format_number = "{:,}".format(dis)
+            return format_number
 
     def show_image1(self):
         if self.image1:
@@ -132,7 +175,7 @@ class ProductRequest(models.Model):
     name = models.CharField(max_length=150)
     email = models.EmailField()
     phone = models.CharField(max_length=15)
-    product = models.ForeignKey(Products, on_delete=models.CASCADE)
+    product = models.ForeignKey(Products, on_delete=models.CASCADE, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     description = models.TextField()
@@ -146,11 +189,16 @@ class ProductRequest(models.Model):
 
 class ProductReview(models.Model):
 
-    ONE = '1'
-    TWO = '2'
-    THREE = '3'
-    FOUR = '4'
-    FIVE = '5'
+    ONE = '10'
+    TWO = '20'
+    THREE = '30'
+    FOUR = '40'
+    FIVE = '50'
+    SIX = '60'
+    SEVEN = '70'
+    EIGHT = '80'
+    NINE = '90'
+    TEN = '100'
     CHOOSE = ''
     RATING_LIST = [
         (ONE, 1),
@@ -158,6 +206,11 @@ class ProductReview(models.Model):
         (THREE, 3),
         (FOUR, 4),
         (FIVE, 5),
+        (SIX, 6),
+        (SEVEN, 7),
+        (EIGHT, 8),
+        (NINE, 9),
+        (TEN, 10),
         (CHOOSE, 'Choose Rating'),
     ]
     full_name = models.CharField(max_length=150)
@@ -168,6 +221,28 @@ class ProductReview(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     updated = models.DateTimeField(auto_now=True, null=True, blank=True)
 
+    def get_ratings(self):
+        if self.rating == '10':
+            return '10'
+        elif self.rating == '20':
+            return '20'
+        elif self.rating == '30':
+            return '30'
+        elif self.rating == '40':
+            return '40'
+        elif self.rating == '50':
+            return '50'
+        elif self.rating == '60':
+            return '60'
+        elif self.rating == '70':
+            return '70'
+        elif self.rating == '80':
+            return '80'
+        elif self.rating == '90':
+            return '90'
+        elif self.rating == '100':
+            return '100'
+    
     def __str__(self):
         return self.full_name
 
@@ -205,73 +280,6 @@ class About(models.Model):
 
 
 
-class BlogPost(models.Model):
-    FEATURE = 'Feature'
-    NO_FEATURE = 'No Feature'
-    CHOOSE = ''
-    APPEAR_HOME_FIELD=[
-        (FEATURE, 'Appear on home'),
-        (NO_FEATURE, "Don't show on home"),
-        (CHOOSE, 'Please Choose')
-    ]
-    pst_title = models.CharField(max_length=150, verbose_name='Post Title')
-    slug = models.SlugField(unique=True)
-    pst_image = models.ImageField('Post Image', upload_to='uploads/', blank=True, null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Posted By')
-    content = HTMLField('Content')
-    appear_home = models.CharField(max_length=50, choices=APPEAR_HOME_FIELD, default=CHOOSE)
-    created = models.DateTimeField(auto_now_add=True)
-    time = models.DateTimeField(auto_now_add=True)
-    today = datetime.date.today()
-    months = ['zero','January','February','March','April','May','June','July','August','September','October','November','December']
-    current_month = months[today.month]
-    popular= models.BooleanField( verbose_name='Popular Post')
-    
-    
-    def __str__(self):
-        return self.pst_title
-
-    class Meta():
-        verbose_name_plural = '5. Blog Post'
-
-    @property
-    def img_url(self):
-        if self.pst_image:
-            return self.pst_image.url
-    
-    @property
-    def get_comments(self):
-        return self.comments.all()
-
-    @property
-    def get_comments_count(self):
-        return self.comments.count
-
-    def get_post_url(self):
-        return reverse('lappyng_app:blog_details', kwargs={
-            'slug': self.slug,
-        })
-
-
-
-class Comment(models.Model):
-    name = models.CharField(max_length=80,verbose_name= 'Name')
-    email = models.EmailField()
-    post = models.ForeignKey(BlogPost,on_delete=models.CASCADE,related_name='comments')
-    body = models.TextField()
-    created_on = models.DateTimeField(auto_now_add=True)
-    active = models.BooleanField(default=False)
-
-    class Meta:
-        ordering = ['created_on']
-
-    class Meta():
-        verbose_name_plural = '6. Comments'
-
-
-    def __str__(self):
-        return 'Comment {} by {}'.format(self.body, self.name)
-
 
 
 class Banner(models.Model):
@@ -290,4 +298,54 @@ class Banner(models.Model):
           return self.slide_img.url
 
     class Meta():
-        verbose_name_plural = 'Banner'
+        verbose_name_plural = 'Home Slider'
+
+
+
+
+class HomeTopBanner(models.Model):
+    banner = models.ImageField(upload_to='uploads/')
+    link = models.URLField(null=True, blank=True)
+   
+
+    class Meta():
+        verbose_name_plural = 'Home Top Banner'
+
+    def get_banner(self):
+        if self.banner:
+            return self.banner.url
+    
+   
+    
+    def __str__(self):
+        return 'Home Banner'
+
+class HomeSideBanner(models.Model):
+    banner = models.ImageField(upload_to='uploads/')
+    link = models.URLField(null=True, blank=True)
+
+    class Meta():
+        verbose_name_plural = 'Home Side Banner'
+
+    def get_banner(self):
+        if self.banner:
+            return self.banner.url
+    
+    def __str__(self):
+        return 'Home Side Banner'
+
+class HomeTwoSideBanner(models.Model):
+    banner = models.ImageField(upload_to='uploads/')
+    link = models.URLField(null=True, blank=True)
+    
+
+    class Meta():
+        verbose_name_plural = 'Home Two SideBanner'
+
+    def get_banner(self):
+        if self.banner:
+            return self.banner.url
+    
+    
+    def __str__(self):
+        return 'Home Banner'

@@ -19,9 +19,8 @@
                 <!-- Block  Breadcrumb-->
                         
                 <ol class="breadcrumb no-hide">
-                    <li><a href="#">Home    </a></li>
-                    <li><a href="#">Electronics    </a></li>
-                    <li class="active">Machine Pro</li>
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li class="active">{{ category }}</li>
                 </ol><!-- Block  Breadcrumb-->
 
                 <div class="row">
@@ -99,37 +98,21 @@
                                     <div class="product-item-opt-1">
                                         <div class="product-item-info">
                                             <div class="product-item-photo">
-                                                <a href="" class="product-item-img"><img src="{{product.show_image1}}" alt="product name"></a>
-                                                
-                                                
-                                                <span class="product-item-label label-price">30% <span>off</span></span>
+                                                <a href="{{ product.get_absolute_url  }}" class="product-item-img"><img src="{{product.show_image1 }}" alt="{{ product.title }}"></a>
+                                               {{ product.circle_label }}
                                             </div>
                                             <div class="product-item-detail">
-                                                <strong class="product-item-name"><a href="">{{product.title}}</a></strong>
+                                                <strong class="product-item-name"><a href="{{ product.get_absolute_url  }}">{{product.title}}</a></strong>
                                                 <div class="clearfix">
                                                     <div class="product-item-price">
-                                                        <span class="price">&#8358;{{ product.price }}</span>
-                                                        <span class="old-price">&#8358;{{ product.old_price }}</span>
+                                                        {{ product.get_discount_price }}
+                                                        {{ product.get_price }}
                                                     </div>
-                                                    <div class="product-reviews-summary">
-                                                        <div class="rating-summary">
-                                                            <div class="rating-result" title="80%">
-                                                                <span style="width:80%">
-                                                                    <span><span>80</span>% of <span>100</span></span>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                   
                                                 </div>
                                                 <br>
                                                 <div class="product-item-stock">
                                                     <span class="title">Availability:</span>
-                                                    {% if product.in_stock %}
-                                                    In stock
-                                                    {% else %}
-                                                    Not in stock
-                                                    {% endif %}
+                                                    {{ product.check_availability }}
                                                 </div>
                                             </div>
                                         </div>
