@@ -167,3 +167,55 @@ def category_list(request):
 def login(request):
     return render(request, 'frontend/login.html')
 
+
+def contact_form(request):
+    if request.method == 'POST':
+        fullname = request.POST.get('fullname')
+        email = request.POST.get('email')
+        phone number = request.POST.get('number')
+        message = request.POST.get('message')
+        subject = 'Contact Form'
+        args={
+            'fullname':fullname
+            'email':email
+            'number':phone number
+            'message':message
+        }
+        html_message = render_to_string('frontend/contact-us-email.html', args)
+        plain_message = strip_tags(html_message)
+        from_email = settings.EMAIL_FROM
+        send = mail.send_mail(subject, plain_message, from_email, ['uwazie.benedict@alabiansolutions.com', ], html_message=html_message)
+        if send :
+            message.success('Email sent successfully')
+        else:
+            message.error('Email not sent')
+    return render(request, 'frontend/contact-us-email.html.html')
+
+    
+def order_form(request):
+    if request.method == 'POST':
+        fullname = request.POST.get('fullname')
+        email = request.POST.get('email')
+        phone number = request.POST.get('number')
+        message = request.POST.get('message')
+        subject = 'Order Form'
+        args={
+            'fullname':fullname
+            'email':email
+            'number':phone number
+            'message':message
+        }
+        html_message = render_to_string('frontend/product-order.html', args)
+        plain_message = strip_tags(html_message)
+        from_email = settings.EMAIL_FROM
+        send = mail.send_mail(subject, plain_message, from_email, ['uwazie.benedict@alabiansolutions.com', ], html_message=html_message)
+        if send :
+            message.success('Email sent successfully')
+        else:
+            message.error('Email not sent')
+    return render(request, 'frontend/product-order.html.html')
+
+
+
+
+
