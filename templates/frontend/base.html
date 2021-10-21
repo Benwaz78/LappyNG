@@ -330,13 +330,16 @@
                         <div class="block-newletter">
                             <div class="block-title">SIGN UP FOR NEWSLETTER</div>
                             <div class="block-content">
-                                <form>
+                                <form action="{% url 'newsletter:newsletters_email' %}" method="POST" id="emailForm">
+                                    <div id="reviewSuccess"></div>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Your email address...">
+                                        <input type="email" class="form-control" name="email" placeholder="Your email address...">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-subcribe" type="button"><span>subscrible</span></button>
+                                            <input class="btn btn-subcribe" type="submit" value="Subscribe">
+                                            <!-- <button class="btn btn-subcribe" type="submit"><span>Subscribe</span></button> -->
                                         </span>
                                     </div>
+                                    {% csrf_token %}
                                 </form>
                             </div>
                             
