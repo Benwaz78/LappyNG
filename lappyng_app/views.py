@@ -109,15 +109,17 @@ def product_detail(request, slug):
     return render(request, 'frontend/product.html', context)
 
 
+
+
 def search_result(request):
     if request.method == 'GET':
         form = SearchForm(request.GET)
         if form.is_valid():
             title = form.cleaned_data.get('title')
             category = form.cleaned_data.get('category')
-            query_filter = Products.objects.filter(Q(title__contains=title) | Q(category__contains=category))
-            return render(request, 'frontend/result.html', {'query':query_filter})
-    return render(request, 'frontend/result.html')
+            query_filter = Products.objects.filter(Q(title__contains=title) | Q(category=category))
+            return render(request, 'frontend/search-result.html', {'query':query_filter})
+    return render(request, 'frontend/search-result.html')
 
 
 
