@@ -59,7 +59,30 @@ def about(request):
 
 
 def contact(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        message = request.POST.get('message')
+        subject = 'Eaglesrand Solutions'
+        context = {
+            'name':name,
+            'email':email,
+            'phone':phone,
+            'email':email,
+            'message': message
+        }
+        html_message = render_to_string('frontend/email_templates/contact-email-template.html', context)
+        plain_message = strip_tags(html_message)
+        from_email = settings.FROM_HOST
+        send = mail.send_mail(subject, plain_message, from_email, 
+                      settings.RECIEVER_MAIL, html_message=html_message, fail_silently=False)
+        if send:
+            messages.success(request, 'Email sent succesfully!')
+        else:
+            messages.error(request, 'Mail not sent!')
     return render(request, 'frontend/contact.html')
+
 
 
 def product_detail(request, slug):
