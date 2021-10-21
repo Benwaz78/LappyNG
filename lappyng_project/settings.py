@@ -50,19 +50,18 @@ INSTALLED_APPS = [
     'newsletter',
 ]
 
-# EMAIL_HOST = 'smtp.sendgrid.net'
-# EMAIL_HOST = 'smtp.sendgrid.net'
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
 # EMAIL_HOST_USER = 'apikey' 
-EMAIL_HOST_USER = config('EMAIL_USER')
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-FROM_HOST = 'Lappyng <slimchibenedict@gmail.com>'
+FROM_HOST = '<info@eaglesbrandsolutions.com>'
 RECIEVER_MAIL = ['nonwaz78@gmail.com',]
-# SENDGRID_API_KEY = config('SENDGRIG_API')
 
 
 

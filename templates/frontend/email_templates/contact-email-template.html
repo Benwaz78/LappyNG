@@ -1,4 +1,4 @@
-{% extends 'frontend/email_base.html' %}
+{% extends 'frontend/email_templates/email_base.html' %}
 {% load static %}
 <!DOCTYPE html>
 
@@ -38,32 +38,21 @@ Contact Email
 							</tr>
 							<tr >
 							  <td class="rr">Name</td>
-							  <td class="rr">Slim Shady</td>
+							  <td class="rr">{{ name }}</td>
 							</tr>
 							<tr >
 								<td class="rr">Email</td>
-								<td class="rr">nonwazy@yahoo.com</td>
+								<td class="rr">{{ email }}</td>
 							  </tr>
 							  <tr >
 								<td class="rr">Phone</td>
-								<td class="rr">08123587654</td>
+								<td class="rr">{{ phone }}</td>
 							  </tr>
 							  <tr >
 								<td class="rr">Message</td>
-								<td class="rr"><p style="">
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt debitis amet nostrum 
-									numquam ullam dolore doloremque, molestias ad eum facilis adipisci vero nulla. Magni, culpa officiis 
-									dolorum atque totam earum neque. Quibusdam reiciendis voluptatum accusamus, enim corrupti iste
-									 suscipit similique? Aut hic doloremque illo fuga, magnam voluptatem omnis nesciunt officiis
-									  dolore facere voluptates nisi, ea dicta. Eligendi, quidem! Commodi sed, odio
-									   eveniet porro neque rerum repudiandae vel blanditiis illo tempore dolores? Ea,
-									    eveniet iusto quae asperiores ratione rerum numquam enim voluptatum 
-										delectus architecto voluptatibus neque provident magnam vitae
-										 molestias obcaecati dolores aspernatur nostrum vel exercitationem 
-										 necessitatibus quasi quas. Expedita, explicabo.
-								</p>
-								
-							</td>
+								<td class="rr">
+									{{ message }}
+								</td>
 							  </tr>
 							  
 							
