@@ -1,0 +1,342 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+
+{% block title%}
+{{ product_detail.title }}
+{% endblock %}
+
+{% block content %}          	
+		<!-- MAIN -->
+		<main class="site-main">
+            <div class="columns container">
+                <!-- Block  Breadcrumb-->
+                <ol class="breadcrumb no-hide">
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="#">{{ get_category }}</a></li>
+                    <li class="active">{{ product_detail.title }}</li>
+                </ol><!-- Block  Breadcrumb-->
+
+                <div class="row">
+                    <!-- Main Content -->
+                    <div class="col-md-9  col-main">
+
+                        <div class="row">
+                    
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+
+                                <div class="product-media media-horizontal">
+
+                                    <div class="image_preview_container images-large">
+
+                                        <img id="img_zoom" data-zoom-image="{{ product_detail.show_image1 }}" src="{{ product_detail.show_image1 }}" alt="">
+
+                                        <button class="btn-zoom open_qv"><span>zoom</span></button>
+
+                                    </div>
+                                    
+                                    <div class="product_preview images-small">
+
+                                        <div class="owl-carousel thumbnails_carousel" id="thumbnails"  data-nav="true" data-dots="false" data-margin="10" data-responsive='{"0":{"items":3},"480":{"items":4},"600":{"items":5},"768":{"items":3}}'>
+                                            
+                                            <a href="#" data-image="{{ product_detail.show_image1 }}" data-zoom-image="{{ product_detail.show_image1 }}">
+
+                                                <img src="{{ product_detail.show_image1 }}" data-large-image="{{ product_detail.show_image1 }}" alt="">
+
+                                            </a>
+
+                                            <a href="#" data-image="{{ product_detail.show_image2 }}" data-zoom-image="{{ product_detail.show_image2 }}">
+
+                                                <img src="{{ product_detail.show_image2 }}" data-large-image="{{ product_detail.show_image2 }}" alt="">
+
+                                            </a>
+                                            <a href="#" data-image="{{ product_detail.show_image3 }}" data-zoom-image="{{ product_detail.show_image3 }}">
+
+                                                <img src="{{ product_detail.show_image3 }}" data-large-image="{{ product_detail.show_image3 }}" alt="">
+
+                                            </a>
+                                           
+                                        </div><!--/ .owl-carousel-->
+
+                                    </div><!--/ .product_preview-->
+
+                                </div><!-- image product -->
+                            </div>
+
+                            <div class="col-sm-6 col-md-6 col-lg-6"> 
+                                {% if product_detail %}
+                                <div class="product-info-main">
+
+                                    <h1 class="page-title">
+                                        {{ product_detail.title }}
+                                    </h1>
+                                    <div class="product-reviews-summary">
+                                       
+                                        <div class="reviews-actions">
+                                            <a href="#reviews" class="action add"><img alt="img" src="../../static/frontend/images/icon/write.png">&#160;&#160;write a review</a>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="product-info-price">
+                                        <div class="price-box">
+                                            {{ product_detail.get_discount_price }}
+                                            {{ product_detail.get_price }}
+                                            {{ product_detail.get_square_label}}
+                                        </div>
+                                    </div>  
+                                    <div class="product-info-stock">
+                                        <div class="stock available">
+                                            <span class="label">Availability: </span> 
+                                            {{ product_detail.check_availability }}
+                                        </div>
+                                    </div>
+                                    {% if product_detail.new_product == True %} 
+                                        <div class="product-condition">
+                                            Condition: <span class="text-success">New</span>
+                                        </div>
+                                    {% endif %}
+                                    <div class="product-overview">
+                                        <div class="overview-content">
+                                            {{ product_detail.contents|safe|truncatewords:15 }}
+                                        </div>
+                                    </div>
+
+                                    <div class="product-add-form">
+                                        <form method="POST">
+                                            <div class="contact-form-box">
+                                                {% include 'frontend/form-snippet.html' with form=request_form %}
+                                                <input type="hidden" name="hidden_form" value="request_hidden">
+                                                <div class="form-selector">
+                                                    <input type="submit" name="request_form" class="btn" id="btn-send-contact" value="Send">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div><!-- detail- product -->
+                                {% endif %}
+
+                            </div><!-- Main detail -->
+
+                        </div>
+
+                        <!-- product tab info -->
+                    
+                        <div class="product-info-detailed ">
+
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-pills" role="tablist">
+                                <li role="presentation" class="active"><a href="#description"  role="tab" data-toggle="tab">Product Details   </a></li>
+                                <li role="presentation"><a href="#reviews"  role="tab" data-toggle="tab">Reviews</a></li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content" id="productDetailTab">
+                                <div role="tabpanel" class="tab-pane active" id="description">
+                                    <div class="block-content">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="block-title"><strong>Product Details</strong></div>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                    
+                                    <div class="block-content">
+                                       {{ product_detail.contents|safe }}
+                                   
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="reviews">
+                                    <div class="block-content">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="block-title"><strong>Reviews</strong></div>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                    <div id="reviewsData">
+                                        {% include 'frontend/review-partial.html' %}
+                                    </div>
+                                    <div id="reviewSuccess"></div>
+                                </div>
+                            </div>
+                        </div>  
+                        <!-- product tab info -->
+                        
+
+                        <!-- block-related product -->
+                        <div class="block-related ">
+                            <div class="block-title">
+                                <strong class="title">RELATED products</strong>
+                            </div>
+                            <div class="block-content ">
+                                <ol class="product-items owl-carousel " data-nav="true" data-dots="false" data-margin="30" data-responsive='{"0":{"items":1},"480":{"items":2},"600":{"items":3},"992":{"items":3}}'>
+                                    
+                                    {% if get_prod_cat %}
+                                        {% for g in get_prod_cat %}
+                                            <li class="product-item product-item-opt-2">
+                                                <div class="product-item-info">
+                                                    <div class="product-item-photo">
+                                                        <a href="{{ g.get_absolute_url }}" class="product-item-img"><img src="{{ g.show_image1 }}" alt="{{ g.title }}"></a>
+
+                                                    </div>
+                                                    <div class="product-item-detail">
+                                                        <strong class="product-item-name"><a href="{{ g.get_absolute_url }}">{{ g.title }}</a></strong>
+                                                        <div class="clearfix">
+                                                            <div class="product-item-price">
+                                                                {{ g.get_discount_price }}
+                                                                {{ g.get_price }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        {% endfor %}
+                                    {% endif %}
+                                    
+                                    
+                                
+                                </ol>
+                            </div>
+                        </div><!-- block-related product -->
+                    </div><!-- Main Content -->
+                    
+                    <!-- Sidebar -->
+                    <div class=" col-md-3   col-sidebar">
+                        <!-- Block  bestseller products-->
+                        <div class="block-sidebar block-sidebar-products">
+                            <div class="block-title">
+                                <strong>BEST SALES</strong>
+                            </div>
+                            <div class="block-content">
+                                <div class="owl-carousel" 
+                                data-nav="false" 
+                                data-dots="true" 
+                                data-margin="0" 
+                                data-autoplayTimeout="700" 
+                                data-autoplay="true" 
+                                data-loop="true"
+                                data-responsive='{
+                                "0":{"items":1},
+                                "420":{"items":1},
+                                "480":{"items":2},
+                                "600":{"items":2},
+                                "992":{"items":1}
+                                }'>
+                                    <div class="item">
+                                        {% if sidebar_page1 %}
+                                            {% for s in sidebar_page1 %}
+                                                <div class="product-item product-item-opt-2">
+                                                    <div class="product-item-info">
+                                                        <div class="product-item-photo">
+                                                            <a class="product-item-img" href="{{ s.get_absolute_url }}"><img alt="{{ s.title }}" src="{{ s.show_image1 }}"></a>
+                                                        </div>
+                                                        <div class="product-item-detail">
+                                                            <strong class="product-item-name"><a href="{{ s.get_absolute_url }}">{{ s.title }}</a></strong>
+                                                            <div class="clearfix">
+                                                                <div class="product-item-price">
+                                                                    {{ s.get_discount_price }}
+                                                                    {{ s.get_price }}
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        {% endif %}
+                                       
+                                    </div>
+                                    <div class="item">
+                                        {% if sidebar_page2 %}
+                                            {% for s in sidebar_page2 %}
+                                                <div class="product-item product-item-opt-2">
+                                                    <div class="product-item-info">
+                                                        <div class="product-item-photo">
+                                                            <a class="product-item-img" href="{{ s.get_absolute_url }}"><img alt="{{ s.title }}" src="{{ s.show_image1 }}"></a>
+                                                        </div>
+                                                        <div class="product-item-detail">
+                                                            <strong class="{{ s.title }}"><a href="{{ s.get_absolute_url }}">{{ s.title }}</a></strong>
+                                                            <div class="clearfix">
+                                                                <div class="product-item-price">
+                                                                   {{ s.get_discount_price }}
+                                                                   {{ s.get_price }}
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        {% endif %}
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- Block  bestseller products-->
+
+                    
+
+                        <!-- Block  SALE products-->
+                        
+                        <div class="block-sidebar block-sidebar-products-opt2">
+                            <div class="block-title">
+                                <strong>SALE PRODUCTS</strong>
+                            </div>
+                            <div class="block-content">
+                                <div class="owl-carousel" 
+                                data-nav="false" 
+                                data-dots="true" 
+                                data-margin="0" 
+                                data-autoplayTimeout="700" 
+                                data-autoplay="true" 
+                                data-loop="true"
+                                data-responsive='{
+                                "0":{"items":1},
+                                "420":{"items":2},
+                                "480":{"items":2},
+                                "600":{"items":2},
+                                "992":{"items":1}
+                                }'>
+                                    {% if get_sale %}
+                                        {% for g in get_sale %}
+                                            {% if g.percent is not None %}
+                                                <div class="product-item product-item-opt-2">
+                                                    <div class="product-item-info">
+                                                        <div class="product-item-photo">
+                                                            <a href="{{ g.get_absolute_url }}" class="product-item-img"><img src="{{ g.show_image1 }}" alt="{{ g.title }}"></a>
+                                                            {{ g.circle_label }}
+                                                            
+                                                        </div>
+                                                        <div class="product-item-detail">
+                                                            <strong class="product-item-name"><a href="{{ g.get_absolute_url }}">{{ g.title }}</a></strong>
+                                                            <div class="clearfix">
+                                                                <div class="product-item-price">
+                                                                   {{ g.get_discount_price }}
+                                                                    {{ g.get_price }}
+                                                                </div>
+                                                               
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                    
+                                   
+                                </div>
+                            </div>
+                        </div><!-- Block  SALE products-->
+
+                     
+
+                    </div><!-- Sidebar -->
+
+                </div>
+            </div>
+
+
+		</main><!-- end MAIN -->
+
+{% endblock %}

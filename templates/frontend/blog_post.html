@@ -1,0 +1,124 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+
+{% block title%}
+{{ single.pst_title }}
+{% endblock %}
+
+{% block content %}
+		<main class="site-main">
+
+            <div class="columns container">
+                <!-- Block  Breadcrumb-->
+                        
+                <ol class="breadcrumb no-hide">
+                    <li><a href="{% url 'index' %}">Home    </a></li>
+                    <li><a href="{% url 'blog:blog' %}">Blog    </a></li>
+                    <li class="active">{{ single.pst_title }}</li>
+                </ol><!-- Block  Breadcrumb-->
+
+                <div class="row">
+                 
+                    
+                    <!-- Main Content -->
+                    <div class="col-md-9 col-md-push-3  col-main ">
+                        <h1 class="page-heading">
+                            <span class="page-heading-title2">{{ single.pst_title }}</span>
+                        </h1>
+                        <article class="entry-detail">
+                            {% if single %}
+                            <div class="entry-meta-data">
+                                <span class="author" style="text-transform: capitalize;">
+                                <i class="fa fa-user"></i> 
+                                by: <a href="#">{{ single.user}}</a></span>
+                             
+                                <span class="comment-count">
+                                    <i class="fa fa-comment-o"></i>   {{ comm.count }}
+                                </span>
+                                <span class="date"><i class="fa fa-calendar"></i> {{single.created }}</span>
+                              
+                            </div>
+                            <div class="entry-photo">
+                                <img src="{{ single.img_url }}" style="max-height: 600px; min-height: 600px;
+                                 max-width: 870px; min-width: 870px;" class="img_fluid" alt="Blog">
+                            </div>
+                            <div class="content-text clearfix">
+                                <p> {{ single.content|safe }}</p>
+                            </div>
+                            {% endif %}
+                        </article>
+                       
+                        <div class="single-box">
+                            <h2 class="" style="font-size: 40px; font-weight: 700;">Comments</h2>
+                            {% if not comm %}
+                            <h4>No Comments yet....<a href="#add_comment"> Be the first to add</a></h4>
+                            {% else %}
+                            {% for comment in comm %}
+                            <div class="comment-list">
+                                <ul>
+                                    <li>
+                                        <div class="avartar">
+                                            <img src="{% static 'frontend/images/media/detail/avatar.jpg' %}" alt="Avatar">
+                                        </div>
+                                        <div class="comment-body">
+                                            <div class="comment-meta">
+                                                <span class="author"><a href="#">{{ comment.name }}</a></span>
+                                                <span class="date"> {{ comment.created_on }}</span>
+                                            </div>
+                                            <div class="comment">
+                                                {{ comment.body | linebreaks}}
+                                            </div>
+                                        </div>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                        <br><br><br>
+                        {% if blog_single_post %}
+                        <div class="single-box" id="add_comment">
+                            
+                            <h2>Leave a Comment</h2>
+                            <form method="POST" action="" class="coment-form">
+                               
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label for="name">Name</label>
+                                       {{form.name}}
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="email">Email</label>
+                                        {{form.email}}
+                                    </div>
+                                    <!-- <div class="col-sm-12">
+                                        <label for="website"></label>
+                                        <input id="website" type="text" class="form-control">
+                                    </div> -->
+                                    <div class="col-sm-12">
+                                        <label for="message">Message</label>
+                                        {{form.body}}
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn-comment">Submit</button>
+                                {% csrf_token %}
+                            </form>
+                        </div>
+                        {% endif %}
+                        <br><br>
+                        <!-- ./Comment -->
+                    </div><!-- Main Content -->
+                    
+                    
+                    
+                    {% include 'frontend/sidebar.html' %}
+
+                </div>
+            </div>
+
+
+		</main><!-- end MAIN -->
+
+{% endblock %}

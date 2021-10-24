@@ -1,0 +1,672 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+
+{% block title%}
+Home
+{% endblock %}
+
+{% block content %}
+        <!-- MAIN -->
+        <main class="site-main">
+
+            <div class="block-section-top block-section-top13">
+                <div class="container">
+                    <div class="box-section-top">
+
+                        <!-- categori -->
+                        <div class="block-nav-categori">
+
+                            <div class="block-title">
+                                <span>Categories</span>
+                            </div>
+
+                            <div class="block-content">
+                                <ul class="ui-categori">
+                                    
+                                    {% for c in categories %}
+                                    <li class="parent" {% if category.slug == c.slug %}class="selected" {% endif %} >
+                                        <a href="{{ c.get_absolute_url }}">
+                                            <span class="icon"><img src="{% static 'frontend/images/icon/index3/nav-cat1.png' %}" alt="nav-cat"></span>
+                                           {{ c.cat_name }}
+                                        </a>
+                                        <span class="toggle-submenu"></span>
+                                       
+                                    {% endfor %}
+                                </ul>
+                               
+                            </div>
+                            
+                        </div><!-- categori -->
+
+                        <!-- block slide top -->
+                        <div class="block-slide-main slide-opt-13">
+
+                            <!-- slide -->
+                            <div class="owl-carousel " data-nav="true" data-dots="true" data-margin="0" data-items='1' data-autoplayTimeout="700" 
+                                data-autoplay="false" data-loop="true">
+                                {% if banner %}
+                                {% for b in banner %}
+                                {% if forloop.counter == 1 %}
+                                <div class="item">
+                                    <img src="{{ b.post_img }}" alt="slide1" class="img-slide">
+                                    <div class="description">
+                                        {% if b.slide_content1 %}
+                                        <span class="subtitle " >{{ b.slide_content1 }} </span>
+                                        <br>
+                                        <span class="des" style="color: white;">{{ b.slide_content2 }}</span>
+                                        <a href="" class="view-opt13">VIEW NOW </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="item">
+                                    <img src="{{ b.post_img }}" alt="slide1" class="img-slide">
+                                    <div class="description">
+                                        {% if b.slide_content1 %}
+                                        <span class="subtitle" >{{ b.slide_content1 }} </span>
+                                        <br>
+                                        <span class="des">{{ b.slide_content2 }}</span>
+                                        <a href="" class="view-opt13">SHOP NOW </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% endif %}
+    
+                                {% endfor %}
+                               {% endif %}
+                            </div> <!-- slide -->
+                           
+                        </div><!-- block slide top -->
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-8 col-lg-9 col-md-push-4 col-lg-push-3">
+
+                      
+
+                        <!-- block -tab-product-->
+                        <div class="block-tab-product-opt13 ">
+                        
+                            <div class="block-title ">
+
+                                <ul  class="nav-links">
+                                    <li role="presentation" class="active"><a href="#newArrival"  role="tab" data-toggle="tab">New Arrival </a></li>
+                                    <li role="presentation"><a href="#bestSeller"  role="tab" data-toggle="tab">Best Seller </a></li>
+                                </ul>
+                            </div>
+
+                            <div class="block-content">
+
+                                <div class="tab-content">
+                                    <!-- tab 1 -->
+                                  
+                                        <div class="tab-pane home-tab active in" id="newArrival" role="tabpanel">
+                                            <div class="owl-carousel" 
+                                                data-nav="true" 
+                                                data-dots="false" 
+                                                data-margin="30" 
+                                                data-responsive='{
+                                                "0":{"items":1},
+                                                "420":{"items":2},
+                                                "600":{"items":3},
+                                                "768":{"items":3},
+                                                "992":{"items":3},
+                                                "1200":{"items":4}
+                                            }'>
+                                            {% if new_arrival %}
+                                            {% for n in new_arrival %}
+                                                <div class=" product-item product-item-opt-13">
+                                                    <div class="product-item-info">
+                                                        <div class="product-item-photo">
+                                                            <a class="product-item-img" href="{{ n.get_absolute_url }}"><img alt="{{ n.title }}" src="{{ n.show_image1 }}"></a>
+                                                            {{ n.circle_label }}
+                                                        </div>
+                                                        <div class="product-item-detail">
+                                                            <strong class="product-item-name"><a href="{{ n.get_absolute_url }}">{{ n.title }} </a></strong>
+                                                            <div class="product-item-price">
+                                                                {{ n.get_discount_price }}
+                                                                {{ n.get_price }}
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                                {% endif %}
+            
+                                                
+                                            </div>
+                                        </div>
+                                    
+                                   
+                                        <div class="tab-pane home-tab" id="bestSeller" role="tabpanel">
+                                            <div class="owl-carousel" 
+                                                data-nav="true" 
+                                                data-dots="false" 
+                                                data-margin="30" 
+                                                data-responsive='{
+                                                "0":{"items":1},
+                                                "420":{"items":2},
+                                                "600":{"items":3},
+                                                "768":{"items":3},
+                                                "992":{"items":3},
+                                                "1200":{"items":4}
+                                            }'>
+                                            {% if best_seller %}
+                                            {% for n in best_seller %}
+                                                <div class=" product-item product-item-opt-13">
+                                                    <div class="product-item-info">
+                                                        
+                                                        <div class="product-item-photo">
+                                                            <a class="product-item-img" href="{{ n.get_absolute_url }}"><img alt="{{ n.title }}" src="{{ n.show_image1 }}"></a>
+                                                            {{ n.circle_label }}
+                                                           
+                                                           
+                                                        </div>
+                                                        <div class="product-item-detail">
+                                                            <strong class="product-item-name"><a href="{{ n.get_absolute_url }}">{{ n.title }} </a></strong>
+                                                            <div class="product-item-price">
+                                                                {{ n.get_discount_price }}
+                                                                {{ n.get_price }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+    
+                                                {% endfor %}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                      
+                                    
+                                </div>
+
+                            </div>
+                        
+                        </div><!-- block -tab-product:-->
+
+                        <!-- banner1 -->
+                        <div class="block-banner-bottom-opt13">
+                            {% if top_banner1 %}
+                                <a href="{{ top_banner1.link }}" class="box-img"><img src="{{ top_banner1.get_banner }}"  alt="img"></a>
+                            {% endif %}
+                        </div>
+                        <!-- banner1 -->
+
+                       
+
+                        <!-- top brand -->
+                        <div class="block-top-brand-opt13">
+                            
+
+                            <div class="box-content">
+
+                                <div class="block-title">
+                                    <span class="title">top brands</span>
+                                   
+                                    <div class="nav-links ">
+                                        
+                                       
+                                        <ul  class="slide-top-brand">
+                                            {% if brand %}
+                                                {% for b in brand %}
+                                                    {% if forloop.counter == 1 %}
+                                                        <li role="presentation" class="active">
+                                                            <a href="#{{ b.id }}"  role="tab" data-toggle="tab"><img src="{{ b.show_brand_img }}" alt="img"></a>
+                                                        </li>
+                                                    {% else %}
+                                                    <li role="presentation">
+                                                        <a href="#{{ b.id }}"  role="tab" data-toggle="tab"><img src="{{ b.show_brand_img }}" alt="img"></a>
+                                                    </li>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </ul>
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="block-content ">
+                                    <div class="tab-content home-tab">
+                                        <!-- LENOVO STARTS HERE -->
+                                        <div class="tab-pane  active in  fade" id="4" role="tabpanel">
+
+                                            <div class="owl-carousel" 
+                                                data-nav="true" 
+                                                data-dots="false" 
+                                                data-margin="30" 
+                                                data-responsive='{
+                                                "0":{"items":1},
+                                                "480":{"items":1},
+                                                "600":{"items":2},
+                                                "768":{"items":2},
+                                                "992":{"items":2},
+                                                "1200":{"items":3}
+                                            }'>
+                                                    
+                                                    {% for p in lenovo %}
+                                                        <div class="product-item  product-item-opt-13">
+                                                            <div class="product-item-info">
+                                                                <div class="product-item-photo">
+                                                                    <a class="product-item-img" href=""><img alt="{{ p.title }}" src="{{ p.show_image1 }}"></a>
+                                                                    {{ p.circle_label }}
+                                                                </div>
+                                                                <div class="product-item-detail">
+                                                                    <strong class="product-item-name"><a href=""> {{ p.title }}  </a></strong>
+                                                                
+                                                                    <div class="product-item-price">
+                                                                        {{ p.get_discount_price }}
+                                                                       {{ p.get_price }}
+                                                                    </div>
+                                                                    
+                                                                   
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                            </div>
+                                        </div>
+                                        <!-- LENOVO ENDS HERE -->
+
+                                         <!-- TOSHIBA STARTS HERE -->
+                                         <div class="tab-pane   fade" id="5" role="tabpanel">
+
+                                            <div class="owl-carousel" 
+                                                data-nav="true" 
+                                                data-dots="false" 
+                                                data-margin="30" 
+                                                data-responsive='{
+                                                "0":{"items":1},
+                                                "480":{"items":1},
+                                                "600":{"items":2},
+                                                "768":{"items":2},
+                                                "992":{"items":2},
+                                                "1200":{"items":3}
+                                            }'>
+                                                    
+                                                    {% for p in toshiba %}
+                                                        <div class="product-item  product-item-opt-13">
+                                                            <div class="product-item-info">
+                                                                <div class="product-item-photo">
+                                                                    <a class="product-item-img" href=""><img alt="{{ p.title }}" src="{{ p.show_image1 }}"></a>
+                                                                    {{ p.circle_label }}
+                                                                </div>
+                                                                <div class="product-item-detail">
+                                                                    <strong class="product-item-name"><a href=""> {{ p.title }}  </a></strong>
+                                                                
+                                                                    <div class="product-item-price">
+                                                                        {{ p.get_discount_price }}
+                                                                       {{ p.get_price }}
+                                                                    </div>
+                                                                    
+                                                                   
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                            </div>
+                                        </div>
+                                        <!-- TOSHIBA ENDS HERE -->
+
+                                          <!-- HP STARTS HERE -->
+                                          <div class="tab-pane   fade" id="2" role="tabpanel">
+
+                                            <div class="owl-carousel" 
+                                                data-nav="true" 
+                                                data-dots="false" 
+                                                data-margin="30" 
+                                                data-responsive='{
+                                                "0":{"items":1},
+                                                "480":{"items":1},
+                                                "600":{"items":2},
+                                                "768":{"items":2},
+                                                "992":{"items":2},
+                                                "1200":{"items":3}
+                                            }'>
+                                                    
+                                                    {% for p in hp %}
+                                                        <div class="product-item  product-item-opt-13">
+                                                            <div class="product-item-info">
+                                                                <div class="product-item-photo">
+                                                                    <a class="product-item-img" href=""><img alt="{{ p.title }}" src="{{ p.show_image1 }}"></a>
+                                                                    {{ p.circle_label }}
+                                                                </div>
+                                                                <div class="product-item-detail">
+                                                                    <strong class="product-item-name"><a href=""> {{ p.title }}  </a></strong>
+                                                                
+                                                                    <div class="product-item-price">
+                                                                        {{ p.get_discount_price }}
+                                                                       {{ p.get_price }}
+                                                                    </div>
+                                                                    
+                                                                   
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                            </div>
+                                        </div>
+                                        <!-- HP ENDS HERE -->
+
+                                         <!-- IBM STARTS HERE -->
+                                         <div class="tab-pane   fade" id="1" role="tabpanel">
+
+                                            <div class="owl-carousel" 
+                                                data-nav="true" 
+                                                data-dots="false" 
+                                                data-margin="30" 
+                                                data-responsive='{
+                                                "0":{"items":1},
+                                                "480":{"items":1},
+                                                "600":{"items":2},
+                                                "768":{"items":2},
+                                                "992":{"items":2},
+                                                "1200":{"items":3}
+                                            }'>
+                                                    
+                                                    {% for p in ibm %}
+                                                        <div class="product-item  product-item-opt-13">
+                                                            <div class="product-item-info">
+                                                                <div class="product-item-photo">
+                                                                    <a class="product-item-img" href=""><img alt="{{ p.title }}" src="{{ p.show_image1 }}"></a>
+                                                                    {{ p.circle_label }}
+                                                                </div>
+                                                                <div class="product-item-detail">
+                                                                    <strong class="product-item-name"><a href=""> {{ p.title }}  </a></strong>
+                                                                
+                                                                    <div class="product-item-price">
+                                                                        {{ p.get_discount_price }}
+                                                                       {{ p.get_price }}
+                                                                    </div>
+                                                                    
+                                                                   
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                            </div>
+                                        </div>
+                                        <!-- IBM ENDS HERE -->
+
+                                         <!-- DELL STARTS HERE -->
+                                         <div class="tab-pane   fade" id="3" role="tabpanel">
+
+                                            <div class="owl-carousel" 
+                                                data-nav="true" 
+                                                data-dots="false" 
+                                                data-margin="30" 
+                                                data-responsive='{
+                                                "0":{"items":1},
+                                                "480":{"items":1},
+                                                "600":{"items":2},
+                                                "768":{"items":2},
+                                                "992":{"items":2},
+                                                "1200":{"items":3}
+                                            }'>
+                                                    
+                                                    {% for p in ibm %}
+                                                        <div class="product-item  product-item-opt-13">
+                                                            <div class="product-item-info">
+                                                                <div class="product-item-photo">
+                                                                    <a class="product-item-img" href=""><img alt="{{ p.title }}" src="{{ p.show_image1 }}"></a>
+                                                                    {{ p.circle_label }}
+                                                                </div>
+                                                                <div class="product-item-detail">
+                                                                    <strong class="product-item-name"><a href=""> {{ p.title }}  </a></strong>
+                                                                
+                                                                    <div class="product-item-price">
+                                                                        {{ p.get_discount_price }}
+                                                                       {{ p.get_price }}
+                                                                    </div>
+                                                                    
+                                                                   
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                            </div>
+                                        </div>
+                                        <!-- DELL ENDS HERE -->
+
+                                        
+                                        
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                        </div><!-- top brand -->
+
+                        <!-- banner2 -->
+                        <div class="block-banner-bottom-opt13">
+                            {% if top_banner2 %}
+                                <a href="{{ top_banner2.link }}" class="box-img"><img src="{{ top_banner2.get_banner }}"  alt="img"></a>
+                            {% endif %}
+                        </div>
+                        <!-- banner2 -->
+
+                    </div>
+
+                    <div class="col-md-4 col-lg-3 col-md-pull-8 col-lg-pull-9">
+
+                        <!-- banner -->
+                        <div class="block-banner-sidebar effect-banner3">
+                            {% if sidebar_banner %}
+                                <a href="{{ sidebar_banner.link }}" class="box-img"><img src="{{ sidebar_banner.get_banner }}" alt="img"></a>
+                            {% endif %}
+                        </div>
+                        <!-- banner -->
+
+                        <!--  deal off-->
+                        <div class="block-deal-opt13">
+
+                            <div class="block-title">
+                                <span class="title">hot deal of this week</span>
+                            </div>
+
+                            <div class="block-content">
+                                <div class="owl-carousel" 
+                                    data-nav="true" 
+                                    data-dots="false" 
+                                    data-margin="30" 
+                                    data-responsive='{
+                                    "0":{"items":1},
+                                    "480":{"items":1},
+                                    "640":{"items":2},
+                                    "992":{"items":1},
+                                    "1200":{"items":1}
+                                    }'>
+                                    {% for hot in hots %}
+                                    <div class=" product-item product-item-deal-opt12">
+                                        <div class="product-item-info">
+                                            <div class="deals-of-countdown">
+                                                <div class="count-down-time" data-countdown="2021/10/25"></div>
+                                            </div>
+                                            <div class="product-item-photo">
+                                                <a class="product-item-img" href=""><img alt="product name" src="{{ hot.show_image1 }}" style="max-height: 200px; min-height: 200px;"></a>
+                                                <span class="product-item-label label-sale">-50%</span>
+                                            </div>
+                                            <div class="product-item-detail">
+                                                <strong class="product-item-name"><a href="">{{ hot.title }}</a></strong>
+                                                <div class="product-item-price">
+                                                    <span class="price">&#8358;{{hot.price}} </span>
+                                                    <span class="old-price">&#8358;{{ hot.old_price}}</span>
+                                                </div>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--  deal off-->
+
+                        
+                        <!-- block  -new-product-->
+                        <div class="block-new-product-opt13">
+
+                            <div class="block-title">
+                                <span class="title">new products</span>
+                            </div>
+
+                            <div class="block-content">
+                                <div class="owl-carousel callback-page1" 
+                                    data-nav="true" 
+                                    data-dots="false" 
+                                    data-margin="30" 
+                                    data-responsive='{
+                                    "0":{"items":1},
+                                    "480":{"items":1},
+                                    "640":{"items":2},
+                                    "768":{"items":2},
+                                    "992":{"items":1},
+                                    "1200":{"items":1}
+                                    }'>
+
+                                    <div class="item">
+                                        {% if new_arrival1 %}
+                                            {% for n in new_arrival1 %}
+                                            <div class=" product-item product-item-opt-13">
+                                                <div class="product-item-info">
+                                                    <div class="product-item-photo">
+                                                        <a class="product-item-img" href="{{ n.get_absolute_url }}"><img alt="product name" src="{{ n.show_image1 }}"></a>
+                                                    </div> 
+                                                    <div class="product-item-detail">
+                                                        <strong class="product-item-name"><a href="{{ n.get_absolute_url }}">{{ n.title }}</a></strong>
+                                                        <div class="product-item-price">
+                                                           {{ n.get_discount_price }}
+                                                           {{ n.get_price }}
+                                                        </div>
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>  
+                                            {% endfor %}
+                                        {% endif %}
+                                        
+                                    </div> 
+                                    <div class="item">
+
+                                        {% if new_arrival2 %}
+                                            {% for n in new_arrival2 %}
+                                            <div class=" product-item product-item-opt-13">
+                                                <div class="product-item-info">
+                                                    <div class="product-item-photo">
+                                                        <a class="product-item-img" href="{{ n.get_absolute_url }}"><img alt="product name" src="{{ n.show_image1 }}"></a>
+                                                    </div> 
+                                                    <div class="product-item-detail">
+                                                        <strong class="product-item-name"><a href="{{ n.get_absolute_url }}">{{ n.title }}</a></strong>
+                                                        <div class="product-item-price">
+                                                           {{ n.get_discount_price }}
+                                                           {{ n.get_price }}
+                                                        </div>
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>  
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div> 
+                                    
+                                </div>
+                            </div>
+                            <div class="footer-page">
+                                <span class="page" id="callback-page1">
+                                    <span class="currentItem"><span class="result cus"></span></span>/
+                                    <span class="owlItems"><span class="result"></span></span>
+                                </span>
+                            </div>
+
+                        </div><!-- block  -new-product-->
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+            <!-- banner -->
+            <div class="block-banner-bottom-opt13">
+                <div class="container">
+                    <div class="row">
+
+                        {% if two_side_banner %}
+                            {% for t in two_side_banner %}
+                            <div class="col-md-6">
+                                <a href="{{ t.link }}" class="box-img"><img src="{{ t.get_banner }}"  alt="img"></a>
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div><!-- banner -->
+
+          
+            <!-- Block recent Blog -->
+            <div class="block-recent-blog-opt13">
+                <div class="container">
+                    <div class="block-title">
+                        <span class="title">Recent blog posts</span>
+                        <p>The lastest news from your blog</p>
+                    </div>
+                    <div class="block-content">
+                        <div class="owl-carousel" 
+                            data-nav="true" 
+                            data-dots="false" 
+                            data-margin="30" 
+                            data-responsive='{
+                            "0":{"items":1},
+                            "480":{"items":1},
+                            "768":{"items":1},
+                            "992":{"items":2},
+                            "1200":{"items":2}
+                        }'>
+                        {% if news %}
+                        {% for n in news %}
+                            <div class="blog-item">
+                                
+                                <div class="blog-photo">
+                                    <a href="{{ n.get_post_url }}"><img src="{{ n.img_url }}" style="max-height: 292px; min-height: 292px;" alt="blog"></a>
+                                    
+                                </div>
+                                <div class="blog-detail">
+                                    
+                                    <div class="blog-info">
+                                        <div class="blog-date"><span>{{n.created.day}} {{ n.current_month }} {{n.created.year}}</span></div>
+                                    </div>
+                                    <strong class="blog-name"><a href="{{ n.get_post_url }}">{{ n.pst_title }}</a></strong>
+                                   
+                                    <div class="blog-actions">
+                                        <a href="{{ n.get_post_url }}" >Read more</a>
+                                        
+                                    </div>
+                                </div>
+                               
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+
+                           
+                        </div>
+                    </div>
+                </div>
+            </div><!-- Block recent Blog -->
+
+
+          
+
+        </main>
+        <!-- end MAIN -->
+
+{% endblock %}

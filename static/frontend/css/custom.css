@@ -1,0 +1,229 @@
+.product-item-opt-13 .product-item-img {
+    display: block;
+    height: 255px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.block-top-brand-opt13 .nav-links li > a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+.block-top-brand-opt13 .nav-links li > a > img{
+    height: 88px;
+    width: auto;
+}
+
+.reviews-actions{
+    margin-bottom:10px;
+    margin-top:10px;
+}
+
+.product-info-price{
+    margin-bottom:10px;
+}
+
+.product-info-stock{
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.product-overview{
+    margin-top:10px;
+    margin-bottom:10px;
+    border-top:1px solid rgba(242, 242, 242, 0.8);
+    border-bottom:1px solid rgba(242, 242, 242, 0.8);
+    padding:13px 2px;
+}
+
+.price{
+    color:#D30B0B;
+    font-weight: bold;
+    font-size:19px;
+}
+
+.old-price{
+    font-size: 17px;
+    text-decoration: line-through;
+}
+
+.product-info-price .price-box span{
+    display: inline-block;
+    margin-right:4px;
+}
+
+.label-sale{
+    padding:3px;
+    background-color: #f90;
+    color:#fff;
+}
+
+.stock .label{
+    color:#333;
+    font-size:15px;
+    font-weight: 100;
+}
+
+.available{
+    color:green;
+}
+
+.page-title{
+    font-size:25px;
+}
+
+.form-selector{
+    margin-bottom:15px;
+}
+
+.header-opt-13 .block-search .form-search .form-control {
+    padding-left: 20px;
+    border: 1px solid #D30B0B;
+}
+
+.header-opt-13 .block-search .categori-search .chosen-container .chosen-single {
+    border: 1px solid #D30B0B;
+}
+
+.header-opt-13 .block-search .form-search .btn-search{
+    background-color: #D30B0B;
+}
+
+
+
+.header-opt-13 .block-nav-menu .ui-menu {
+    padding-left: 1px;
+}
+
+.header-opt-13 .block-nav-menu .ui-menu {
+    padding-left: 1px;
+    border-bottom:2px solid #D30B0B;
+}
+
+.sticky-wrapper .mid-header .block-nav-categori{
+    border-bottom: 4px solid #D30B0B;
+}
+
+.block-nav-menu .ui-menu > li.active::before {
+    background-color: #D30B0B;
+}
+
+.index-opt-13 .back-to-top .fa, .index-opt-13 .back-to-top:hover {
+    background-color: #D30B0B;
+}
+
+.btn-zoom{
+    background-color: #D30B0B;
+    border-color:#D30B0B;
+    color:#fff;
+    display: inline-block;
+    padding: 5px 8px;
+    margin:5px 0;
+}
+
+.form-control{
+    padding: 20px 5px !important;
+}
+
+.btn{
+    background-color: #D30B0B;
+    border-color: #D30B0B;
+    color:#fff;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover, 
+.nav-pills > li > a:focus, .nav-pills > li > a:hover {
+    color: #fff;
+    background-color: #D30B0B;
+    border-color:#D30B0B;
+}
+
+#productDetailTab .tab-pane{
+    background-color:#FCFCFC;
+    padding: 15px 0;
+}
+
+.block-related, .block-upsell {
+    margin-bottom: 37px;
+    padding-top: 30px;
+}
+
+#productDetailTab .block-content{
+    background-color: #fff;
+    width: 90%;
+    margin: 10px auto !important;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.review-comment h3{
+    font-style: italic;
+    font-size: 16px;
+}
+
+.block-title{
+    font-weight: 500;
+}
+
+.block-top-brand-opt13 .block-title > .title {
+    width: 352px;
+    background-color: #D30B0B;
+}
+
+.index-opt-13 .footer-opt-12 .block-newletter .btn-subcribe{
+    background-color: #D30B0B;
+    border-color:#D30B0B;
+}
+
+.block-recent-blog-opt13 .blog-item .blog-date {
+    display: inline-block;
+    background-color: #D30B0B;
+    border-color: #D30B0B;
+}
+
+.slide-opt-13 .view-opt13 {
+    background-color: #D30B0B;
+}
+
+.block-tab-product-opt13 .nav-links li a::before {
+    background-color: #D30B0B;
+}
+
+.header-opt-13 .block-nav-menu .ui-menu > li::before {
+    background-color: #D30B0B;
+}
+
+.home-tab .product-item-opt-13 .product-item-label{
+    height:40px;
+    background-color:#FF9900;
+}
+
+.block-sidebar-products-opt2 .product-item-opt-2 .product-item-info {
+    position: relative;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+
+.product-item-opt-2 .product-item-img img {
+    height: 120px;
+    width: auto;
+}
+
+.images-small .owl-carousel .owl-stage-outer {
+    margin-top:40px;
+    border-top:1px solid rgba(0, 0, 0, 0.2);
+    border-bottom:1px solid rgba(0, 0, 0, 0.2);
+}
+
+.images-small .owl-carousel .owl-item img {
+    width: auto;
+    height: 100px;
+}
+
+.product-item-opt-1 .product-item-img img {
+    height: 250px !important;
+    width: auto;
+}

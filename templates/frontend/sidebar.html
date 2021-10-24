@@ -1,0 +1,63 @@
+     <!-- Sidebar -->
+     {% load lappyng_tags %}
+     {% load blog_tags %}
+     {% load static %}
+     <div class="col-md-3 col-md-pull-9   col-sidebar">
+              <!-- Block  bestseller products-->
+        <div class="block-sidebar block-sidebar-categorie">
+            <div class="block-title">
+                <strong>PRODUCT CATEGORIES</strong>
+            </div>
+            <div class="block-content">
+                <ul class="items">
+                    <li class="parent">
+                        
+                        <a href=""> {% display_menu %}</a>
+                       
+                    </li>
+                   
+                </ul>
+            </div>
+        </div><!-- Block  bestseller products-->
+           <!-- block filter products -->
+           <div id="layered-filter-block" class="block-sidebar block-filter no-hide">
+            <div class="close-filter-products"><i class="fa fa-times" aria-hidden="true"></i></div>
+            <div class="block-title">
+                <strong>FILTER SELECTION</strong>
+            </div>
+            <div class="block-content">
+
+                <!-- Filter Item  categori-->
+                
+                <!-- filter brad-->
+                <div class="filter-options-item filter-options-brand">
+                    <div class="filter-options-title">BRAND</div>
+                    <div class="filter-options-content">
+                        <ol class="items">
+                           {% list_brand_on_sidebar %}
+                           
+                        </ol>
+                    </div>
+                </div><!-- Filter Item -->
+            </div>
+        </div><!-- Filter -->
+       
+
+
+        <!-- Block  Popular Posts-->
+        <div class="block-sidebar block-PopularPosts">
+            <div class="block-title">
+                <strong>Recent Posts</strong>
+            </div>
+            <div class="block-content">
+               
+                <ul class="blog-list-sidebar clearfix">
+                    {% recent_post %}
+                </ul>
+            </div>
+        </div>
+        <!-- Block  Popular Posts-->
+
+       
+       
+    </div><!-- Sidebar -->

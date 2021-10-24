@@ -1,0 +1,422 @@
+{% load static %}
+{% load lappyng_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>
+        {% block title%}
+
+        {% endblock%}
+    </title>
+
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'frontend/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'frontend/css/new-style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'frontend/css/custom.css' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="../../static/frontend/images/icon/favicon.png">
+
+</head>
+<body class="cms-index-index index-opt-13">
+
+    <div class="wrapper">
+
+        <!-- HEADER -->
+        <header class="site-header header-opt-13 cate-show">
+
+            <div class="  header-top">
+                <div class="container">
+
+                    <ul class="nav-left">
+                        <li class="hotline">
+                            <span><i class="fa fa-phone"></i>Hotline: 09057277551</span>
+                            
+                        </li>
+                        <li class="hotline">
+                            <span><i class="fa fa-phone"></i>Hotline: 08156035584</span>
+                        </li>
+                        <li class="hotline">
+                            <span style="text-transform: lowercase !important;"><i class="fa fa-envelope"></i>lappyng@gmail.com</span>
+                        </li>
+                    </ul>
+
+                    <ul class="nav-right" >
+                        
+                        <li class="top-social">
+                            <span class="">
+                                <a title="Facebook" href="#"><i class="fa fa-facebook"></i></a>
+                                <a title="Twitter" href="#"><i class="fa fa-twitter"></i></a>
+                                <a title="Skype" href="#"><i class="fa fa-linkedin"></i></a>
+                                <a title="Google Plus" href="#"><i class="fa fa-google-plus"></i></a>
+                            </span>           
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- header-content -->
+            <div class="header-content">
+                <div class="container">
+
+                    <div class="clearfix">
+
+                        <div class="nav-left">
+                            <!-- logo -->
+                            <strong class="logo">
+                                <a href="{% url 'index' %}"><img src="{% static 'frontend/images/logo.png' %}" 
+                                    alt="logo"></a>
+                            </strong><!-- logo -->
+                        </div>
+
+
+                        <div class="nav-mind">
+                            
+                           
+
+                            <!-- search -->
+                            <div class="block-search">
+                                <div class="block-title">
+                                    <span>Search</span>
+                                </div>
+                                <div class="block-content">
+                                    <form method="GET" action="{% url 'lappyng_app:search_result' %}">
+                                        <div class="categori-search  ">
+                                            {{ form.category }}
+                                        </div>
+                                        <div class="form-search">
+                                                <div class="box-group">
+                                                    {{ form.title}}
+                                                    <button class="btn btn-search" type="submit"><span>search</span></button>
+                                                </div>
+                                                {% csrf_token %}
+                                        </div>
+                                </form>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>                    
+
+                </div>
+            </div><!-- header-content -->
+
+            <div class=" header-nav mid-header">
+                <div class="container">
+                    <div class="box-header-nav">
+
+                        <span data-action="toggle-nav-cat" class="nav-toggle-menu nav-toggle-cat"><span>Categories</span><i aria-hidden="true" class="fa fa-bars"></i></span>
+
+                        <span data-action="toggle-nav" class="nav-toggle-menu"><span>Menu</span><i aria-hidden="true" class="fa fa-bars"></i></span>
+                        
+                        <!-- categori -->
+                        <div class="block-nav-categori">
+
+                            <div class="block-title">
+                                <span>All categories</span>
+                            </div>
+
+                            <div class="block-content">
+                                <div class="clearfix"><span data-action="close-cat" class="close-cate"><span>Categories</span></span></div>
+                                <ul class="ui-categori">
+                                
+                                    {% for c in categories %}
+                                    <li class="parent" {% if category.slug == c.slug %}class="selected" {% endif %} >
+                                        <a href="{{ c.get_absolute_url }}">
+                                            <span class="icon"><img src="{% static 'frontend/images/icon/index3/nav-cat1.png' %}" alt="nav-cat"></span>
+                                           {{ c.cat_name }}
+                                        </a>
+                                        <span class="toggle-submenu"></span>
+                                        <div class="submenu">
+                                            <strong class="subtitle"><span>special products</span></strong>
+                                            <div class="owl-carousel" 
+                                                data-nav="true" 
+                                                data-dots="false" 
+                                                data-margin="30" 
+                                                data-autoplayTimeout="300" 
+                                                data-autoplay="true" 
+                                                data-loop="true"
+                                                data-responsive='{
+                                                "0":{"items":1},
+                                                "380":{"items":1},
+                                                "480":{"items":1},
+                                                "600":{"items":1},
+                                                "992":{"items":4}
+                                                }'>
+                                                
+                                                <div class="product-item product-item-opt-1">
+                                                    <div class="product-item-info">
+                                                        <div class="product-item-photo">
+                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index1/product-menu1.jpg' %}"></a>
+                                                        </div>
+                                                        <div class="product-item-detail">
+                                                            <strong class="product-item-name"><a href="">Asus Ispiron 20</a></strong>
+                                                            <div class="product-item-price">
+                                                                <span class="price">$45.00</span>
+                                                            </div>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="product-item product-item-opt-1">
+                                                    <div class="product-item-info">
+                                                        <div class="product-item-photo">
+                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index1/product-menu2.jpg' %}"></a>
+                                                        </div>
+                                                        <div class="product-item-detail">
+                                                            <strong class="product-item-name"><a href="">Electronics Ispiron 20 </a></strong>
+                                                            <div class="product-item-price">
+                                                                <span class="price">$45.00</span>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="product-item product-item-opt-1">
+                                                    <div class="product-item-info">
+                                                        <div class="product-item-photo">
+                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index1/product-menu3.jpg' %}"></a>
+                                                        </div>
+                                                        <div class="product-item-detail">
+                                                            <strong class="product-item-name"><a href="">Samsung Ispiron 20 </a></strong>
+                                                            <div class="product-item-price">
+                                                                <span class="price">$45.00</span>
+                                                            </div>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="product-item product-item-opt-1">
+                                                    <div class="product-item-info">
+                                                        <div class="product-item-photo">
+                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index1/product-menu4.jpg' %}"></a>
+                                                        </div>
+                                                        <div class="product-item-detail">
+                                                            <strong class="product-item-name"><a href="">Electronics Ispiron 20 </a></strong>
+                                                            <div class="product-item-price">
+                                                                <span class="price">$45.00</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="product-item product-item-opt-1">
+                                                    <div class="product-item-info">
+                                                        <div class="product-item-photo">
+                                                            <a class="product-item-img" href=""><img alt="product name" src="{% static 'frontend/images/media/index1/product-menu4.jpg' %}"></a>
+                                                        </div>
+                                                        <div class="product-item-detail">
+                                                            <strong class="product-item-name"><a href="">Samsung Ispiron 20 </a></strong>
+                                                            <div class="product-item-price">
+                                                                <span class="price">$45.00</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                    
+                                </ul>
+                               
+                            </div>
+                            
+                        </div><!-- categori -->
+
+                        <!-- menu -->
+                        <div class="block-nav-menu">
+                            <div class="clearfix"><span data-action="close-nav" class="close-nav"><span>close</span></span></div>
+                            <ul class="ui-menu">
+                                {% url 'index' as Home %}
+                                {% url 'about' as About %}
+                                {% url 'contact' as Contact %}
+                                {% url 'blog:blog' as Blog %}
+                                <li {% if request.path == Home %} class="active" {% endif %}>
+                                    <a href="{% url 'index' %}">Home</a>
+                                </li>
+                                <li class="parent parent-megamenu">
+                                    <a href="#">Product Category</a>
+                                    <span class="toggle-submenu"></span>
+                                    <div class="megamenu drop-menu " style="width: 200%;">
+                                        <ul>
+                                              
+                                    
+                                            <li class="col-md-12">
+                                                <strong class="title"><a href=""><span>Categories </span></a></strong>
+                                                <ul class="list-submenu">
+                                                    {% display_menu %}
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li {% if request.path == About %} class="active" {% endif %}><a href="{% url 'about' %}">About</a></li>
+                              
+                                <li {% if request.path == Contact %} class="active" {% endif %}><a href="{% url 'contact' %}">Contact</a></li>
+                            
+                                <li {% if request.path == Blog %} class="active" {% endif %}><a href="{% url 'blog:blog' %}">Blog</a></li> 
+                               
+                               
+                            </ul>
+
+                        </div><!-- menu -->
+                        
+                    </div>
+                </div>
+            </div>
+
+        </header><!-- end HEADER -->        
+
+        <!-- MAIN -->
+        {% block content%}
+
+        {% endblock%}
+    
+
+        <!-- FOOTER -->
+        <footer class="site-footer footer-opt-12">
+            <div class="container ">
+                <div class="footer-column">
+                    <div class="column-left">
+                        <div class="row">
+                            
+                            <div class="col-md-4  col-sm-4">
+                                <div class="links">
+                                    <h3 class="title">Pages</h3>
+                                    <ul >
+                                    <li><a href="{% url 'about' %}">About</a></li>
+                                    <li><a href="#">Product </a></li>
+
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                                
+                                    <li><a href="{% url 'blog:blog' %}">Blog</a></li>                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-4  col-sm-4">
+                                <div class="links">
+                                    <h3 class="title">Categories</h3>
+                                    <ul >
+                                        {% display_menu %}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-4  col-sm-4">
+                                <div class="links">
+                                    <h3 class="title">Brands</h3>
+                                    <ul >
+                                        {% list_brand_on_sidebar %}
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="column-right">
+                        <div class="block-social">
+                            <div class="block-title">Let’s Socialize </div>
+                            <div class="block-content">
+                                <a href="" class="sh-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="" class="sh-twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                <a href="" class="sh-linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                <a href="" class="sh-google"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                <a href="" class="sh-pinterest"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
+                                <a href="" class="sh-youtube"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+                                
+                            </div>
+                        </div>
+                        <div class="block-newletter">
+                            <div class="block-title">SIGN UP FOR NEWSLETTER</div>
+                            <div class="block-content">
+                                <form action="{% url 'newsletter:newsletters_email' %}" method="POST" id="emailForm">
+                                    <div id="reviewSuccess"></div>
+                                    <div class="input-group">
+                                        <input type="email" class="form-control" name="email" placeholder="Your email address...">
+                                        <span class="input-group-btn">
+                                            <input class="btn btn-subcribe" type="submit" value="Subscribe">
+                                            <!-- <button class="btn btn-subcribe" type="submit"><span>Subscribe</span></button> -->
+                                        </span>
+                                    </div>
+                                    {% csrf_token %}
+                                </form>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+
+                    
+
+                    
+                    
+                    <div class="copyright">
+                        
+                        Copyright © <span id="year"></span> All Rights Reserved. Designed by lappy.ng
+                       
+                    </div>
+                    <script>
+                        document.getElementById("year").innerHTML = new Date().getFullYear();
+                    </script>
+
+                </div>
+
+            </div>
+        </footer><!-- end FOOTER -->        
+        
+        <!--back-to-top  -->
+        <a href="#" class="back-to-top">
+            <i aria-hidden="true" class="fa fa-angle-up"></i>
+        </a>
+        
+    </div>
+
+    <!-- jQuery -->    
+    <!-- <script type="text/javascript" src="{% static 'frontend/js/jquery.min.js' %}"></script> -->
+    <script type="text/javascript" src="{% static 'frontend/js/my.jquery.js' %}"></script>
+
+    <!-- sticky -->
+    <script type="text/javascript" src="{% static 'frontend/js/jquery.sticky.js' %}"></script>
+
+    <!-- OWL CAROUSEL Slider -->    
+    <script type="text/javascript" src="{% static 'frontend/js/owl.carousel.min.js' %}"></script>
+
+    <!-- Boostrap --> 
+    <script type="text/javascript" src="{% static 'frontend/js/bootstrap.min.js' %}"></script>
+
+    <!-- Countdown --> 
+    <script type="text/javascript" src="{% static 'frontend/js/jquery.countdown.min.js' %}"></script>
+
+    <!--jquery Bxslider  -->
+    <script type="text/javascript" src="{% static 'frontend/js/jquery.bxslider.min.js' %}"></script>
+    
+    <!-- actual --> 
+    <script type="text/javascript" src="{% static 'frontend/js/jquery.actual.min.js' %}"></script>
+
+    <!-- Chosen jquery-->    
+    <script type="text/javascript" src="{% static 'frontend/js/chosen.jquery.min.js' %}"></script>
+    
+    <!-- parallax jquery--> 
+    <script type="text/javascript" src="{% static 'frontend/js/jquery.parallax-1.1.3.js' %}"></script>
+
+    <!-- elevatezoom --> 
+    <script type="text/javascript" src="{% static 'frontend/js/jquery.elevateZoom.min.js' %}"></script>
+
+    <!-- fancybox -->
+    <script src="{% static 'frontend/js/fancybox/source/jquery.fancybox.pack.js' %}"></script>
+    <script src="{% static 'frontend/js/fancybox/source/helpers/jquery.fancybox-media.js' %}"></script>
+    <script src="{% static 'frontend/js/fancybox/source/helpers/jquery.fancybox-thumbs.js' %}"></script>
+
+    <!-- arcticmodal -->
+    <script src="{% static 'frontend/js/arcticmodal/jquery.arcticmodal.js' %}"></script>
+    
+    <!-- Main -->  
+    <script type="text/javascript" src="{% static 'frontend/js/main.js' %}"></script>
+    <script type="text/javascript" src="{% static 'frontend/js/custom.js' %}"></script>
+
+</body>
+</html>
