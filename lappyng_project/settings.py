@@ -60,7 +60,7 @@ EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-FROM_HOST = '<info@eaglesbrandsolutions.com>'
+FROM_HOST = 'info@eaglesbrandsolutions.com'
 RECIEVER_MAIL = ['nonwaz78@gmail.com',]
 
 
