@@ -70,7 +70,7 @@ def contact(request):
             'email':email,
             'phone':phone,
             'email':email,
-            'message': message
+            'message': message,
             'url':request.build_absolute_uri('/')
         }
         html_message = render_to_string('frontend/email_templates/contact-email-template.html', context)
