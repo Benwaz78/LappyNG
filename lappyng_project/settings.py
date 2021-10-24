@@ -119,6 +119,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'lappyng_app.context_processors.categories',
                 'lappyng_app.context_processors.search_form',
+                'lappyng_app.context_processors.get_uri',
             ],
             
         },
