@@ -17,20 +17,12 @@ from decouple import config
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
-<<<<<<< HEAD
 STATICFILES_DIRS = [STATIC_DIR,]
 STATIC_ROOT = '/home/lappmqgs/public_html/static'
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates') 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-=======
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates') 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
-STATICFILES_DIRS = [STATIC_DIR,]
->>>>>>> 6689a4f1d080e9e67feb950c322b6965f2998716
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -40,11 +32,8 @@ SECRET_KEY = 'django-insecure--b7qo_g)4%0(2^97o+og$qvgl7=j5!mj&_2f8&4j&cu_hc15*q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-<<<<<<< HEAD
+
 ALLOWED_HOSTS = ['*']
-=======
-ALLOWED_HOSTS = []
->>>>>>> 6689a4f1d080e9e67feb950c322b6965f2998716
 
 
 # Application definition
@@ -73,11 +62,7 @@ EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-<<<<<<< HEAD
-FROM_HOST = '<info@eaglesbrandsolutions.com>'
-=======
 FROM_HOST = 'info@eaglesbrandsolutions.com'
->>>>>>> 6689a4f1d080e9e67feb950c322b6965f2998716
 RECIEVER_MAIL = ['nonwaz78@gmail.com',]
 
 
