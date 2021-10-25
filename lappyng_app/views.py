@@ -138,10 +138,9 @@ def product_detail(request, slug):
             send = mail.send_mail(subject, plain_message, from_email, 
                         settings.RECIEVER_MAIL, html_message=html_message, fail_silently=False)
             if send:
-                messages.success(request, 'Email sent succesfully!')
+                messages.success(request, 'Order sent succesfully!')
             else:
                 messages.error(request, 'Mail not sent!')
-            messages.success(request, 'Request Added')
         form1 = ProductReviewForm(prefix='review')
         
     context = {
