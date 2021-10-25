@@ -114,7 +114,7 @@ def product_detail(request, slug):
             email = form2.cleaned_data.get('email')
             phone = form2.cleaned_data.get('phone')
             description = form2.cleaned_data.get('description')
-            product_image = product.show_image1()
+            product_image = product.image1
             form2.save(commit=False)
             form2.instance.product = product
             form2.save()
