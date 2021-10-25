@@ -131,7 +131,6 @@ def product_detail(request, slug):
                 'discount_price':product.discount_prize(),
                 'brand':product.brand,
                 'category':product.category,
-                'url':request.build_absolute_uri('/'),
             }
             html_message = render_to_string('frontend/email_templates/order-email-template.html', context)
             plain_message = strip_tags(html_message)
