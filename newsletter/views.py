@@ -55,9 +55,9 @@ def delete(request):
     sub = Subscribers.objects.get(email=request.GET['email'])
     if sub.conf_num == request.GET['conf_num']:
         sub.delete()
-        return render(request, 'website/confirm-email.html', {'email': sub.email, 'action': 'unsubscribed'})
+        return render(request, 'frontend/email_templates/confirm-email.html', {'email': sub.email, 'action': 'unsubscribed'})
     else:
-        return render(request, 'website/confirm-email.html', {'email': sub.email, 'action': 'denied'})
+        return render(request, 'frontend/email_templates/confirm-email.html', {'email': sub.email, 'action': 'denied'})
 
 
 
