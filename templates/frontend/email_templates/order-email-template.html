@@ -23,26 +23,21 @@
 										</tr>
 										<tr class="st">
 											<td>&nbsp; &nbsp;&nbsp;&nbsp;Name</td>
-											<td class="hr">
-												<input type="text" name="name" id=""> </td>
+											<td class="hr">{{ name }}
+
 										</tr>
 										<tr class="st">
 											<td>&nbsp;&nbsp;&nbsp;&nbsp;Email</td>
-											<td class="hr"><input type="email" name="email" id=""></td>
-
+											<td class="hr">{{ email }}</td>	
 										</tr>
 										<tr class="st">
 											<td>&nbsp;&nbsp;&nbsp;&nbsp;Phone</td>
-											<td class="hr"><input type="tel" name="number" id=""></td>
-
+											{{ phone }}
 										</tr>
 										<tr class="st">
 											<td style="padding-bottom: 180px;">&nbsp;&nbsp;Message</td>
 											<td class="hr">
-												<p>
-													<textarea name="message" id="" cols="30" rows="10"></textarea>
-												</p>
-												
+												{{ description }}
 											</td>
 											
 										</tr>
@@ -50,15 +45,15 @@
 											<td style="  padding-bottom: 200px">Product Details</td>
 											<td class="hr">
 												<div style="margin-left: -10mm;">
-													<img src="{% static 'frontend/image2/lappy image 1.jpeg' %} "  alt="" width="200" >
+													<img src="{{ url }}{{ image.url }} "  alt="" width="200" >
 													<h6>
-															Name: &nbsp; Dell Laptop 102
+															Name: &nbsp;  {{ product_name }}
 															<br>
-															Prize: &nbsp; <del>&#8358;65,000</del> &nbsp;  &#8358;50,000
+															Prize: &nbsp; <del>&#8358;65,000</del> &nbsp;{{ product_price }}  &#8358;{{ discount_price }}
 															<br>
-															Brand: &nbsp;&nbsp;Dell
+															Brand: &nbsp;&nbsp;{{ brand }}
 															<br>
-															Category: &nbsp; Intell Core 11
+															Category: &nbsp; {{ category }}
 													</h6>
 												</div>
 												
@@ -66,12 +61,8 @@
 
 										</tr>
 									</table>
-								</td>
-							</tr>
 
-							
-									
-							</table>
+
 							{% endblock %}			
 					
 

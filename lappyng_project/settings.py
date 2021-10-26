@@ -60,7 +60,7 @@ EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-FROM_HOST = '<info@eaglesbrandsolutions.com>'
+FROM_HOST = 'info@eaglesbrandsolutions.com'
 RECIEVER_MAIL = ['nonwaz78@gmail.com',]
 
 
@@ -119,6 +119,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'lappyng_app.context_processors.categories',
                 'lappyng_app.context_processors.search_form',
+                'lappyng_app.context_processors.get_uri',
             ],
             
         },
