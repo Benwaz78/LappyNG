@@ -1,0 +1,72 @@
+{% extend 'frontend/email_template/email_base.html' %}
+{ % load static %}
+
+		
+{% block title %}
+{% Product Requset %}
+{% endblock %}
+	
+
+	
+
+				{% block content %}
+
+
+						<table border="0"  align="center" width="600" style="border-collapse:collapse; font-size:larger; padding:50%; ">
+							<tr>
+								<td>
+									<table align="center">
+										<tr class="st">
+											<th>Fields</th>
+											<th class="hr">Data</th>
+									
+										</tr>
+										<tr class="st">
+											<td>&nbsp; &nbsp;&nbsp;&nbsp;Name</td>
+											<td class="hr">{{ name }}
+
+										</tr>
+										<tr class="st">
+											<td>&nbsp;&nbsp;&nbsp;&nbsp;Email</td>
+											<td class="hr">{{ email }}</td>	
+										</tr>
+										<tr class="st">
+											<td>&nbsp;&nbsp;&nbsp;&nbsp;Phone</td>
+											{{ phone }}
+										</tr>
+										<tr class="st">
+											<td style="padding-bottom: 180px;">&nbsp;&nbsp;Message</td>
+											<td class="hr">
+												{{ description }}
+											</td>
+											
+										</tr>
+										<tr class="st">
+											<td style="  padding-bottom: 200px">Product Details</td>
+											<td class="hr">
+												<div style="margin-left: -10mm;">
+													<img src="{{ url }}{{ image.url }} "  alt="" width="200" >
+													<h6>
+															Name: &nbsp;  {{ product_name }}
+															<br>
+															Prize: &nbsp; <del>&#8358;65,000</del> &nbsp;{{ product_price }}  &#8358;{{ discount_price }}
+															<br>
+															Brand: &nbsp;&nbsp;{{ brand }}
+															<br>
+															Category: &nbsp; {{ category }}
+													</h6>
+												</div>
+												
+											</td>
+
+										</tr>
+									</table>
+
+
+							{% endblock %}			
+					
+
+					
+				
+
+					

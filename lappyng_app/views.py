@@ -59,7 +59,36 @@ def about(request):
 
 
 def contact(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        message = request.POST.get('message')
+        subject = 'Eaglesrand Solutions'
+        context = {
+            'name':name,
+            'email':email,
+            'phone':phone,
+            'message': message,
+        }
+        html_message = render_to_string('frontend/email_templates/contact-email-template.html', context)
+        plain_message = strip_tags(html_message)
+        from_email = settings.FROM_HOST
+        send = mail.send_mail(subject, plain_message, from_email, settings.RECIEVER_MAIL, html_message=html_message, fail_silently=False)
+        with mail.get_connection(backend=None, fail_silently=False) as connection:
+            mail.EmailMessage(
+                subject, plain_message, from_email, settings.RECIEVER_MAIL,connection=connection,).send()
+        if send:
+            messages.success(request, 'Email sent succesfully!')
+        else:
+            messages.error(request, 'Mail not sent!')
     return render(request, 'frontend/contact.html')
+
+
+
+
+
+
 
 
 def product_detail(request, slug):
@@ -87,11 +116,37 @@ def product_detail(request, slug):
     elif request.method and request.POST.get('hidden_form') == 'request_hidden':
         form2 = ProductRequestForm(request.POST, prefix='request')
         if form2.is_valid():
+            name = form2.cleaned_data.get('name')
+            email = form2.cleaned_data.get('email')
+            phone = form2.cleaned_data.get('phone')
+            description = form2.cleaned_data.get('description')
+            product_image = product.image1
             form2.save(commit=False)
             form2.instance.product = product
             form2.save()
-            print(form2)
-            messages.success(request, 'Request Added')
+            subject = 'Order Form'
+            context = {
+                'name':name,
+                'email':email,
+                'phone':phone,
+                'email':email,
+                'description': description,
+                'image':product_image,
+                'product_name':product.title,
+                'product_price':product.price,
+                'discount_price':product.discount_prize(),
+                'brand':product.brand,
+                'category':product.category,
+            }
+            html_message = render_to_string('frontend/email_templates/order-email-template.html', context)
+            plain_message = strip_tags(html_message)
+            from_email = settings.FROM_HOST
+            send = mail.send_mail(subject, plain_message, from_email, 
+                        settings.RECIEVER_MAIL, html_message=html_message, fail_silently=False)
+            if send:
+                messages.success(request, 'Order sent succesfully!')
+            else:
+                messages.error(request, 'Mail not sent!')
         form1 = ProductReviewForm(prefix='review')
         
     context = {
@@ -166,4 +221,11 @@ def category_list(request):
 
 def login(request):
     return render(request, 'frontend/login.html')
+
+
+
+
+
+
+
 

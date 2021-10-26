@@ -10,3 +10,6 @@ def categories(request):
     return {
         'categories': Category.objects.all()
     }
+
+def get_uri(request):
+    return {'url':request.build_absolute_uri('/')}

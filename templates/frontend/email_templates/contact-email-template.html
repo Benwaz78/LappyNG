@@ -1,0 +1,65 @@
+{% extend 'frontend/email_template/email_base.html' %}
+{% load static %}
+
+		
+{% block title %}
+{% Contact  %}
+{% endblock %}
+	
+
+	
+
+				{% block content %}
+
+
+					
+
+						<table border="0"  align="center" width="600" style="border-collapse:collapse; font-size:larger; padding:50%; ">
+							<tr>
+								<td>
+									<form action="" method="post">
+									<table align="center">
+										<tr class="st">
+											<th>Fields</th>
+											<th class="hr">Data</th>
+									
+										</tr>
+										<tr class="st">
+											<td>&nbsp; &nbsp;&nbsp;&nbsp;FullName</td>
+											<td class="hr">{{name}}</td>
+										</tr>
+										<tr class="st">
+											<td>&nbsp;&nbsp;&nbsp;&nbsp;Email</td>
+											<td class="hr">{{email}}</td>
+
+										</tr>
+										<tr class="st">
+											<td>&nbsp;&nbsp;&nbsp;&nbsp;Phone</td>
+											<td class="hr">{{phone}}</td>
+
+										</tr>
+										<tr class="st">
+											<td style="padding-bottom: 230px;">&nbsp;&nbsp;Message</td>
+											<td class="hr">
+												<blockquote>
+													{{message}}                                               </blockquote>
+												
+											</td>
+											
+										</tr>
+
+									</table>
+									</form>
+								</td>
+							</tr>
+
+							
+									
+							</table>
+										
+					
+
+					
+					
+
+					{% endblock %}

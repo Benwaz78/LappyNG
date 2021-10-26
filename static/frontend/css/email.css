@@ -1,0 +1,33 @@
+.hr {
+    border-left: solid 1px black;
+  }	
+.st th , .st td{
+border-bottom: solid 1px black;
+
+}
+.st th:first-child , .st td:first-child{
+
+padding-left: 20px;
+/* padding-right: 60px; */
+width: 150px;
+
+}
+.st{
+height:10mm
+}
+.st td:last-child {
+text-align: center;
+padding-left: 30px;
+
+
+}
+.st div h6{
+text-align:justify;
+padding-left: 40px;
+padding-bottom: 30px;
+ margin-top: -40px;
+}
+.st div img{
+padding-right: 200px;
+margin-top: -2px;
+}

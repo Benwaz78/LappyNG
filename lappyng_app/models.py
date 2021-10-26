@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.conf import settings
 from django.urls import reverse
 from django.contrib.auth.models import User
-from tinymce import HTMLField
+from tinymce.models import HTMLField
 import datetime
 from decimal import Decimal as D
 from django.utils.html import format_html

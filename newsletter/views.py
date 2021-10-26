@@ -33,7 +33,7 @@ def newsletters_email(request):
                 'email':sub.email,
                 'conf':sub.conf_num
             }
-            html_message = render_to_string('newsletter/confirm-email-result.html', args)
+            html_message = render_to_string('frontend/email_templates/confirm-email-result.html', args)
             plain_message = strip_tags(html_message)
             from_email = settings.FROM_HOST
             subject = 'Email Confirmation'
@@ -47,9 +47,9 @@ def confirm(request):
         sub.confirmed = True
 
         sub.save()
-        return render(request, 'newsletter/confirm-email.html', {'email': sub.email, 'action': 'added'})
+        return render(request, 'frontend/email_templates/confirm-email.html', {'email': sub.email, 'action': 'added'})
     else:
-        return render(request, 'newsletter/confirm-email.html', {'email': sub.email, 'action': 'denied'})
+        return render(request, 'frontend/email_templates/confirm-email.html', {'email': sub.email, 'action': 'denied'})
 
 def delete(request):
     sub = Subscribers.objects.get(email=request.GET['email'])

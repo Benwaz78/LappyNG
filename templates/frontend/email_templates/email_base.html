@@ -1,38 +1,11 @@
+{% load static %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>The Project | Email Template</title>
-		<style>
-			.hr {
-  /* border-right: solid 1px black;  */
-  border-left: solid 1px black;
-}	
-	.st th , .st td{
-		border-bottom: solid 1px black;
-		
-	}
-	.st th:first-child , .st td:first-child{
-	
-		padding-left: 20px;
-		/* padding-right: 60px; */
-		width: 150px;
-		
-	}
-	.st{
-		height:10mm
-	}
-	 .st td:last-child, .st th:last-child {
-		text-align: center;
-		padding-left: 20px;
+		<title>The Project | {% block title %} Email Template</title>
+		<link rel="stylesheet" href="{% static 'frontend/css/email.css' %}">
 
-		
-	}
-	h5{
-		text-align: center;
-	}
-
-		</style>
 	</head>
 
 	<body style="margin: 0; padding: 0;">
@@ -54,17 +27,17 @@
 											<table align="center">
 												<tr>
 													<td width="25">
-														<img src="images/marker-icon-white.png" alt="location" />
+														<img src="{{ url }}{% static 'frontend/image2/marker-icon-white.png' %}" alt="location" />
 													</td>
 													<td style="color: #fff; font-size: 12px; line-height: 18px; font-weight: bolder; font-family: helvetica, Arial, sans-serif;">One infinity loop, 54100</td>
 													<td width="25"></td>
 													<td width="25">
-														<img src="images/phone-icon-white.png" alt="location" />
+														<img src="{{ url }}{% static 'frontend/image2/phone-icon-white.png' %}" alt="location" />
 													</td>
 													<td style="color: #fff; font-size: 12px; line-height: 18px; font-weight: bolder; font-family: helvetica, Arial, sans-serif;">+12&nbsp;1234&nbsp;1234&nbsp;123</td>
 													<td width="25"></td>
 													<td width="25">
-														<img src="images/mail-icon-white.png" alt="location" />
+														<img src="{{ url }}{% static 'frontend/image2/mail-icon-white.png' %}" alt="location" />
 													</td>
 													<td >
 														<a style="color: #fff; font-size: 12px; line-height: 18px; font-weight: bolder; font-family: helvetica, Arial, sans-serif; text-decoration:none; width: 50%;" href="mailto:theproject@mail.com">theproject@mail.com</a>
@@ -94,8 +67,8 @@
 												<!-- logo -->
 												<tr>
 													<td align="left">
-														<a href="../html/index.html">
-															<img src="images/lappy logo.jpeg" alt="Company Logo" style="display: block;padding-left: 145px;"/>
+														<a href="#">
+															<img src="{{ url }}{% static 'frontend/image2/lappy-logo.jpeg' %}" alt="Company Logo" style="display: block;padding-left: 145px;"/>
 														</a>
 													</td>
 												</tr>
@@ -115,50 +88,8 @@
 
 
 
-						<table border="0"  align="center" width="600" style="border-collapse:collapse; font-size:larger; padding:50%; ">
-							<tr>
-								<td>
-									<table align="center">
-										<tr class="st">
-											<th>Fields</th>
-											<th class="hr">Data</th>
-									
-										</tr>
-										<tr class="st">
-											<td>&nbsp; &nbsp;&nbsp;&nbsp;Name</td>
-											<td class="hr">Slim Shady</td>
-										</tr>
-										<tr class="st">
-											<td>&nbsp;&nbsp;&nbsp;&nbsp;Email</td>
-											<td class="hr">nonwaz@yahoo.com</td>
-
-										</tr>
-										<tr class="st">
-											<td>&nbsp;&nbsp;&nbsp;&nbsp;Phone</td>
-											<td class="hr">09085491791</td>
-
-										</tr>
-										<tr class="st">
-											<td style="padding-bottom: 230px;">&nbsp;&nbsp;Message</td>
-											<td class="hr">
-												<blockquote>
-													Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint ea quam eligendi, illo est blanditiis similique tempore omnis cum molestiae Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint ea quam eligendi, illo est blanditiis similique tempore omnis cum molestiae Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint ea quam eligendi, illo est blanditiis similique tempore omnis cum molestiae 
-                                                </blockquote>
-												
-											</td>
-											
-										</tr>
-
-									</table>
-								</td>
-							</tr>
-
-							
-									
-							</table>
-										
-					
-
+					{% block content%}
+					{% endblock %}
 					
 					<!-- Footer Start -->
 					<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
@@ -180,7 +111,7 @@
 															<tr>
 																<td style="padding-right: 300px;">
 																	<!-- <a href="../html/index.html"> -->
-																		<img src="images/lappy logo.jpeg" alt="Logo" style="display: block;   "/>
+																		<img src="{{ url }}{% static 'frontend/image2/lappy-logo.jpeg' %}" alt="Logo" style="display: block;   "/>
 																	<!-- </a> -->
 																</td>
 															</tr>
@@ -202,7 +133,7 @@
 																		<tr>
 																			<td>
 																				<a href="https://www.facebook.com">
-																					<img src="images/facebook-icon.png"  alt="Facebook" style="display: block;" />
+																					<img src="{{ url }}{% static 'frontend/image2/facebook-icon.png' %}"  alt="Facebook" style="display: block;" />
 																				</a>
 																			</td>
 																		</tr>
@@ -211,7 +142,7 @@
 																		<tr>
 																			<td>
 																				<a href="https://www.twitter.com">
-																					<img src="images/twitter-icon.png"  alt="Twitter" style="display: block;" />
+																					<img src="{{ url }}{% static 'frontend/image2/twitter-icon.png' %}"  alt="Twitter" style="display: block;" />
 																				</a>
 																			</td>
 																		</tr>
@@ -220,7 +151,7 @@
 																		<tr>
 																			<td>
 																				<a href="https://plus.google.com/">
-																					<img src="images/googleplus-icon.png"  alt="Google+" style="display: block;" />
+																					<img src="{{ url }}{% static 'frontend/image2/googleplus-icon.png' %}"  alt="Google+" style="display: block;" />
 																				</a>
 																			</td>
 																		</tr>
@@ -229,7 +160,7 @@
 																		<tr>
 																			<td>
 																				<a href="https://www.linkedin.com/">
-																					<img src="images/linkedin-icon.png"  alt="Linked In" style="display: block;" />
+																					<img src="{{ url }}{% static 'frontend/image2/linkedin-icon.png' %}"  alt="Linked In" style="display: block;" />
 																				</a>
 																			</td>
 																		</tr>
@@ -251,7 +182,7 @@
 															<tr><td style="font-size: 0; line-height: 0;" height="57">&nbsp;</td></tr>
 															<tr> -->
 																<td width="22">
-																	<img src="images/marker-icon.png" alt="location" />
+																	<img src="{{ url }}{% static 'frontend/image2/marker-icon.png' %}" alt="location" />
 																</td>
 																<td style="color: #999999; font-size: 14px; line-height: 18px; font-weight: normal; font-family: helvetica, Arial, sans-serif;">One infinity loop, 54100</td>
 															</tr>
@@ -259,7 +190,7 @@
 															<tr><td style="font-size: 0; line-height: 0;" height="10">&nbsp;</td></tr>
 															<tr>
 																<td width="22">
-																	<img src="images/phone-icon.png" alt="location" />
+																	<img src="{{ url }}{% static 'frontend/image2/phone-icon.png' %}" alt="location" />
 																</td>
 																<td style="color: #999999; font-size: 14px; line-height: 18px; font-weight: normal; font-family: helvetica, Arial, sans-serif;">+12&nbsp;1234&nbsp;1234&nbsp;123</td>
 															</tr>
@@ -267,7 +198,7 @@
 															<tr><td style="font-size: 0; line-height: 0;" height="10">&nbsp;</td></tr>
 															<tr>
 																<td width="22">
-																	<img src="images/fax-icon.png" alt="location" />
+																	<img src="{{ url }}{% static 'frontend/image2/fax-icon.png' %}" alt="location" />
 																</td>
 																<td style="color: #999999; font-size: 14px; line-height: 18px; font-weight: normal; font-family: helvetica, Arial, sans-serif;">+12&nbsp;1234&nbsp;1234&nbsp;123</td>
 															</tr>
@@ -275,7 +206,7 @@
 															<tr><td style="font-size: 0; line-height: 0;" height="10">&nbsp;</td></tr>
 															<tr>
 																<td width="22">
-																	<img src="images/mail-icon.png" alt="location" />
+																	<img src="{{ url }}{% static 'frontend/image2/mail-icon.png' %}" alt="location" />
 																</td>
 																<td>
 																	<a style="color: #999999; font-size: 14px; line-height: 18px; font-weight: normal; font-family: helvetica, Arial, sans-serif; text-decoration:none;" href="mailto:theproject@mail.com">theproject@mail.com</a>
