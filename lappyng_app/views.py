@@ -75,13 +75,20 @@ def contact(request):
         html_message = render_to_string('frontend/email_templates/contact-email-template.html', context)
         plain_message = strip_tags(html_message)
         from_email = settings.FROM_HOST
-        send = mail.send_mail(subject, plain_message, from_email, 
-                      settings.RECIEVER_MAIL, html_message=html_message, fail_silently=False)
+        send = mail.send_mail(subject, plain_message, from_email, settings.RECIEVER_MAIL, html_message=html_message, fail_silently=False)
+        with mail.get_connection(backend=None, fail_silently=False) as connection:
+            mail.EmailMessage(
+                subject, plain_message, from_email, settings.RECIEVER_MAIL,connection=connection,).send()
         if send:
             messages.success(request, 'Email sent succesfully!')
         else:
             messages.error(request, 'Mail not sent!')
     return render(request, 'frontend/contact.html')
+
+
+
+
+
 
 
 
@@ -114,8 +121,17 @@ def product_detail(request, slug):
             form2.instance.product = product
             form2.save()
             print(form2)
-            messages.success(request, 'Request Added')
-        form1 = ProductReviewForm(prefix='review')
+            Subject = 'Eaglesrand Solutions Order Form'
+            html_message = render_to_string('frontend/email_templates/order-email-template.html')
+            plain_message = strip_tags(html_message)
+            from_email = settings.FROM_HOST
+            send = mail.send_mail(Subject, plain_message, from_email, ['aminatabidemi212@gmail.com', ], html_message=html_message,fail_silently=False)
+            if send :
+                print('sent')
+                message.success(request,'Email sent successfully!')
+            else:
+                message.error(request,'Email not sent!')
+        form2 = ProductReviewForm(prefix='request')
         
     context = {
                 'product_detail':product, 
@@ -191,52 +207,7 @@ def login(request):
     return render(request, 'frontend/login.html')
 
 
-def contact_form(request):
-    if request.method == 'POST':
-        fullname = request.POST.get('fullname')
-        email = request.POST.get('email')
-        phonenumber = request.POST.get('number')
-        message = request.POST.get('message')
-        subject = 'Contact Form'
-        args={
-            'fullname':fullname,
-            'email':email,
-            'number':phonenumber,
-            'message':message,
-        }
-        html_message = render_to_string('frontend/contact-us-email.html', args)
-        plain_message = strip_tags(html_message)
-        from_email = settings.EMAIL_FROM
-        send = mail.send_mail(subject, plain_message, from_email, ['uwazie.benedict@alabiansolutions.com', ], html_message=html_message)
-        if send :
-            message.success('Email sent successfully')
-        else:
-            message.error('Email not sent')
-    return render(request, 'frontend/contact-us-email.html.html')
 
-    
-def order_form(request):
-    if request.method == 'POST':
-        fullname = request.POST.get('fullname')
-        email = request.POST.get('email')
-        phonenumber = request.POST.get('number')
-        message = request.POST.get('message')
-        subject = 'Order Form'
-        args={
-            'fullname':fullname,
-            'email':email,
-            'number':phonenumber,
-            'message':message,
-        }
-        html_message = render_to_string('frontend/product-order.html', args)
-        plain_message = strip_tags(html_message)
-        from_email = settings.EMAIL_FROM
-        send = mail.send_mail(subject, plain_message, from_email, ['uwazie.benedict@alabiansolutions.com', ], html_message=html_message)
-        if send :
-            message.success('Email sent successfully')
-        else:
-            message.error('Email not sent')
-    return render(request, 'frontend/product-order.html.html')
 
 
 
