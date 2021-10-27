@@ -1,84 +1,72 @@
-{% extends 'frontend/email_templates/email_base.html' %}
-{% load static %}
-<!DOCTYPE html>
+{% extend 'frontend/email_template/email_base.html' %}
+{ % load static %}
 
-{% block title%}
-Order Email 
+		
+{% block title %}
+{% Product Requset %}
 {% endblock %}
+	
 
-{% block content %}																																																						
-					<style>
-						.de, .rr, .ee {  
-						  border: 1px solid #ddd;
-						  text-align: left;
-						}
-						
-						.de {
-						  border-collapse: collapse;
-						  width: 50%;
-						  margin: auto;
-						}
-						
-						.ee, .rr {
-						  padding: 25px;
-						}
-						p{
-							text-align: left;
-						}
-						.we{
-							padding-left: 35%;
-						}
-						</style>
-					<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
-						<table class="de">
-							<tr >
-							  <th class="ee">Fields</th>
-							  
-							  <th class="ee">Data</th>
-							</tr>
-							<tr >
-							  <td class="rr">Name</td>
-							  <td class="rr">{{ name }}</td>
-							</tr>
-							<tr >
-								<td class="rr">Email</td>
-								<td class="rr">{{ email }}</td>
-							  </tr>
-							  <tr >
-								<td class="rr">Phone</td>
-								<td class="rr">{{ phone }}</td>
-							  </tr>
-							  <tr >
-								<td class="rr">Description</td>
-								<td class="rr"><p>
-									{{ description }}
-								</p>
-								
-							</td>
-							  </tr>
-							  <tr >
-								<td class="rr">Product Details</td>
-								<td class="rr"><img src="https://lappy.ng/{{ image.url }}" style="max-height: 300px; min-height: 300px;" alt="">
-									<div class="we"> 
-										<p>
-											<strong>Name:</strong><span> {{ product_name }}</span>
-										</p>
-										<p>
-											<strong>Price:</strong><span><strike>&#8358;{{ product_price }}</strike></span><span> &#8358;{{ discount_price }}</span>
-										</p>
-										<p>
-											<strong>Brand:</strong><span> {{ brand }}</span>
-										</p>
-										<p>
-											<strong>Category:</strong><span>{{ category }}</span>
-										</p>
-									</div>
-								</td>
-								
-							</tr>
-							
-						  </table>
-						  
+	
 
-					</table>
-	{% endblock %}
+				{% block content %}
+
+
+						<table border="0"  align="center" width="600" style="border-collapse:collapse; font-size:larger; padding:50%; ">
+							<tr>
+								<td>
+									<table align="center">
+										<tr class="st">
+											<th>Fields</th>
+											<th class="hr">Data</th>
+									
+										</tr>
+										<tr class="st">
+											<td>&nbsp; &nbsp;&nbsp;&nbsp;Name</td>
+											<td class="hr">{{ name }}
+
+										</tr>
+										<tr class="st">
+											<td>&nbsp;&nbsp;&nbsp;&nbsp;Email</td>
+											<td class="hr">{{ email }}</td>	
+										</tr>
+										<tr class="st">
+											<td>&nbsp;&nbsp;&nbsp;&nbsp;Phone</td>
+											{{ phone }}
+										</tr>
+										<tr class="st">
+											<td style="padding-bottom: 180px;">&nbsp;&nbsp;Message</td>
+											<td class="hr">
+												{{ description }}
+											</td>
+											
+										</tr>
+										<tr class="st">
+											<td style="  padding-bottom: 200px">Product Details</td>
+											<td class="hr">
+												<div style="margin-left: -10mm;">
+													<img src="{{ url }}{{ image.url }} "  alt="" width="200" >
+													<h6>
+															Name: &nbsp;  {{ product_name }}
+															<br>
+															Prize: &nbsp; <del>&#8358;65,000</del> &nbsp;{{ product_price }}  &#8358;{{ discount_price }}
+															<br>
+															Brand: &nbsp;&nbsp;{{ brand }}
+															<br>
+															Category: &nbsp; {{ category }}
+													</h6>
+												</div>
+												
+											</td>
+
+										</tr>
+									</table>
+
+
+							{% endblock %}			
+					
+
+					
+				
+
+					
