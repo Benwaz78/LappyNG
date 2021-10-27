@@ -12,4 +12,8 @@ def categories(request):
     }
 
 def get_uri(request):
-    return {'url':request.build_absolute_uri('/')}
+    if request.is_secure():
+        protocol = 'https://'
+    else:
+        protocol = 'http://'
+    return {'url':protocol+request.get_host()}

@@ -10,4 +10,5 @@ urlpatterns = [
     path('category_list-page/', views.category_list, name='category_list'),
     path('search-result/', views.search_result, name='search_result'),
     path('login-page/', views.login, name='login'),
+    path('order-template/', views.order_template, name='order_template'),
 ]
