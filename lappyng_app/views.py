@@ -69,19 +69,25 @@ def contact(request):
             'name':name,
             'email':email,
             'phone':phone,
-            'email':email,
             'message': message,
         }
         html_message = render_to_string('frontend/email_templates/contact-email-template.html', context)
         plain_message = strip_tags(html_message)
         from_email = settings.FROM_HOST
-        send = mail.send_mail(subject, plain_message, from_email, 
-                      settings.RECIEVER_MAIL, html_message=html_message, fail_silently=False)
+        send = mail.send_mail(subject, plain_message, from_email, settings.RECIEVER_MAIL, html_message=html_message, fail_silently=False)
+        with mail.get_connection(backend=None, fail_silently=False) as connection:
+            mail.EmailMessage(
+                subject, plain_message, from_email, settings.RECIEVER_MAIL,connection=connection,).send()
         if send:
             messages.success(request, 'Email sent succesfully!')
         else:
             messages.error(request, 'Mail not sent!')
     return render(request, 'frontend/contact.html')
+
+
+
+
+
 
 
 
@@ -131,6 +137,7 @@ def product_detail(request, slug):
                 'discount_price':product.discount_prize(),
                 'brand':product.brand,
                 'category':product.category,
+            
             }
             html_message = render_to_string('frontend/email_templates/order-email-template.html', context)
             plain_message = strip_tags(html_message)
@@ -215,4 +222,11 @@ def category_list(request):
 
 def login(request):
     return render(request, 'frontend/login.html')
+
+
+
+
+
+
+
 
