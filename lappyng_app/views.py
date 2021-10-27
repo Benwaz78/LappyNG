@@ -71,6 +71,7 @@ def contact(request):
             'phone':phone,
             'message': message,
         }
+        
         html_message = render_to_string('frontend/email_templates/contact-email-template.html', context)
         plain_message = strip_tags(html_message)
         from_email = settings.FROM_HOST
@@ -138,6 +139,8 @@ def product_detail(request, slug):
                 'brand':product.brand,
                 'category':product.category,
             }
+            var = 'media/uploads/5.jpg'
+            print('https://lappy.ng/'+context['image'])
             html_message = render_to_string('frontend/email_templates/order-email-template.html', context)
             plain_message = strip_tags(html_message)
             from_email = settings.FROM_HOST
@@ -215,6 +218,11 @@ def brand_list(request,  brand_slug):
     context['person_page_obj'] = person_page_obj  
     person_page_obj = paginated_filter.get_page(page_number)
     return render(request, 'frontend/brand-list.html' , context)
+
+
+def order_template(request):
+    return render(request, 'frontend/email_templates/order-email-template.html')
+
 
 def category_list(request):
     return render(request, 'frontend/category_list.html')
