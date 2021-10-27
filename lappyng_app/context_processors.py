@@ -12,4 +12,4 @@ def categories(request):
     }
 
 def get_uri(request):
-    return {'url':request.build_absolute_uri('/')}
+    return {'url':'https://lappy.ng/'}
