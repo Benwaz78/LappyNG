@@ -65,6 +65,16 @@ EMAIL_USE_TLS = True
 FROM_HOST = 'info@eaglesbrandsolutions.com'
 RECIEVER_MAIL = ['nonwaz78@gmail.com',]
 
+# EMAIL_HOST = 'smtp.zoho.com'
+# EMAIL_HOST_USER = 'nonwaz78@gmail.com'
+# EMAIL_HOST_PASSWORD = 'Z0H0P@$$w0rD22'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False
+# FROM_HOST = 'nonwaz78@gmail.com'
+# RECIEVER_MAIL = ['nonwaz78@gmail.com',]
+
+
 
 
 TINYMCE_DEFAULT_CONFIG = {

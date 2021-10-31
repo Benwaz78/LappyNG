@@ -140,7 +140,7 @@ def product_detail(request, slug):
                 'category':product.category,
             
             }
-            html_message = render_to_string('frontend/email_templates/order-email-template.html', context)
+            html_message = render_to_string('frontend/email_templates/text.html', context)
             plain_message = strip_tags(html_message)
             from_email = settings.FROM_HOST
             send = mail.send_mail(subject, plain_message, from_email, 
