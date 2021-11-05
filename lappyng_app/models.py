@@ -350,3 +350,17 @@ class HomeTwoSideBanner(models.Model):
     
     def __str__(self):
         return 'Home Banner'
+
+
+class Pages(models.Model):
+    page_title = models.CharField(max_length=120)
+    slug = models.SlugField(unique=True)
+    content = HTMLField('Content')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.pk} {self.page_title}'
+
+    def get_absolute_url(self):
+        return reverse('single_page', kwargs={'slug':self.slug})

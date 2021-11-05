@@ -32,14 +32,14 @@
 
                     <ul class="nav-left">
                         <li class="hotline">
-                            <span><i class="fa fa-phone"></i>Hotline: 09057277551</span>
+                            <span><i class="fa fa-phone"></i>Hotline: +234 905 727 7551</span>
                             
                         </li>
                         <li class="hotline">
-                            <span><i class="fa fa-phone"></i>Hotline: 08156035584</span>
+                            <span><i class="fa fa-phone"></i>Hotline: +234 815 603 5584</span>
                         </li>
                         <li class="hotline">
-                            <span style="text-transform: lowercase !important;"><i class="fa fa-envelope"></i>lappyng@gmail.com</span>
+                            <span style="text-transform: lowercase !important;"><i class="fa fa-envelope"></i>info@lappy.ng</span>
                         </li>
                     </ul>
 
@@ -288,10 +288,12 @@
                                     <h3 class="title">Pages</h3>
                                     <ul >
                                     <li><a href="{% url 'about' %}">About</a></li>
-                                    <li><a href="#">Product </a></li>
-
+                                    {% if list %}
+                                        {% for l in list %}
+                                        <li><a href="{{ l.get_absolute_url }}">{{ l.page_title }}</a></li>
+                                        {% endfor %}
+                                    {% endif %}
                                     <li><a href="{% url 'contact' %}">Contact</a></li>
-                                
                                     <li><a href="{% url 'blog:blog' %}">Blog</a></li>                                    </ul>
                                 </div>
                             </div>

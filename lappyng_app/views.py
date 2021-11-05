@@ -179,6 +179,10 @@ def search_result(request):
     return render(request, 'frontend/search-result.html')
 
 
+def detail_page(request, slug):
+    page = Pages.objects.get(slug=slug)
+    return render(request, 'frontend/page.html', {'single_page':page})
+
 
 def category_grid(request,  category_slug):
     category = get_object_or_404(Category, slug=category_slug)
