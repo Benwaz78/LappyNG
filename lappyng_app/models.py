@@ -9,14 +9,15 @@ from tinymce.models import HTMLField
 import datetime
 from decimal import Decimal as D
 from django.utils.html import format_html
+from cloudinary.models import CloudinaryField
 
 class Category(models.Model):
     parent = models.ForeignKey('self', related_name='children', on_delete=models.CASCADE, blank=True, null=True)
     cat_name = models.CharField(max_length=100, unique=True, verbose_name='Category')
     slug = models.SlugField(unique=True)
-    cat_img = models.ImageField(upload_to='uploads/', blank=True, null=True, verbose_name='Category Image', help_text='Use this Image dimension 170px X 100px')
-    cat_img_banner = models.ImageField(upload_to='uploads/', blank=True, null=True, verbose_name='Category Banner Image', help_text='Use this Image dimension 848px X 132px')
-    cat_img_banner2 = models.ImageField(upload_to='uploads/', blank=True, null=True, verbose_name='Category Banner Image', help_text='Use this Image dimension 848px X 132px')
+    cat_img = CloudinaryField(blank=True, null=True, help_text='Use this Image dimension 170px X 100px')
+    cat_img_banner = CloudinaryField(blank=True, null=True,  help_text='Use this Image dimension 848px X 132px')
+    cat_img_banner2 = CloudinaryField(blank=True, null=True, help_text='Use this Image dimension 848px X 132px')
     created = models.DateTimeField(auto_now_add=True)
     
     def show_cat_img(self):
@@ -52,7 +53,7 @@ class Category(models.Model):
 class Brand(models.Model):
     brand_name = models.CharField(max_length=30, unique=True, verbose_name='Brand')
     slug = models.SlugField(unique=True)
-    brand_img = models.ImageField(blank=True, null=True, verbose_name='Brand Image', help_text='Use this Image dimension 157px X 88px')
+    brand_img = CloudinaryField('Brand Image', blank=True, null=True, help_text='Use this Image dimension 157px X 88px')
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -93,9 +94,9 @@ class Products(models.Model):
     new_product = models.BooleanField()
     hot_deal = models.BooleanField( verbose_name='Hot Deals of this Week', blank=True, null=True)
     best_seller = models.BooleanField(blank=True, null=True, default=False)
-    image1 = models.ImageField(upload_to='uploads/', blank=True, null=True)
-    image2 = models.ImageField(upload_to='uploads/', blank=True, null=True)
-    image3 = models.ImageField(upload_to='uploads/', blank=True, null=True)
+    image1 = CloudinaryField(blank=True, null=True)
+    image2 = CloudinaryField(blank=True, null=True)
+    image3 = CloudinaryField(blank=True, null=True)
     contents = HTMLField('Content')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -283,7 +284,7 @@ class About(models.Model):
 
 
 class Banner(models.Model):
-    slide_img = models.FileField(null=True, verbose_name='Slide Image', blank=True, upload_to='uploads/')
+    slide_img = CloudinaryField('Slide Image', null=True, blank=True)
     slide_content1 = models.TextField(blank=True, null=True)
     slide_content2 = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True, help_text='This will automatically add a time when you click save')
@@ -304,7 +305,7 @@ class Banner(models.Model):
 
 
 class HomeTopBanner(models.Model):
-    banner = models.ImageField(upload_to='uploads/')
+    banner = CloudinaryField()
     link = models.URLField(null=True, blank=True)
    
 
@@ -321,7 +322,7 @@ class HomeTopBanner(models.Model):
         return 'Home Banner'
 
 class HomeSideBanner(models.Model):
-    banner = models.ImageField(upload_to='uploads/')
+    banner = CloudinaryField()
     link = models.URLField(null=True, blank=True)
 
     class Meta():
@@ -335,7 +336,7 @@ class HomeSideBanner(models.Model):
         return 'Home Side Banner'
 
 class HomeTwoSideBanner(models.Model):
-    banner = models.ImageField(upload_to='uploads/')
+    banner = CloudinaryField()
     link = models.URLField(null=True, blank=True)
     
 
