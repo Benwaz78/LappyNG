@@ -135,6 +135,7 @@ TEMPLATES = [
                 'lappyng_app.context_processors.categories',
                 'lappyng_app.context_processors.search_form',
                 'lappyng_app.context_processors.get_uri',
+                'lappyng_app.context_processors.footer_pages',
             ],
             
         },

@@ -156,3 +156,13 @@ class Banner(admin.ModelAdmin):
         'created',
         
         ]
+
+
+@admin.register(Pages)
+class PagesAdmin(admin.ModelAdmin):
+    list_display = [
+        'page_title',
+        'created_at',
+        'updated_at',
+        ]
+    prepopulated_fields = {'slug': ('page_title',)}
