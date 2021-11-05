@@ -6,13 +6,13 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.conf import settings
 from django.http import JsonResponse, HttpResponseRedirect, HttpResponse
-
 # Create your views here.
 
 
 
 def letter(request):
     return render(request, 'newsletter/newsletter.html')
+
 
 def random_digits():
     return "%0.12d" % random.randint(0, 999999999999)

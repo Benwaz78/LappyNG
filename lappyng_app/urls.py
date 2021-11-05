@@ -11,4 +11,6 @@ urlpatterns = [
     path('search-result/', views.search_result, name='search_result'),
     path('login-page/', views.login, name='login'),
     path('order-template/', views.order_template, name='order_template'),
+    path('contact-template/', views.contact_template, name='contact_template'),
+    path('newsletter-template/', views.newsletter_template, name='newsletter_template'),
 ]

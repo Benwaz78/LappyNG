@@ -47,7 +47,7 @@ class NewsLetterCategory(models.Model):
         # goes through all post and adds it to the newsletter dictionary
 
         for sub in subscribers:
-            html_message = render_to_string('newsletter/newsletter.html', 
+            html_message = render_to_string('frontend/email_templates/newsletter.html', 
                 {
                 'news': news_letters_list, 
                 'url':request.build_absolute_uri('/newsletter/delete/'),

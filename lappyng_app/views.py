@@ -223,6 +223,13 @@ def order_template(request):
     return render(request, 'frontend/email_templates/order-email-template.html')
 
 
+def contact_template(request):
+    return render(request, 'frontend/email_templates/contact-email-template.html')
+
+def newsletter_template(request):
+    return render(request, 'frontend/email_templates/newsletter.html')
+
+
 def category_list(request):
     return render(request, 'frontend/category_list.html')
 
