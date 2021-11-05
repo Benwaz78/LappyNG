@@ -1,16 +1,68 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title></title>
-</head>
-<body>
+{% extends 'frontend/email_templates/email_base.html' %}
+{ % load static %}
 
-		<img src="{{ url }}{% static 'frontend/image2/marker-icon-white.png' %}" alt="location" />
-
+		
+{% block title %}
+Product Requset 
+{% endblock %}
 	
-	<img src="{{ url }}{% static 'frontend/image2/lappy-logo.jpeg' %}" alt="Company Logo" style="display: block;padding-left: 145px;"/>
 
-</body>
-</html>
+				{% block content %}
+
+
+						<table border="0"  align="center" width="600" style="border-collapse:collapse; font-size:larger; padding:50%; ">
+							<tr>
+								<td>
+									<table align="center">
+										<tr class="st">
+											<th>Fields</th>
+											<th class="hr">Data</th>
+									
+										</tr>
+										<tr class="st">
+											<td>&nbsp; &nbsp;&nbsp;&nbsp;Name</td>
+											<td class="hr">{{ name }}
+
+										</tr>
+										<tr class="st">
+											<td>&nbsp;&nbsp;&nbsp;&nbsp;Email</td>
+											<td class="hr">{{ email }}</td>	
+										</tr>
+										<tr class="st">
+											<td>&nbsp;&nbsp;&nbsp;&nbsp;Phone</td>
+											{{ phone }}
+										</tr>
+										<tr class="st">
+											<td style="padding-bottom: 80px;">&nbsp;&nbsp;Message</td>
+											<td class="hr">
+												{{ description }}
+											</td>
+											
+										</tr>
+										<tr class="st">
+											<td style="  padding-bottom: 200px">Product Details</td>
+											<td class="hr">
+												<div style="margin-left: -10mm;">
+													<img src="{{ image.url }} "  alt="" width="200" >
+													<ul style="list-style-type: none; padding:0">
+														<li><strong>Name:</strong> {{ product_name }}</li>
+														<li><strong>Prize:</strong> &nbsp; &#8358;<del>{{ product_price }}</del>   &#8358;{{ discount_price }}</li>
+														<li><strong>Brand:</strong> {{ brand }}</li>
+														<li><strong>Category:</strong> {{ category }}</li>
+													</ul>
+													
+												</div>
+												
+											</td>
+
+										</tr>
+									</table>
+
+
+{% endblock %}			
+					
+
+					
+				
+
+					
