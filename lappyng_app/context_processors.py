@@ -16,4 +16,4 @@ def get_uri(request):
         protocol = 'https://'
     else:
         protocol = 'http://'
-    return {'url':protocol+request.get_host()}
+    return {'url':'https://lappy.ng'}
