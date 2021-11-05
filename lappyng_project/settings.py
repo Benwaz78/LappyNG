@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from decouple import config
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,7 +27,6 @@ STATIC_ROOT = '/home/lappmqgs/public_html/static'
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates') 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -50,6 +54,7 @@ INSTALLED_APPS = [
     'tinymce',
     'filebrowser',
     'newsletter',
+    'cloudinary',
 ]
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -64,6 +69,13 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 FROM_HOST = 'admin@lappy.ng'
 RECIEVER_MAIL = ['nonwaz78@gmail.com',]
+
+cloudinary.config( 
+  cloud_name = config('CLOUDINARY_NAME'),
+  api_key = config('CLOUDINARY_KEY'), 
+  api_secret = config('CLOUDINARY_SECRET_KEY')
+)
+
 
 
 
