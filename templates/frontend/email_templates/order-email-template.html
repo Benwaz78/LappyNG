@@ -47,7 +47,7 @@ Product Requset
 													<img src="{{ image.url }} "  alt="" width="200" >
 													<ul style="list-style-type: none; padding:0">
 														<li><strong>Name:</strong> {{ product_name }}</li>
-														<li><strong>Prize:</strong> &nbsp; &#8358;<del>{{ product_price }}</del>   &#8358;{{ discount_price }}</li>
+														<li><strong>Prize:</strong> &nbsp; &#8358;<del>{{ product_price }}</del>   {% if discount_price %} &#8358;{{ discount_price }} {% endif %}</li>
 														<li><strong>Brand:</strong> {{ brand }}</li>
 														<li><strong>Category:</strong> {{ category }}</li>
 													</ul>

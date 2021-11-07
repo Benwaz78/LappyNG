@@ -148,6 +148,14 @@ class Products(models.Model):
             format_number = "{:,}".format(dis)
             return format_number
 
+    def display_whatsapp(self):
+        whatsapp = settings.WHATSAPP_NUMBER
+        message = 'https://wa.me/'+whatsapp+'?text='
+        message += 'I am Interested In Buying This Product '
+        message += '*Name:* '+self.title+' '
+        message += '*Prize:* '+str(self.price)+' '
+        return message
+
     def show_image1(self):
         if self.image1:
             return self.image1.url
