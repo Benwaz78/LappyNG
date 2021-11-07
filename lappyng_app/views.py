@@ -1,4 +1,5 @@
 from multiprocessing import get_context
+from django.db import connections
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, Http404, JsonResponse
 from lappyng_app.models import *
@@ -17,11 +18,15 @@ from django.db.models import Count, Q
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+from lappyng_app.context_processors import contact_info, get_uri
+
 from django.views.generic import(
     ListView, DetailView,
     CreateView, FormView,
     TemplateView, View
 )
+
+from django.utils.html import format_html
 
 
 class Home(TemplateView):
@@ -125,8 +130,8 @@ def product_detail(request, slug):
             form2.save(commit=False)
             form2.instance.product = product
             form2.save()
-            subject = 'Order Form'
-            context = {
+            reciever_subject = 'Order Form'
+            reciever_context = {
                 'name':name,
                 'email':email,
                 'phone':phone,
@@ -140,15 +145,38 @@ def product_detail(request, slug):
                 'category':product.category,
             
             }
-            html_message = render_to_string('frontend/email_templates/order-email-template.html', context)
-            plain_message = strip_tags(html_message)
-            from_email = settings.FROM_HOST
-            send = mail.send_mail(subject, plain_message, from_email, 
-                        settings.RECIEVER_MAIL, html_message=html_message, fail_silently=False)
-            if send:
-                messages.success(request, 'Order sent succesfully!')
-            else:
-                messages.error(request, 'Mail not sent!')
+            reciever_html_message = render_to_string('frontend/email_templates/reciever-template.html', reciever_context)
+            reciever_plain_message = strip_tags(reciever_html_message)
+            reciever_from_email = settings.FROM_HOST
+            
+
+            sender_context = {
+                'name':name,
+                'image':product_image,
+                'product_name':product.title,
+                'product_price':product.price,
+                'discount_price':product.discount_prize(),
+                'brand':product.brand,
+                'category':product.category,
+            }
+            sender_html_message = render_to_string('frontend/email_templates/sender-template.html', sender_context)
+            sender_plain_message = strip_tags(sender_html_message)
+            sender_from_email = settings.FROM_HOST
+    
+            with mail.get_connection() as connection:
+                sender_send = mail.EmailMultiAlternatives(reciever_subject, sender_plain_message, sender_from_email, 
+                        [email,], connection=connection)
+                sender_send.attach_alternative(sender_html_message, "text/html")
+                sender_send.send()
+                reciever_send = mail.EmailMultiAlternatives(reciever_subject, reciever_plain_message, reciever_from_email, 
+                        settings.RECIEVER_MAIL, connection=connection)
+                reciever_send.attach_alternative(reciever_html_message, "text/html")
+                reciever_send.send()
+                message = format_html('<strong>Thanks!</strong> Please check your mail to see your order details')
+                messages.success(request, message)
+
+
+
         form1 = ProductReviewForm(prefix='review')
         
     context = {

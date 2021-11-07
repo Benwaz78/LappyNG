@@ -1,0 +1,58 @@
+{% extends 'frontend/email_templates/email_base.html' %}
+{ % load static %}
+
+		
+{% block title %}
+Product Requset 
+{% endblock %}
+	
+
+				{% block content %}
+
+
+						<table border="0"  align="center" width="600" style="border-collapse:collapse; font-size:larger; padding:50%; ">
+							<tr>
+								<td>
+									<table style="border-collapse: collapse; margin-top: 40px; margin-bottom: 40px;" align="center">
+										<tr class="st">
+											<th style="border:1px solid #000;width:180px; padding: 10px;">Fields</th>
+											<th style="border:1px solid #000;width:180px; padding: 10px;">Data</th>
+									
+										</tr>
+										<tr>
+											<td colspan="2" style="border:1px solid #000; padding: 10px;">
+                                                Thanks {{ name }} for your patronage below are your 
+                                                order details
+
+                                            </td>
+
+										</tr>
+									
+									
+										<tr class="st">
+											<td style="border:1px solid #000;width:180px; padding: 20px;">Product Details</td>
+											<td style="border:1px solid #000; padding: 10px;">
+												<div>
+													<img src="{{ image.url }} "  alt="" width="200" >
+													<ul style="list-style-type: none; padding:0">
+														<li><strong>Name:</strong> {{ product_name }}</li>
+														<li><strong>Prize:</strong> &nbsp; &#8358;<del>{{ product_price }}</del>   {% if discount_price %} &#8358;{{ discount_price }} {% endif %}</li>
+														<li><strong>Brand:</strong> {{ brand }}</li>
+														<li><strong>Category:</strong> {{ category }}</li>
+													</ul>
+													
+												</div>
+												
+											</td>
+
+										</tr>
+									</table>
+
+
+{% endblock %}			
+					
+
+					
+				
+
+					

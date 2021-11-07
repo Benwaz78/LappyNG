@@ -64,6 +64,10 @@ div.share{
     margin-bottom: 10px;
 }
 
+div.justify{
+    justify-content: flex-start;
+}
+
 div.share a,
 .whatsapp-container .whatsapp{
     display: flex;
@@ -105,6 +109,11 @@ div.share a.facebook{
     background-color:#0D8CF0;
 }
 
+div.share a.link{
+    background-color:rgba(0, 0, 0, 0.6);
+}
+
+
 div.share a.twitter{
     background-color:#5AA4D6;
 }
@@ -116,7 +125,8 @@ div.share a.instagram{
 .whatsapp-container{
     display: flex;
     align-items: center;
-    width: 10%;
+    width: 12%;
+    z-index: 1000;
     border-radius:30px;
     background-color: #ddd;
     position: fixed;

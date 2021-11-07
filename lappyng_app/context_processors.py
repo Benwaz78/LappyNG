@@ -2,6 +2,8 @@ from django.core.paginator import Page
 from lappyng_app.models import *
 from lappyng_app.forms import *
 from django.conf import settings
+from django.template.loader import render_to_string
+
 
 
 
@@ -28,3 +30,12 @@ def get_uri(request):
 def whatsapp_message(request):
     whatsapp = settings.WHATSAPP_NUMBER
     return {'whatsapp':whatsapp}
+
+
+def contact_info(request):
+    contact = ContactInfo.objects.first()
+    return {'contact':contact}
+
+def contact_email_template(request):
+    contact = ContactInfo.objects.first()
+    return render_to_string('frontend/email_templates/email_base.html', {'email_contact':contact}, request=request)

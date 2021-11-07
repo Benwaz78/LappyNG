@@ -67,11 +67,10 @@ Contact Us
                             </ul> -->
                             <br>
                             <ul class="store_info">
-                                <li><i class="fa fa-home"></i>2B, Oremeji street, Off Medical road, lkeja, Lagos.</li>
-                                <li><i class="fa fa-phone"></i><span>+234&nbsp;905&nbsp;727&nbsp;7551</span></li>
-                                <li><i class="fa fa-phone"></i><span>+234&nbsp;815&nbsp;603&nbsp;5584</span></li>
-                                <li><i class="fa fa-envelope"></i>Email: <span><a href="mailto:%73%75%70%70%6f%72%74@%6b%75%74%65%74%68%65%6d%65.%63%6f%6d">lappyng@gmail.com
-
+                                <li><i class="fa fa-home"></i>{% if contact %} {{ contact.address }} {% endif %}</li>
+                                <li><i class="fa fa-phone"></i><span>{% if contact %} {{ contact.phone1 }} {% endif %}</span></li>
+                                <li><i class="fa fa-phone"></i><span>{% if contact %} {{ contact.phone2 }} {% endif %}</span></li>
+                                <li><i class="fa fa-envelope"></i>Email: <span><a href="#">{% if contact %} {{ contact.email1 }} {% endif %}
                                 </a></span></li>
                             </ul>                
                             </div>
