@@ -33,7 +33,7 @@ class ProductReviewAdmin(admin.ModelAdmin):
         'product',
         'review',
         'created_at',
-        'updated',
+        'updated',                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
         ]
 
 @admin.register(ProductRequest)
@@ -166,3 +166,15 @@ class PagesAdmin(admin.ModelAdmin):
         'updated_at',
         ]
     prepopulated_fields = {'slug': ('page_title',)}
+
+
+@admin.register(ContactInfo)
+class ContactInfoAdmin(admin.ModelAdmin):
+    list_display = [
+        'facebook',
+        'twitter',
+        'phone1',
+        'email1',
+        'address',
+        ]
+

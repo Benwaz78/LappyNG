@@ -20,7 +20,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'frontend/css/style.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'frontend/css/new-style.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'frontend/css/custom.css' %}">
-    <link rel="shortcut icon" type="image/x-icon" href="../../static/frontend/images/icon/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'frontend/images/icon/favicon.png' %}">
 
 </head>
 <body class="cms-index-index index-opt-13">
@@ -35,14 +35,14 @@
 
                     <ul class="nav-left">
                         <li class="hotline">
-                            <span><i class="fa fa-phone"></i>Hotline: +234 905 727 7551</span>
+                            <span><i class="fa fa-phone"></i>Hotline: {% if contact %} {{ contact.phone1 }} {% endif %}</span>
                             
                         </li>
                         <li class="hotline">
-                            <span><i class="fa fa-phone"></i>Hotline: +234 815 603 5584</span>
+                            <span><i class="fa fa-phone"></i>Hotline: {% if contact %} {{ contact.phone2 }} {% endif %}</span>
                         </li>
                         <li class="hotline">
-                            <span style="text-transform: lowercase !important;"><i class="fa fa-envelope"></i>info@lappy.ng</span>
+                            <span style="text-transform: lowercase !important;"><i class="fa fa-envelope"></i>{% if contact %} {{ contact.email1 }} {% endif %}</span>
                         </li>
                     </ul>
 
@@ -50,10 +50,9 @@
                         
                         <li class="top-social">
                             <span class="">
-                                <a title="Facebook" href="https://web.facebook.com/lappy.ng" target="_blank"><i class="fa fa-facebook"></i></a>
-                                <a title="Twitter" href="#"><i class="fa fa-twitter"></i></a>
-                                <a title="Skype" href="#"><i class="fa fa-linkedin"></i></a>
-                                <a title="Google Plus" href="#"><i class="fa fa-google-plus"></i></a>
+                                <a title="Facebook" href="{% if contact %} {{ contact.facebook }} {% endif %}" target="_blank"><i class="fa fa-facebook"></i></a>
+                                <a title="Twitter" href="{% if contact %} {{ contact.twitter }} {% endif %}"><i class="fa fa-twitter"></i></a>
+                                <a title="Skype" href="{% if contact %} {{ contact.instagram }} {% endif %}"><i class="fa fa-instagram"></i></a>
                             </span>           
                         </li>
                     </ul>
@@ -328,12 +327,9 @@
                         <div class="block-social">
                             <div class="block-title">Let’s Socialize </div>
                             <div class="block-content">
-                                <a href="https://web.facebook.com/lappy.ng" class="sh-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a href="" class="sh-twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                <a href="" class="sh-linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                                <a href="" class="sh-google"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                <a href="" class="sh-pinterest"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
-                                <a href="" class="sh-youtube"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+                                <a href="{% if contact %} {{ contact.facebook }} {% endif %}" class="sh-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="{% if contact %} {{ contact.twitter }} {% endif %}" class="sh-twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                <a href="{% if contact %} {{ contact.instagram }} {% endif %}" class="sh-linkedin"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                                 
                             </div>
                         </div>

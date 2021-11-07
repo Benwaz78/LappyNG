@@ -292,7 +292,7 @@ class About(models.Model):
 
 
 class Banner(models.Model):
-    slide_img = CloudinaryField('Slide Image', null=True, blank=True)
+    slide_img = CloudinaryField('Slide Image', help_text='Upload A Banner of 870px X 530px',  null=True, blank=True)
     slide_content1 = models.TextField(blank=True, null=True)
     slide_content2 = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True, help_text='This will automatically add a time when you click save')
@@ -313,7 +313,7 @@ class Banner(models.Model):
 
 
 class HomeTopBanner(models.Model):
-    banner = CloudinaryField()
+    banner = CloudinaryField(help_text='Upload A Banner Of 870px X 200px',)
     link = models.URLField(null=True, blank=True)
    
 
@@ -330,7 +330,7 @@ class HomeTopBanner(models.Model):
         return 'Home Banner'
 
 class HomeSideBanner(models.Model):
-    banner = CloudinaryField()
+    banner = CloudinaryField(help_text='Upload A Banner of 270px X 285px')
     link = models.URLField(null=True, blank=True)
 
     class Meta():
@@ -344,7 +344,7 @@ class HomeSideBanner(models.Model):
         return 'Home Side Banner'
 
 class HomeTwoSideBanner(models.Model):
-    banner = CloudinaryField()
+    banner = CloudinaryField(help_text='Upload A Banner of 570px X 200px',)
     link = models.URLField(null=True, blank=True)
     
 
@@ -370,5 +370,28 @@ class Pages(models.Model):
     def __str__(self):
         return f'{self.pk} {self.page_title}'
 
+    class Meta():
+        verbose_name_plural = 'Pages'
+
     def get_absolute_url(self):
         return reverse('single_page', kwargs={'slug':self.slug})
+
+class ContactInfo(models.Model):
+    facebook = models.URLField(blank=True, null=True)
+    twitter = models.URLField(blank=True, null=True)
+    instagram = models.URLField(blank=True, null=True)
+    linkedin = models.URLField(blank=True, null=True)
+    email1 = models.EmailField(blank=True, null=True)
+    email2 = models.EmailField(blank=True, null=True)
+    phone1 = models.CharField(max_length=16, null=True, blank=True)
+    phone2 = models.CharField(max_length=16, null=True, blank=True)
+    address = models.TextField(blank=True, null=True)
+
+    class Meta():
+        verbose_name_plural = 'Contact Info'
+    
+    
+    def __str__(self):
+        return 'Contact Information and Social Media Links'
+
+

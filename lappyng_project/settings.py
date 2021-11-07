@@ -67,8 +67,8 @@ EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-FROM_HOST = 'admin@lappy.ng'
-RECIEVER_MAIL = ['nonwaz78@gmail.com',]
+FROM_HOST = 'From lappy.ng <admin@lappy.ng>'
+RECIEVER_MAIL = ['nonwaz78@gmail.com', 'info@lappy.ng']
 WHATSAPP_NUMBER='+2349057277551'
 
 cloudinary.config( 
@@ -139,6 +139,7 @@ TEMPLATES = [
                 'lappyng_app.context_processors.get_uri',
                 'lappyng_app.context_processors.footer_pages',
                 'lappyng_app.context_processors.whatsapp_message',
+                'lappyng_app.context_processors.contact_info',
             ],
             
         },
