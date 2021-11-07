@@ -69,6 +69,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 FROM_HOST = 'admin@lappy.ng'
 RECIEVER_MAIL = ['nonwaz78@gmail.com',]
+WHATSAPP_NUMBER='+2349057277551'
 
 cloudinary.config( 
   cloud_name = config('CLOUDINARY_NAME'),
@@ -109,6 +110,7 @@ TINYMCE_DEFAULT_CONFIG = {
  'statusbar': True,
  }
 
+ 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -136,6 +138,7 @@ TEMPLATES = [
                 'lappyng_app.context_processors.search_form',
                 'lappyng_app.context_processors.get_uri',
                 'lappyng_app.context_processors.footer_pages',
+                'lappyng_app.context_processors.whatsapp_message',
             ],
             
         },

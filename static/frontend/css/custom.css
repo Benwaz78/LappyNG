@@ -58,6 +58,76 @@
     margin-right:4px;
 }
 
+div.share{
+    padding:4px;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+div.share a,
+.whatsapp-container .whatsapp{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-right: 5px;
+    padding:10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    line-height: 30px;
+    text-align: center;
+}
+
+div.share a .fa{
+    font-size: 15px;
+    color:#fff;
+}
+
+.whatsapp-container .whatsapp{
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+}
+
+
+div.share a.whatsapp,
+.whatsapp{
+    background-color:#00E676;
+    color:#fff;
+}
+
+.whatsapp{
+    font-size:21px;
+}
+
+div.share a.facebook{
+    background-color:#0D8CF0;
+}
+
+div.share a.twitter{
+    background-color:#5AA4D6;
+}
+
+div.share a.instagram{
+    background-color:#8a3ab9;
+}
+
+.whatsapp-container{
+    display: flex;
+    align-items: center;
+    width: 10%;
+    border-radius:30px;
+    background-color: #ddd;
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+}
+
+.whatsapp-container a:hover{
+    color:#fff;
+}
+
 .label-sale{
     padding:3px;
     background-color: #f90;

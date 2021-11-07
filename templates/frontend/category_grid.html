@@ -29,7 +29,7 @@
                     <div class="col-md-9 col-md-push-3  col-main">
 
                         <!-- images categori -->
-                        <div class="category-view">
+                        <!-- <div class="category-view">
                             <div class="owl-carousel " 
                                 data-nav="true" 
                                 data-dots="false" 
@@ -44,7 +44,8 @@
                                 </div>
                             {% endfor%}
                             </div>
-                        </div><!-- images categori -->
+                        </div> -->
+                        <!-- images categori -->
 
                    
                         <!-- Toolbar -->
@@ -109,7 +110,21 @@
                                                         {{ product.get_price }}
                                                     </div>
                                                 </div>
-                                                <br>
+                                                <div class="share">
+                                                    <a href="{{ product.display_whatsapp }}" class="whatsapp">
+                                                        <i class="fa fa-whatsapp"></i>
+                                                    </a>
+                                                    <a href="#" class="facebook">
+                                                        <i class="fa fa-facebook"></i>
+                                                    </a>
+                                                    <a href="#" class="twitter">
+                                                        <i class="fa fa-twitter"></i>
+                                                    </a>
+                                                    <a href="#" class="instagram">
+                                                        <i class="fa fa-instagram"></i>
+                                                    </a>
+                                                </div>
+                                                
                                                 <div class="product-item-stock">
                                                     <span class="title">Availability:</span>
                                                     {{ product.check_availability }}

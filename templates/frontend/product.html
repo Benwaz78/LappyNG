@@ -6,6 +6,14 @@
 {{ product_detail.title }}
 {% endblock %}
 
+{% block meta %}
+<meta property="og:title" content="{{ product_detail.title}}">
+<meta property="og:description" content="{{ product_detail.contents|safe|truncatewords:80 }}">
+<meta property="og:image" content="{{ product_detail.show_image1  }}">
+<!--<meta property="og:url" content="http://euro-travel-example.com/index.htm">-->
+<meta name="twitter:card" content="summary_large_image">
+{% endblock %}
+
 {% block content %}          	
 		<!-- MAIN -->
 		<main class="site-main">
@@ -88,6 +96,23 @@
                                         <div class="stock available">
                                             <span class="label">Availability: </span> 
                                             {{ product_detail.check_availability }}
+                                        </div>
+                                    </div>
+                                    <div class="product-info-stock">
+                                        <div class="stock available share sharethis-inline-share-buttons">
+                                            <span class="label">Share: </span> 
+                                            <a href="{{ product_detail.display_whatsapp }}" data-network="whatsapp" class="whatsapp">
+                                                <i class="fa fa-whatsapp"></i>
+                                            </a>
+                                            <a href="#" class="facebook"  data-network="facebook">
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                            <a href="#" class="twitter">
+                                                <i class="fa fa-twitter"></i>
+                                            </a>
+                                            <a href="#" class="instagram">
+                                                <i class="fa fa-instagram"></i>
+                                            </a>
                                         </div>
                                     </div>
                                     {% if product_detail.new_product == True %} 

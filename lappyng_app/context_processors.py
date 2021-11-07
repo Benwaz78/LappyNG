@@ -1,6 +1,7 @@
 from django.core.paginator import Page
 from lappyng_app.models import *
 from lappyng_app.forms import *
+from django.conf import settings
 
 
 
@@ -22,3 +23,8 @@ def get_uri(request):
     else:
         protocol = 'http://'
     return {'url':'https://lappy.ng'}
+
+
+def whatsapp_message(request):
+    whatsapp = settings.WHATSAPP_NUMBER
+    return {'whatsapp':whatsapp}

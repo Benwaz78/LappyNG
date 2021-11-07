@@ -64,7 +64,7 @@ def contact(request):
         email = request.POST.get('email')
         phone = request.POST.get('phone')
         message = request.POST.get('message')
-        subject = 'Eaglesrand Solutions'
+        subject = 'lappy.ng Contact Form'
         context = {
             'name':name,
             'email':email,
