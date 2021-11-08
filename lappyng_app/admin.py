@@ -9,16 +9,10 @@ admin.site.site_header = 'LappyNG'
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    def show_cat_img(self, obj):
-        return format_html('<img src="{}" width="100" />'.format(obj.cat_img.url))
-
-    show_cat_img.short_description = 'Category'
 
     list_display = [
-        'parent',
         'cat_name',
         'slug',
-        'show_cat_img',
         'created',
 
         ]

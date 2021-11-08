@@ -41,7 +41,7 @@ class NewsLetterCategory(models.Model):
                 {'title': value.product.title, 
                 'content': value.product.contents, 
                 'image': value.product.image1,
-                'link': value.link,
+                'link': value.product.slug,
                 })
 
         # goes through all post and adds it to the newsletter dictionary
@@ -63,7 +63,6 @@ class NewsLetterCategory(models.Model):
 class NewsLetter(models.Model):
     news_letter = models.ForeignKey(NewsLetterCategory, on_delete=models.CASCADE)
     product = models.ForeignKey(Products, on_delete=models.CASCADE)
-    link = models.URLField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

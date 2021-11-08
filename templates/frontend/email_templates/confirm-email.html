@@ -1,141 +1,58 @@
+{% extends 'frontend/email_templates/email_base.html' %}
 {% load static %}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Confirm | Email </title>
-	</head>
-	<body style="margin: 0; padding: 0;">
-		<table border="0" cellpadding="0" cellspacing="0" width="100%">
-			<tr>
-				<td>
 
-					<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
-						<tr>
-							<td>
-								<table align="center" border="0" cellpadding="0" cellspacing="0" width="580" style="border-collapse: collapse;">
-									<tr>
-										<td align="left"  bgcolor="black">
-											<!-- Space -->
-											<table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
-												<tr><td style="font-size: 0; line-height: 0;" height="10">&nbsp;</td></tr>
-											</table>
-											<table align="center">
-												<tr>
-													<td width="22">
-														<img src="{% static 'newsletter/images/website-icon-8.png' %}"  height="20" alt="location" />
-													</td>
-													<td  style=" color: #fff; font-size: 12px; line-height: 18px; font-weight: normal; font-family: helvetica, Arial, sans-serif;">https://fadeogunro.com/</td>
-													<td width="160"></td>
-													
-												
-													<td width="22">
-														<img src="{% static 'newsletter/images/mail-icon-white.png' %}" alt="location" />
-													</td>
-													<td>
-														<a style="color: #fff; font-size: 12px; line-height: 18px; font-weight: normal; font-family: helvetica, Arial, sans-serif; text-decoration:none;" href="mailto:contact@fadeogunro.com">contact@fadeogunro.com
-														</a>
-													</td>
-												</tr>
-											</table>
-											<!-- Space -->
-											<table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
-												<tr><td style="font-size: 0; line-height: 0;" height="10">&nbsp;</td></tr>
-											</table>
-										</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-					</table>
-					<!-- Header Top End -->
+{% block title %}
+Newsletter
+{% endblock %}
 
-					<!-- Header Start -->
-					<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
-						<tr>
-							<td style="padding:15px 0 0 0;">
-								<table align="center" border="0" cellpadding="0" cellspacing="0" width="580" style="border-collapse: collapse;">
-									<tr>
-										<td>
-											<table align="left" border="0" cellpadding="0" cellspacing="0" width="200" style="border-collapse: collapse;">
-												<!-- logo -->
-												<tr>
-													<td align="left">
-														<a href="">
-															<img src="{% static 'newsletter/images/logo.png' %}" width="100" height="100"  alt="Company Logo" style="display: block; margin-left: 100%;"/>
-														</a>
-													</td>
-													
-												</tr>
-												<!-- company slogan -->
-																					
-												
-											</table>
-											
-										</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-					</table>
-					<br>
-					
-					<!-- Header End -->
+{% block content %}
 
-					<!-- Banner Start -->
-					<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
-						<tr>
-							<td>
-								<table align="center" border="0" cellpadding="0" cellspacing="0" width="580" style="border-collapse: collapse;">
-									<tr>
-										<td>
-											<table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
-												<tr>
-													<td>
-														<!-- Space -->
-														<table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
-															<tr><td style="font-size: 0; line-height: 0;" height="20">&nbsp;</td></tr>
-														</table>
-														<table align="center" border="0" cellpadding="0" cellspacing="0" width="540" style="border-collapse: collapse;">
-															<tr>
-																<td>
-																																<table align="left" border="0"padte=>
-																		<!-- Space -->
-																		<tr><td style="font-size: 0; line-height: 0;" height="10">&nbsp;</td></tr>
-																		<tr>
-																			<p width="100%" style="font-size: 15px; text-align: center; line-height: 22px; font-family:helvetica, Arial, sans-serif; color:#777777;">
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
+    <tr>
+        <td>
+            <table align="center" border="0" cellpadding="0" cellspacing="0" width="580" style="border-collapse: collapse;">
+                <tr>
+                    <td>
+                        <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
+                            <tr>
+                                <td>
+                                    <!-- Space -->
+                                    <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
+                                        <tr><td style="font-size: 0; line-height: 0;" height="20">&nbsp;</td></tr>
+                                    </table>
+                                    <table align="center" border="0" cellpadding="0" cellspacing="0" width="540" style="border-collapse: collapse;">
+                                        <tr>
+                                            <td>
+                                                                                                            <table align="left" border="0"padte=>
+                                                    <!-- Space -->
+                                                    <tr><td style="font-size: 0; line-height: 0;" height="10">&nbsp;</td></tr>
+                                                    <tr>
+                                                        <p width="100%" style="font-size: 15px; text-align: center; line-height: 22px; font-family:helvetica, Arial, sans-serif; color:#777777;">
 
-																				{% if email %}
-																				  {{ email }} has been {{ action }}
-																				{% endif %}
-																		</tr>
-																	</table>
-																	
-																	
-																</td>
-															</tr>
-														</table>
-														
-														<!-- Space -->
-														<table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
-															<tr><td style="font-size: 0; line-height: 0;" height="30">&nbsp;</td></tr>				
-														</table>
-													</td>
-												</tr>
-											</table>
-										</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-					</table>
-					<!-- Banner End -->
+                                                            {% if email %}
+                                                              {{ email }} has been {{ action }}
+                                                            {% endif %}
+                                                    </tr>
+                                                </table>
+                                                
+                                                
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    
+                                    <!-- Space -->
+                                    <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
+                                        <tr><td style="font-size: 0; line-height: 0;" height="30">&nbsp;</td></tr>				
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+	
 
-					<!-- Section Start -->
-						
-
-				</td>
-			</tr>
-		</table>
-	</body>
-</html>
+{% endblock %}
