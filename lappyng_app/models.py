@@ -12,28 +12,10 @@ from django.utils.html import format_html
 from cloudinary.models import CloudinaryField
 
 class Category(models.Model):
-    parent = models.ForeignKey('self', related_name='children', on_delete=models.CASCADE, blank=True, null=True)
     cat_name = models.CharField(max_length=100, unique=True, verbose_name='Category')
     slug = models.SlugField(unique=True)
-    cat_img = CloudinaryField(blank=True, null=True, help_text='Use this Image dimension 170px X 100px')
-    cat_img_banner = CloudinaryField(blank=True, null=True,  help_text='Use this Image dimension 848px X 132px')
-    cat_img_banner2 = CloudinaryField(blank=True, null=True, help_text='Use this Image dimension 848px X 132px')
     created = models.DateTimeField(auto_now_add=True)
     
-    def show_cat_img(self):
-        if self.cat_img:
-            return self.cat_img.url
-        else:
-            return 'frontend/images/media/index1/img-category2.jpg'
-
-    def show_cat_img_banner(self):
-        if self.cat_img_banner:
-            return self.cat_img_banner.url
-    
-    def show_cat_img_banner2(self):
-        if self.cat_img_banner2:
-            return self.cat_img_banner2.url
-
     def get_absolute_url(self):
         return reverse('lappyng_app:category_grid', args=[self.slug])
 
@@ -258,10 +240,6 @@ class ProductReview(models.Model):
 class About(models.Model):
     title = models.CharField(max_length=50)
     abt_content = HTMLField('Content')
-    image = models.FileField(null=True, blank=True, upload_to='uploads/')
-    image1 = models.FileField( blank=True, upload_to='uploads/')
-    image2 = models.FileField( blank=True, upload_to='uploads/')
-    image3 = models.FileField( blank=True, upload_to='uploads/')
     created = models.DateTimeField(auto_now_add=True, help_text='This will automatically add a time when you click save')
     modified = models.DateTimeField(auto_now=True)
 
@@ -271,30 +249,11 @@ class About(models.Model):
     class Meta():
         verbose_name_plural='4. About'
 
-    def abt_img(self):
-        if self.image:
-            return self.image.url
-
-    def abt_img1(self):
-        if self.image1:
-            return self.image1.url
-
-    def abt_img2(self):
-        if self.image2:
-            return self.image2.url
-
-    def abt_img3(self):
-        if self.image3:
-            return self.image3.url
-
-
-
-
-
 class Banner(models.Model):
     slide_img = CloudinaryField('Slide Image', help_text='Upload A Banner of 870px X 530px',  null=True, blank=True)
     slide_content1 = models.TextField(blank=True, null=True)
     slide_content2 = models.TextField(blank=True, null=True)
+    link = models.URLField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True, help_text='This will automatically add a time when you click save')
     modified = models.DateTimeField(auto_now=True)
 
@@ -309,9 +268,6 @@ class Banner(models.Model):
     class Meta():
         verbose_name_plural = 'Home Slider'
 
-
-
-
 class HomeTopBanner(models.Model):
     banner = CloudinaryField(help_text='Upload A Banner Of 870px X 200px',)
     link = models.URLField(null=True, blank=True)
@@ -323,8 +279,6 @@ class HomeTopBanner(models.Model):
     def get_banner(self):
         if self.banner:
             return self.banner.url
-    
-   
     
     def __str__(self):
         return 'Home Banner'
