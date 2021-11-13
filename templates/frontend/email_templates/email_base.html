@@ -4,20 +4,20 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>{% block title %} {% endblock %}</title>
-		<!-- <link rel="stylesheet" href="{% static 'frontend/css/email.css' %}"> -->
+		<link rel="stylesheet" href="{% static 'frontend/css/email.css' %}">
 
 	</head>
 
-	<body style="margin: 0; padding: 0;">
+	<body  class="table" style="margin: 0; padding: 0;">
 		<table border="0" cellpadding="0" cellspacing="0" width="100%">
 			<tr>
 				<td>
 
 					<!-- Header Top Start -->
-					<table align="center" border="0" cellpadding="0" cellspacing="0" width="1000" style="border-collapse: collapse;">
+					<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
 						<tr>
 							<td>
-								<table align="center" border="0" cellpadding="0" cellspacing="0" width="900" style="border-collapse: collapse;">
+								<table align="center" border="0" cellpadding="0" cellspacing="0" width="700" style="border-collapse: collapse;">
 									<tr>
 										<td align="left"  bgcolor="#272d2d">
 											<!-- Space -->
@@ -60,10 +60,10 @@
 					<!-- Header Top End -->
 
 					<!-- Header Start -->
-					<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
+					<table align="center" border="0" cellpadding="0" cellspacing="0" width="500" style="border-collapse: collapse;">
 						<tr>
-							<td style="padding:15px 0 0 0;">
-								<table align="center" border="0" cellpadding="0" cellspacing="0" width="580" style="border-collapse: collapse;">
+							<td style="padding:15px;">
+								<table align="center" border="0" cellpadding="0" cellspacing="0" width="480" style="border-collapse: collapse;">
 									<tr>
 										<td>
 											<table align="left" border="0" cellpadding="0" cellspacing="0" width="200" style="border-collapse: collapse;">
@@ -77,7 +77,7 @@
 												</tr>
 												<!-- company slogan -->
 												
-												<tr><td style="font-size: 0; line-height: 0;" height="15">&nbsp;</td></tr>
+												<!-- <tr><td style="font-size: 0; line-height: 0;" height="15">&nbsp;</td></tr> -->
 											</table>
 											
 										</td>
@@ -86,7 +86,7 @@
 							</td>
 						</tr>
 					</table>
-					<hr style="border-width: 0.5px;border-color: black; width: 50%;">																																																		
+					<hr align="center" color="black"  style="width: 50%; margin-left: 10%;"  >																																																		
 					<!-- Header End -->
 
 
@@ -95,7 +95,7 @@
 					{% endblock %}
 					
 					<!-- Footer Start -->
-					<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
+					<table  class="footer " align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
 						<tr>
 							<td>
 								<table bgcolor="#ffffff" align="center" border="0" cellpadding="0" cellspacing="0" width="580" style="border-collapse: collapse;">
@@ -124,50 +124,52 @@
 															<!-- Space -->
 															<!-- <tr><td style="font-size: 0; line-height: 0;" height="20">&nbsp;</td></tr>
 															<tr> -->
-																<td style="color: #999999; font-size: 14px; line-height: 18px; font-weight: normal; font-family: helvetica, Arial, sans-serif; padding-left: 40px;">
+																<td class="design1" >
 																	Welcome to our About Us Page, Lappy.ng is a customer-centric platform to get the best deal on all kinds of laptops <a href="https://lappy.ng/about/">....</a>
 																</td>
 															</tr>
 															<!-- Space -->
 															<tr><td style="font-size: 0; line-height: 0;" height="15">&nbsp;</td></tr>
 															<tr>
-																<td style="padding-left: 30px;">
-																	<table align="left" border="0" cellpadding="0" cellspacing="0" width="45" style="border-collapse: collapse;">
+																<!-- width 45  -->
+																<td style="padding-left: 10px;">
+																	<table align="left"  class="tee1" cellpadding="0" cellspacing="0">
 																		<tr>
 																			<td>
 																				<a href="https://www.facebook.com">
-																					<img src="https://res.cloudinary.com/benedict78/image/upload/v1622418776/email-templates/facebook-icon_ulzlrp.png"  alt="Facebook" style="display: block;" />
+																					<img  class="tee" src="https://res.cloudinary.com/benedict78/image/upload/v1622418776/email-templates/facebook-icon_ulzlrp.png"  alt="Facebook"  />
 																				</a>
 																			</td>
 																		</tr>
 																	</table>
-																	<table align="left" border="0" cellpadding="0" cellspacing="0" width="45" style="border-collapse: collapse;">
+																	<table  align="left" class="tee1"  cellpadding="0" cellspacing="0" >
 																		<tr>
 																			<td>
 																				<a href="https://www.twitter.com">
-																					<img src="https://res.cloudinary.com/benedict78/image/upload/v1622418776/email-templates/twitter-icon_mgldqn.png"  alt="Twitter" style="display: block;" />
+																					<img  class="tee" src="https://res.cloudinary.com/benedict78/image/upload/v1622418776/email-templates/twitter-icon_mgldqn.png"  alt="Twitter" />
 																				</a>
 																			</td>
 																		</tr>
 																	</table>
-																	<table align="left" border="0" cellpadding="0" cellspacing="0" width="45" style="border-collapse: collapse;">
+																	<table  align="left" class="tee1"  cellpadding="0" cellspacing="0" >
 																		<tr>
 																			<td>
 																				<a href="https://plus.google.com/">
-																					<img src="https://res.cloudinary.com/benedict78/image/upload/v1622418776/email-templates/googleplus-icon_rivl8u.png"  alt="Google+" style="display: block;" />
+																					<img  class="tee" src="https://res.cloudinary.com/benedict78/image/upload/v1622418776/email-templates/googleplus-icon_rivl8u.png"  alt="Google+"  />
 																				</a>
 																			</td>
 																		</tr>
 																	</table>
-																	<table align="left" border="0" cellpadding="0" cellspacing="0" width="45" style="border-collapse: collapse;">
+																	<table align="left" class="tee1"  cellpadding="0" cellspacing="0">
 																		<tr>
 																			<td>
 																				<a href="https://www.linkedin.com/">
-																					<img src="https://res.cloudinary.com/benedict78/image/upload/v1622418776/email-templates/linkedin-icon_ahbmse.png"  alt="Linked In" style="display: block;" />
+																					<img   class="tee" src="https://res.cloudinary.com/benedict78/image/upload/v1622418776/email-templates/linkedin-icon_ahbmse.png"  alt="Linked In"  />
 																				</a>
 																			</td>
 																		</tr>
 																	</table>
+																	<!-- endwidth 45 -->
 																</td>
 															</tr>
 														</table>
@@ -180,39 +182,38 @@
 															</tr>
 														</table> -->
 														<!-- Second Column -->
-														<table align="right" border="0" cellpadding="0" cellspacing="0" width="250" style="border-collapse: collapse; ;">
-															<!-- Space
-															<tr><td style="font-size: 0; line-height: 0;" height="57">&nbsp;</td></tr>> -->
+														<table class="subfoot" cellpadding="0" cellspacing="0"; >
+														
 															<tr>
 																<td width="22">
 																	<img src="https://res.cloudinary.com/benedict78/image/upload/v1635998652/email-templates/mail-icon_pozegb.png" alt="location" />
 																</td>
-																<td style="color: #999999; font-size: 14px; line-height: 18px; font-weight: normal; font-family: helvetica, Arial, sans-serif;">2B, Oremeji street, Off Medical road, lkeja, Lagos.</td>
+																<td  class="design" >2B, Oremeji street, Off Medical road, lkeja, Lagos.</td>
 															</tr>
 															<!-- Space -->
 															<tr><td style="font-size: 0; line-height: 0;" height="10">&nbsp;</td></tr>
 															<tr>
-																<td style="text-align: right;" width="22">
+																<td class="imgc" >
 																	<img src="https://res.cloudinary.com/benedict78/image/upload/v1635998033/email-templates/phone-icon_hwgwdx.png" alt="location" />
 																</td>
-																<td style="color: #999999; font-size: 14px; line-height: 18px; font-weight: normal; font-family: helvetica, Arial, sans-serif;">+234&nbsp;815&nbsp;603&nbsp;5584</td>
+																<td class="design" >+234&nbsp;815&nbsp;603&nbsp;5584</td>
 															</tr>
 															<!-- Space -->
 															<tr><td style="font-size: 0; line-height: 0;" height="10">&nbsp;</td></tr>
 															<tr>
-																<td width="22" style="text-align: right;">
+																<td class="imgc" >
 																	<img src="https://res.cloudinary.com/benedict78/image/upload/v1635998750/email-templates/fax-icon_drwtg3.png" alt="location" />
 																</td>
-																<td style="color: #999999; font-size: 14px; line-height: 18px; font-weight: normal; font-family: helvetica, Arial, sans-serif;">+234&nbsp;905&nbsp;727&nbsp;7551</td>
+																<td  class="design">+234&nbsp;905&nbsp;727&nbsp;7551</td>
 															</tr>
 															<!-- Space -->
 															<tr><td style="font-size: 0; line-height: 0;" height="10">&nbsp;</td></tr>
 															<tr>
-																<td width="22" style="text-align: right;">
+																<td class="imgc" >
 																	<img src="https://res.cloudinary.com/benedict78/image/upload/v1635998652/email-templates/mail-icon_pozegb.png" alt="location" />
 																</td>
 																<td>
-																	<a style="color: #999999; font-size: 14px; line-height: 18px; font-weight: normal; font-family: helvetica, Arial, sans-serif; text-decoration:none;" href="mailto:info@lappy.ng">info@lappy.ng</a>
+																	<a class="design" href="mailto:info@lappy.ng">info@lappy.ng</a>
 																</td>
 															</tr>
 														</table>

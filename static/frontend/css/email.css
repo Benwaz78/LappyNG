@@ -1,33 +1,33 @@
-.hr {
-    border-left: solid 1px black;
-  }	
-.st th , .st td{
-border-bottom: solid 1px black;
-
-}
-.st th:first-child , .st td:first-child{
-
-padding-left: 20px;
-/* padding-right: 60px; */
-width: 150px;
-
-}
-.st{
-height:10mm
-}
-.st td:last-child {
-text-align: center;
-padding-left: 30px;
 
 
+
+.subfoot{
+	align-content: right;
+	border: 0;
+	 width:250 ;
+	 border-collapse: collapse; 
 }
-.st div h6{
-text-align:justify;
-padding-left: 40px;
-padding-bottom: 30px;
- margin-top: -40px;
+.imgc{
+	width:22;
+	text-align: right;
 }
-.st div img{
-padding-right: 200px;
-margin-top: -2px;
+.design{
+	color: #999999; font-size: 14px; line-height: 18px; font-weight: normal; font-family: helvetica, Arial, sans-serif; text-decoration:none;
+}
+.design1{
+	color: #999999; font-size: 14px; line-height: 18px; font-weight: normal; font-family: helvetica, Arial, sans-serif; text-decoration:none;padding-left: 40px;
+}
+.tee1{
+	
+	border:0;
+	width: 45px; 
+	border-collapse: collapse;
+}
+.tee {
+  display: block;
+  
+}
+#hr{
+  
+	width: 50%; background-color: black; height: 3px; margin-left: 5;
 }
