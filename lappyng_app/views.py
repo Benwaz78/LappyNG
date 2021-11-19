@@ -48,7 +48,7 @@ class Home(TemplateView):
         context['products'] = Products.objects.all()
         context['abt'] = About.objects.all()
         context['top_banner1'] = HomeTopBanner.objects.first()
-        context['top_banner2'] = HomeTopBanner.objects.all()[1]
+        context['top_banner2'] = HomeTopBanner.objects.all()[:1]
         context['two_side_banner'] = HomeTwoSideBanner.objects.all()[:2]
         context['sidebar_banner'] = HomeSideBanner.objects.first()
         context['last_brand_id'] = brand_id
