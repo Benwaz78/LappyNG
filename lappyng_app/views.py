@@ -19,6 +19,8 @@ from django.db.models import Count, Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from lappyng_app.context_processors import contact_info, get_uri
+from django.core.serializers import serialize
+# from django.core.serializers.json import LazyE
 
 from django.views.generic import(
     ListView, DetailView,
@@ -32,9 +34,9 @@ from django.utils.html import format_html
 class Home(TemplateView):
     template_name = 'frontend/index.html'
     def get_context_data(self, **kwargs):
+        brand =  Brand.objects.first()
+        brand_id = brand.id
         context = super().get_context_data(**kwargs)
-       
-        
         context['news'] = BlogPost.objects.order_by('-created')[:4]
         context['banner'] = Banner.objects.order_by('-created')
         context['new_arrival'] = Products.objects.order_by('-created')
@@ -49,12 +51,19 @@ class Home(TemplateView):
         context['top_banner2'] = HomeTopBanner.objects.all()[1]
         context['two_side_banner'] = HomeTwoSideBanner.objects.all()[:2]
         context['sidebar_banner'] = HomeSideBanner.objects.first()
-        context['lenovo'] = Products.objects.filter(brand__id=4)[:5]
-        context['dell'] = Products.objects.filter(brand__id=3)[:5]
-        context['toshiba'] = Products.objects.filter(brand__id=5)[:5]
-        context['hp'] = Products.objects.filter(brand__id=2)[:5]
-        context['ibm'] = Products.objects.filter(brand__id=1)[:5]
+        context['last_brand_id'] = brand_id
+        context['last_product'] = Products.objects.filter(brand__id=brand_id)[:5]
         return context
+    
+    def post(self, request, *args, **kwargs):
+        data = {}
+        id = request.POST.get('id')
+        context = {
+                    'query':Products.objects.filter(brand__id=id)[:5],
+                }
+        data['html'] = render_to_string('frontend/product-brand-partial.html', context)
+        return JsonResponse(data, safe=False)
+
 
 
 def about(request):

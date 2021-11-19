@@ -109,7 +109,7 @@ class Products(models.Model):
             return 'In Stock'
         else:
             return 'Out Of Stock'
-
+    @property
     def get_price(self):
         format_number = "{:,}".format(self.price)
         if self.percent:

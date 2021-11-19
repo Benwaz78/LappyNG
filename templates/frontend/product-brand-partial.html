@@ -1,0 +1,34 @@
+
+{% if query %}
+ {% for p in query %}
+<div class="product-item  product-item-opt-13" style="margin-right: 30px; width: 195px;">
+    <div class="product-item-info">
+        <div class="product-item-photo">
+            <a class="product-item-img" href="{{ p.get_absolute_url }}"><img alt="{{ p.title }}" src="{{ p.show_image1 }}"></a>
+            {{ p.circle_label }}
+        </div>
+        <div class="product-item-detail">
+            <strong class="product-item-name"><a href=""> {{ p.title }}  </a></strong>
+        
+            <div class="product-item-price">
+                {{ p.get_discount_price }}
+               {{ p.get_price }}
+            </div>
+            <div class="share justify">
+                <a href="{{ p.display_whatsapp }}" class="whatsapp">
+                    <i class="fa fa-whatsapp"></i>
+                </a>
+                <a href="{{ p.get_absolute_url }}" class="link">
+                    <i class="fa fa-link"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endfor %}
+{% endif %}
+
+
+
