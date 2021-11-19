@@ -41,7 +41,7 @@ class NewsLetterCategory(models.Model):
                 {'title': value.product.title, 
                 'content': value.product.contents, 
                 'image': value.product.image1,
-                'link': request.build_absolute_uri('/products/')+value.product.slug,
+                'link': request.build_absolute_uri('/products/category/')+value.product.slug,
                 })
 
         # goes through all post and adds it to the newsletter dictionary

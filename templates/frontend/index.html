@@ -232,13 +232,13 @@ Home
                                         <ul  class="slide-top-brand">
                                             {% if brand %}
                                                 {% for b in brand %}
-                                                    {% if forloop.counter == 1 %}
+                                                    {% if last_brand_id == b.id %}
                                                         <li role="presentation" class="active">
-                                                            <a href="#{{ b.id }}"  role="tab" data-toggle="tab"><img src="{{ b.show_brand_img }}" alt="img"></a>
+                                                            <a href="#{{ b.id }}" id='{{ b.id }}' class="brand-img"  role="tab" data-toggle="tab"><img src="{{ b.show_brand_img }}" alt="img"></a>
                                                         </li>
                                                     {% else %}
                                                     <li role="presentation">
-                                                        <a href="#{{ b.id }}"  role="tab" data-toggle="tab"><img src="{{ b.show_brand_img }}" alt="img"></a>
+                                                        <a href="#{{ b.id }}" id='{{ b.id }}' class="brand-img"  role="tab" data-toggle="tab"><img src="{{ b.show_brand_img }}" alt="img"></a>
                                                     </li>
                                                     {% endif %}
                                                 {% endfor %}
@@ -250,249 +250,60 @@ Home
 
                                 <div class="block-content ">
                                     <div class="tab-content home-tab">
-                                        <!-- LENOVO STARTS HERE -->
-                                        <div class="tab-pane  active in  fade" id="4" role="tabpanel">
+                                       
 
+                                        <div class="tab-pane active in  fade" id="prodBrand" role="tabpanel">
                                             <div class="owl-carousel" 
-                                                data-nav="true" 
-                                                data-dots="false" 
-                                                data-margin="30" 
-                                                data-responsive='{
-                                                "0":{"items":1},
-                                                "480":{"items":1},
-                                                "600":{"items":2},
-                                                "768":{"items":2},
-                                                "992":{"items":2},
-                                                "1200":{"items":3}
-                                            }'>
-                                                    
-                                                    {% for p in lenovo %}
-                                                        <div class="product-item  product-item-opt-13">
-                                                            <div class="product-item-info">
-                                                                <div class="product-item-photo">
-                                                                    <a class="product-item-img" href=""><img alt="{{ p.title }}" src="{{ p.show_image1 }}"></a>
-                                                                    {{ p.circle_label }}
-                                                                </div>
-                                                                <div class="product-item-detail">
-                                                                    <strong class="product-item-name"><a href=""> {{ p.title }}  </a></strong>
-                                                                
-                                                                    <div class="product-item-price">
-                                                                        {{ p.get_discount_price }}
-                                                                       {{ p.get_price }}
-                                                                    </div>
-                                                                    <div class="share justify">
-                                                                        <a href="{{ p.display_whatsapp }}" class="whatsapp">
-                                                                            <i class="fa fa-whatsapp"></i>
-                                                                        </a>
-                                                                        <a href="{{ p.get_absolute_url }}" class="link">
-                                                                            <i class="fa fa-link"></i>
-                                                                        </a>
-                                                                    </div>
-                                                                    
-                                                                    
-                                                                   
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    {% endfor %}
+                                            data-nav="true" 
+                                            data-dots="false" 
+                                            data-margin="30" 
+                                            data-responsive='{
+                                            "0":{"items":1},
+                                            "480":{"items":1},
+                                            "600":{"items":2},
+                                            "768":{"items":2},
+                                            "992":{"items":2},
+                                            "1200":{"items":2}
+                                           }'>
+                                            <div id="cont"  class="owl-item" style="display: flex;">
+                                                {% if last_product %}
+                                                {% for p in last_product %}
+                                               <div class="product-item  product-item-opt-13" style="margin-right: 30px; width: 195px;">
+                                                   <div class="product-item-info">
+                                                       <div class="product-item-photo">
+                                                           <a class="product-item-img" href="{{ p.get_absolute_url }}"><img alt="{{ p.title }}" src="{{ p.show_image1 }}"></a>
+                                                           {{ p.circle_label }}
+                                                       </div>
+                                                       <div class="product-item-detail">
+                                                           <strong class="product-item-name"><a href=""> {{ p.title }}  </a></strong>
+                                                       
+                                                           <div class="product-item-price">
+                                                               {{ p.get_discount_price }}
+                                                              {{ p.get_price }}
+                                                           </div>
+                                                           <div class="share justify">
+                                                               <a href="{{ p.display_whatsapp }}" class="whatsapp">
+                                                                   <i class="fa fa-whatsapp"></i>
+                                                               </a>
+                                                               <a href="{{ p.get_absolute_url }}" class="link">
+                                                                   <i class="fa fa-link"></i>
+                                                               </a>
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                               
+                                               
+                                               {% endfor %}
+                                               {% endif %}
+
                                             </div>
                                         </div>
-                                        <!-- LENOVO ENDS HERE -->
-
-                                         <!-- TOSHIBA STARTS HERE -->
-                                         <div class="tab-pane   fade" id="5" role="tabpanel">
-
-                                            <div class="owl-carousel" 
-                                                data-nav="true" 
-                                                data-dots="false" 
-                                                data-margin="30" 
-                                                data-responsive='{
-                                                "0":{"items":1},
-                                                "480":{"items":1},
-                                                "600":{"items":2},
-                                                "768":{"items":2},
-                                                "992":{"items":2},
-                                                "1200":{"items":3}
-                                            }'>
+                                           
+                                            
                                                     
-                                                    {% for p in toshiba %}
-                                                        <div class="product-item  product-item-opt-13">
-                                                            <div class="product-item-info">
-                                                                <div class="product-item-photo">
-                                                                    <a class="product-item-img" href=""><img alt="{{ p.title }}" src="{{ p.show_image1 }}"></a>
-                                                                    {{ p.circle_label }}
-                                                                </div>
-                                                                <div class="product-item-detail">
-                                                                    <strong class="product-item-name"><a href=""> {{ p.title }}  </a></strong>
-                                                                
-                                                                    <div class="product-item-price">
-                                                                        {{ p.get_discount_price }}
-                                                                       {{ p.get_price }}
-                                                                    </div>
-                                                                    <div class="share justify">
-                                                                        <a href="{{ p.display_whatsapp }}" class="whatsapp">
-                                                                            <i class="fa fa-whatsapp"></i>
-                                                                        </a>
-                                                                        <a href="{{ p.get_absolute_url }}" class="link">
-                                                                            <i class="fa fa-link"></i>
-                                                                        </a>
-                                                                    </div>
-                                                                    
-                                                                    
-                                                                   
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    {% endfor %}
-                                            </div>
+                                                  
                                         </div>
-                                        <!-- TOSHIBA ENDS HERE -->
-
-                                          <!-- HP STARTS HERE -->
-                                          <div class="tab-pane   fade" id="2" role="tabpanel">
-
-                                            <div class="owl-carousel" 
-                                                data-nav="true" 
-                                                data-dots="false" 
-                                                data-margin="30" 
-                                                data-responsive='{
-                                                "0":{"items":1},
-                                                "480":{"items":1},
-                                                "600":{"items":2},
-                                                "768":{"items":2},
-                                                "992":{"items":2},
-                                                "1200":{"items":3}
-                                            }'>
-                                                    
-                                                    {% for p in hp %}
-                                                        <div class="product-item  product-item-opt-13">
-                                                            <div class="product-item-info">
-                                                                <div class="product-item-photo">
-                                                                    <a class="product-item-img" href=""><img alt="{{ p.title }}" src="{{ p.show_image1 }}"></a>
-                                                                    {{ p.circle_label }}
-                                                                </div>
-                                                                <div class="product-item-detail">
-                                                                    <strong class="product-item-name"><a href=""> {{ p.title }}  </a></strong>
-                                                                
-                                                                    <div class="product-item-price">
-                                                                        {{ p.get_discount_price }}
-                                                                       {{ p.get_price }}
-                                                                    </div>
-                                                                    <div class="share justify">
-                                                                        <a href="{{ p.display_whatsapp }}" class="whatsapp">
-                                                                            <i class="fa fa-whatsapp"></i>
-                                                                        </a>
-                                                                        <a href="{{ p.get_absolute_url }}" class="link">
-                                                                            <i class="fa fa-link"></i>
-                                                                        </a>
-                                                                    </div>
-                                                                    
-                                                                    
-                                                                   
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    {% endfor %}
-                                            </div>
-                                        </div>
-                                        <!-- HP ENDS HERE -->
-
-                                         <!-- IBM STARTS HERE -->
-                                         <div class="tab-pane   fade" id="1" role="tabpanel">
-
-                                            <div class="owl-carousel" 
-                                                data-nav="true" 
-                                                data-dots="false" 
-                                                data-margin="30" 
-                                                data-responsive='{
-                                                "0":{"items":1},
-                                                "480":{"items":1},
-                                                "600":{"items":2},
-                                                "768":{"items":2},
-                                                "992":{"items":2},
-                                                "1200":{"items":3}
-                                            }'>
-                                                    
-                                                    {% for p in ibm %}
-                                                        <div class="product-item  product-item-opt-13">
-                                                            <div class="product-item-info">
-                                                                <div class="product-item-photo">
-                                                                    <a class="product-item-img" href=""><img alt="{{ p.title }}" src="{{ p.show_image1 }}"></a>
-                                                                    {{ p.circle_label }}
-                                                                </div>
-                                                                <div class="product-item-detail">
-                                                                    <strong class="product-item-name"><a href=""> {{ p.title }}  </a></strong>
-                                                                
-                                                                    <div class="product-item-price">
-                                                                        {{ p.get_discount_price }}
-                                                                       {{ p.get_price }}
-                                                                    </div>
-                                                                    <div class="share justify">
-                                                                        <a href="{{ p.display_whatsapp }}" class="whatsapp">
-                                                                            <i class="fa fa-whatsapp"></i>
-                                                                        </a>
-                                                                        <a href="{{ p.get_absolute_url }}" class="link">
-                                                                            <i class="fa fa-link"></i>
-                                                                        </a>
-                                                                    </div>
-                                                                    
-                                                                    
-                                                                   
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    {% endfor %}
-                                            </div>
-                                        </div>
-                                        <!-- IBM ENDS HERE -->
-
-                                         <!-- DELL STARTS HERE -->
-                                         <div class="tab-pane   fade" id="3" role="tabpanel">
-
-                                            <div class="owl-carousel" 
-                                                data-nav="true" 
-                                                data-dots="false" 
-                                                data-margin="30" 
-                                                data-responsive='{
-                                                "0":{"items":1},
-                                                "480":{"items":1},
-                                                "600":{"items":2},
-                                                "768":{"items":2},
-                                                "992":{"items":2},
-                                                "1200":{"items":3}
-                                            }'>
-                                                    
-                                                    {% for p in ibm %}
-                                                        <div class="product-item  product-item-opt-13">
-                                                            <div class="product-item-info">
-                                                                <div class="product-item-photo">
-                                                                    <a class="product-item-img" href=""><img alt="{{ p.title }}" src="{{ p.show_image1 }}"></a>
-                                                                    {{ p.circle_label }}
-                                                                </div>
-                                                                <div class="product-item-detail">
-                                                                    <strong class="product-item-name"><a href=""> {{ p.title }}  </a></strong>
-                                                                
-                                                                    <div class="product-item-price">
-                                                                        {{ p.get_discount_price }}
-                                                                       {{ p.get_price }}
-                                                                    </div>
-                                                                    <div class="share justify">
-                                                                        <a href="{{ p.display_whatsapp }}" class="whatsapp">
-                                                                            <i class="fa fa-whatsapp"></i>
-                                                                        </a>
-                                                                        <a href="{{ p.get_absolute_url }}" class="link">
-                                                                            <i class="fa fa-link"></i>
-                                                                        </a>
-                                                                    </div>
-                                                                    
-                                                                   
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    {% endfor %}
-                                            </div>
-                                        </div>
-                                        <!-- DELL ENDS HERE -->
 
                                         
                                         
