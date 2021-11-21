@@ -41,7 +41,7 @@ class NewsLetterCategory(models.Model):
                 {'title': value.product.title, 
                 'content': value.product.contents, 
                 'image': value.product.image1,
-                'link': request.build_absolute_uri('/products/category/')+value.product.slug,
+                'link': request.build_absolute_uri('/products/detail/')+value.product.slug,
                 })
 
         # goes through all post and adds it to the newsletter dictionary
@@ -58,6 +58,7 @@ class NewsLetterCategory(models.Model):
             from_email = settings.FROM_HOST
             mail.send_mail('From Lappyng', plain_message, from_email, [sub.email, ], html_message=html_message)
         return "done"
+        
 
 
 class NewsLetter(models.Model):
