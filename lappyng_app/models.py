@@ -76,7 +76,7 @@ class Products(models.Model):
     new_product = models.BooleanField()
     hot_deal = models.BooleanField( verbose_name='Hot Deals of this Week', blank=True, null=True)
     best_seller = models.BooleanField(blank=True, null=True, default=False)
-    image1 = CloudinaryField(blank=True, null=True)
+    image1 = CloudinaryField()
     image2 = CloudinaryField(blank=True, null=True)
     image3 = CloudinaryField(blank=True, null=True)
     contents = HTMLField('Content')
