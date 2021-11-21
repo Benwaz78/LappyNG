@@ -2,7 +2,7 @@
 
 
 .subfoot{
-	align-content: right;
+	justify-content: right;
 	border: 0;
 	 width:250 ;
 	 border-collapse: collapse; 
