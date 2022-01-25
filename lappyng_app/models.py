@@ -280,6 +280,12 @@ class HomeTopBanner(models.Model):
         if self.banner:
             return self.banner.url
     
+    def get_link(self):
+        if self.link:
+            return self.link
+        else:
+            return '#'
+    
     def __str__(self):
         return 'Home Banner'
 
@@ -293,6 +299,12 @@ class HomeSideBanner(models.Model):
     def get_banner(self):
         if self.banner:
             return self.banner.url
+
+    def get_link(self):
+        if self.link:
+            return self.link
+        else:
+            return '#'
     
     def __str__(self):
         return 'Home Side Banner'
@@ -308,6 +320,12 @@ class HomeTwoSideBanner(models.Model):
     def get_banner(self):
         if self.banner:
             return self.banner.url
+
+    def get_link(self):
+        if self.link:
+            return self.link
+        else:
+            return '#'
     
     
     def __str__(self):

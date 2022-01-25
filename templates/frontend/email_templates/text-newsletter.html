@@ -1,0 +1,83 @@
+{% extends 'frontend/email_templates/email_base.html' %}
+{% load static %}
+
+{% block title %}
+Newsletter
+{% endblock %}
+
+{% block content %}
+
+	<!-- Banner Start -->
+		<!-- row -->
+	
+			<table align="center" border="0" cellpadding="0" cellspacing="0" width="700" style="border-collapse: collapse;">
+				<tr>
+					<td>
+						<!-- first column -->
+						<table bgcolor="#fafafa" align="left" border="0" cellpadding="0" cellspacing="0" width="350" style="border-collapse: collapse;">
+							<tr>
+								<td>
+									<table width="100%"  border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
+										<tr>
+											<td bgcolor="#ffffff" >
+												<a href="#">
+													<img src="{{ n.image.url }}" width="100%" alt="Section one image" style="display: block;"/>
+												</a>
+											</td>
+										</tr>
+	
+									</table>
+								</td>
+							</tr>
+						</table>
+						<!-- second column -->
+						<table bgcolor="#fafafa" align="right" border="0" cellpadding="0" cellspacing="0" width="350" style="border-collapse: collapse;">
+							<tr>
+								<td>
+									<table width="100%"  border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
+										<tr><td style="font-size: 0; line-height: 0;" height="70">&nbsp;</td></tr>
+										<tr>
+										<tr>
+											<td  bgcolor="#ffffff" >
+												<div>
+													<h2 style="font-weight: bolder;">{{ n.title }}</h2>
+														<p style="font-weight:normal; font-size: 23px;">
+																{{ n.content|safe|truncatewords:25 }}
+														</p>
+														
+	
+												</div>
+											</td>
+										</tr>
+	
+									</table>
+									<tr>
+										<td>
+											<table width="100" align="left" border="0" cellpadding="0"  cellspacing="0" style="border-collapse: collapse;">
+												<tr>
+													<td align="left">
+														<a href="{{ n.link }}" style="background-color: red;color: white; font-size: 22px; font-weight: bolder; text-transform:capitalize;  padding: 10px 21px 10px 21px;"  width='500' >Readmore</a>
+													</td>
+												</tr>
+											</table>
+											<br>
+											<br>
+											<br>
+											<br>																																																		
+										</td>
+										
+									</tr>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+			<hr style="border-width: 0.6px;border-color: black; width: 50%;">																																																		
+			<br>
+		<!-- Banner End -->
+		
+		
+					
+
+{% endblock %}

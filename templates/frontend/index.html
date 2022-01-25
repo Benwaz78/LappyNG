@@ -210,7 +210,7 @@ Home
                         <!-- banner1 -->
                         <div class="block-banner-bottom-opt13">
                             {% if top_banner1 %}
-                                <a href="{{ top_banner1.link }}" class="box-img"><img src="{{ top_banner1.get_banner }}"  alt="img"></a>
+                                <a href="{{ top_banner1.get_link }}" class="box-img"><img src="{{ top_banner1.get_banner }}"  alt="img"></a>
                             {% endif %}
                         </div>
                         <!-- banner1 -->
@@ -317,7 +317,7 @@ Home
                         <!-- banner2 -->
                         <div class="block-banner-bottom-opt13">
                             {% if top_banner2 %}
-                                <a href="{{ top_banner2.link }}" class="box-img"><img src="{{ top_banner2.get_banner }}"  alt="img"></a>
+                                <a href="{{ top_banner2.get_link }}" class="box-img"><img src="{{ top_banner2.get_banner }}"  alt="img"></a>
                             {% endif %}
                         </div>
                         <!-- banner2 -->
@@ -329,7 +329,7 @@ Home
                         <!-- banner -->
                         <div class="block-banner-sidebar effect-banner3">
                             {% if sidebar_banner %}
-                                <a href="{{ sidebar_banner.link }}" class="box-img"><img src="{{ sidebar_banner.get_banner }}" alt="img"></a>
+                                <a href="{{ sidebar_banner.get_link }}" class="box-img"><img src="{{ sidebar_banner.get_banner }}" alt="img"></a>
                             {% endif %}
                         </div>
                         <!-- banner -->
@@ -484,7 +484,7 @@ Home
                         {% if two_side_banner %}
                             {% for t in two_side_banner %}
                             <div class="col-md-6">
-                                <a href="{{ t.link }}" class="box-img"><img src="{{ t.get_banner }}"  alt="img"></a>
+                                <a href="{{ t.get_link }}" class="box-img"><img src="{{ t.get_banner }}"  alt="img"></a>
                             </div>
                             {% endfor %}
                         {% endif %}
