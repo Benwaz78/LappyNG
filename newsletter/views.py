@@ -9,9 +9,11 @@ from django.http import JsonResponse, HttpResponseRedirect, HttpResponse
 # Create your views here.
 
 
+def newsletters_email(request):
+    return render(request, 'frontend/email_templates/text-newsletter.html')
 
 def letter(request):
-    return render(request, 'newsletter/newsletter.html')
+    return render(request, 'frontend/email_templates/newsletter.html')
 
 
 def random_digits():
