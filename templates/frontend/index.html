@@ -25,7 +25,7 @@ Home
                                 <ul class="ui-categori">
                                     
                                     {% for c in categories %}
-                                    <li class="parent" {% if category.slug == c.slug %}class="selected" {% endif %} >
+                                    <li class="parent" {% if category.slug == c.slug %} class="selected" {% endif %} >
                                         <a href="{{ c.get_absolute_url }}">
                                             <span class="icon"><img src="{% static 'frontend/images/icon/index3/nav-cat1.png' %}" alt="nav-cat"></span>
                                            {{ c.cat_name }}
