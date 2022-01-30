@@ -111,7 +111,7 @@ def product_detail(request, slug):
     category = product.category
     get_product_category = Products.objects.filter(category=category)
     top_sales_sidebar_page1 = Products.objects.filter(best_seller=True)[0:3]
-    top_sales_sidebar_page2 = Products.objects.filter(best_seller=True)[3:]
+    top_sales_sidebar_page2 = Products.objects.filter(best_seller=True)[3:6]
     get_sale_products = Products.objects.filter(is_active=True)
     form1 = ProductReviewForm(prefix='review')
     form2 = ProductRequestForm(prefix='request')
