@@ -76,7 +76,7 @@ class Products(models.Model):
     new_product = models.BooleanField()
     hot_deal = models.BooleanField( verbose_name='Hot Deals of this Week', blank=True, null=True)
     best_seller = models.BooleanField(blank=True, null=True, default=False)
-    image1 = CloudinaryField(blank=True, null=True)
+    image1 = CloudinaryField()
     image2 = CloudinaryField(blank=True, null=True)
     image3 = CloudinaryField(blank=True, null=True)
     contents = HTMLField('Content')
@@ -109,7 +109,7 @@ class Products(models.Model):
             return 'In Stock'
         else:
             return 'Out Of Stock'
-
+    @property
     def get_price(self):
         format_number = "{:,}".format(self.price)
         if self.percent:
@@ -280,6 +280,12 @@ class HomeTopBanner(models.Model):
         if self.banner:
             return self.banner.url
     
+    def get_link(self):
+        if self.link:
+            return self.link
+        else:
+            return '#'
+    
     def __str__(self):
         return 'Home Banner'
 
@@ -293,6 +299,12 @@ class HomeSideBanner(models.Model):
     def get_banner(self):
         if self.banner:
             return self.banner.url
+
+    def get_link(self):
+        if self.link:
+            return self.link
+        else:
+            return '#'
     
     def __str__(self):
         return 'Home Side Banner'
@@ -308,6 +320,12 @@ class HomeTwoSideBanner(models.Model):
     def get_banner(self):
         if self.banner:
             return self.banner.url
+
+    def get_link(self):
+        if self.link:
+            return self.link
+        else:
+            return '#'
     
     
     def __str__(self):

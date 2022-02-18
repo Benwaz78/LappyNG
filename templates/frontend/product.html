@@ -2,7 +2,7 @@
 {% load static %}
 <!DOCTYPE html>
 
-{% block title%}
+{% block title %}
 {{ product_detail.title }}
 {% endblock %}
 
@@ -10,7 +10,6 @@
 <meta property="og:title" content="{{ product_detail.title}}">
 <meta property="og:description" content="{{ product_detail.contents|safe|truncatewords:120 }}">
 <meta property="og:image" content="{{ product_detail.show_image1  }}">
-<!--<meta property="og:url" content="http://euro-travel-example.com/index.htm">-->
 <meta name="twitter:card" content="summary_large_image">
 {% endblock %}
 

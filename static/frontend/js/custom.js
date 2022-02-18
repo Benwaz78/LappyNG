@@ -43,3 +43,39 @@ $('#emailForm').submit( function(event) {
   });
 return false;
 });
+
+
+$('.brand-img').click( function(event) {
+  event.preventDefault();
+  const id = $(this).attr('id');
+  var csrftoken = getCookie('csrftoken');
+  $.ajax({
+      url: "/",
+      data: {id:id, csrfmiddlewaretoken:csrftoken},
+      type: 'POST',
+      dataType: "json",
+      success: function (data) {
+        console.log(data.html);
+        $('#cont').html(data.html)
+      }
+  });
+return false;
+});
+
+function getCookie(name) {
+  var cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+      var cookies = document.cookie.split(';');
+      for (var i = 0; i < cookies.length; i++) {
+          var cookie = jQuery.trim(cookies[i]);
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+          }
+      }
+  }
+  return cookieValue;
+}
+
+

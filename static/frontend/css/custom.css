@@ -34,6 +34,14 @@
     margin-bottom:10px;
 }
 
+.product-item-opt-13 .product-item-name {
+    white-space: initial;
+}
+
+.product-item-opt-1 .product-item-name {
+    white-space: initial;
+  }
+
 .product-overview{
     margin-top:10px;
     margin-bottom:10px;

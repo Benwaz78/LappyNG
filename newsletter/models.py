@@ -58,6 +58,7 @@ class NewsLetterCategory(models.Model):
             from_email = settings.FROM_HOST
             mail.send_mail('From Lappyng', plain_message, from_email, [sub.email, ], html_message=html_message)
         return "done"
+        
 
 
 class NewsLetter(models.Model):
