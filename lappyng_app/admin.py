@@ -45,7 +45,7 @@ class ProductRequestAdmin(admin.ModelAdmin):
 @admin.register(Brand)
 class BrandAdmin(admin.ModelAdmin):
     def show_brand_img(self, obj):
-        return format_html('<img src="{}" width="100" />'.format(obj.brand_img.url))
+        return format_html('<img src="{}" width="100" />'.format(obj.show_brand_img()))
 
     show_brand_img.short_description = 'Brand'
 
