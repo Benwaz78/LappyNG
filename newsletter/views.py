@@ -36,7 +36,7 @@ def newsletters_email(request):
             html_message = render_to_string('frontend/email_templates/confirm-email-result.html', args)
             plain_message = strip_tags(html_message)
             from_email = settings.FROM_HOST
-            subject = 'Email Confirmation'
+            subject = 'Email ation'
             mail.send_mail(subject, plain_message, from_email, [sub.email,], html_message=html_message, fail_silently=True)
             data['success'] = 'Thanks, we have sent you a confirmation mail in your inbox, click the link to activate'    
     return JsonResponse(data)
