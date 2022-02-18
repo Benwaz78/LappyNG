@@ -35,33 +35,7 @@ Blog
                             </span>
                             <div class="bottom-pagination">
                                 <nav>
-                                  <ul class="pagination">
-                                    {% if person_page_obj.has_previous %}
-                                    <li>
-                                      <a href="?page={{ person_page_obj.previous_page_number }}" aria-label="Previous">
-                                        <span aria-hidden="true">&raquo; Previous </span>
-                                      </a>
-                                    </li>
-                                    {% endif %}
-                                    {% for i in person_page_obj.paginator.page_range %}
-                                    {% if movies.number == i %}
-                                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                                    {% else %}
-                                    <li><a href="?page={{ i }}">{{ i }}</a></li>
-                                    {% endif %}
-                                     {% endfor %}
-                                    {% if person_page_obj.has_next %}
-                                    <li>
-                                      <a href="?page={{ person_page_obj.next_page_number }}" aria-label="Next">
-                                        <span aria-hidden="true">Next &raquo;</span>
-                                      </a>
-                                    </li>
-                                    {% else %}
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
-                                    </li>
-                                    {% endif %}
-                                  </ul>
+                                    {% include 'frontend/pagination.html' %}
                                 </nav>
                             </div>
                         </div>
@@ -111,34 +85,7 @@ Blog
                         <div class="sortPagiBar clearfix">
                             <div class="bottom-pagination">
                                 <nav>
-                                    <ul class="pagination">
-                                        {% if person_page_obj.has_previous %}
-                                        <li>
-                                          <a href="?page={{ person_page_obj.previous_page_number }}" aria-label="Previous">
-                                            <span aria-hidden="true">&raquo; Previous </span>
-                                          </a>
-                                        </li>
-                                        {% endif %}
-                                        {% for i in person_page_obj.paginator.page_range %}
-                                        {% if movies.number == i %}
-                                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                                        {% else %}
-                                        <li><a href="?page={{ i }}">{{ i }}</a></li>
-                                        {% endif %}
-                                         {% endfor %}
-                                         {% if person_page_obj.has_next %}
-                                    <li>
-                                      <a href="?page={{ person_page_obj.next_page_number }}" aria-label="Next">
-                                        <span aria-hidden="true">Next &raquo;</span>
-                                      </a>
-                                    </li>
-                                    {% else %}
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
-                                    </li>
-                                    {% endif %}
-                                       
-                                      </ul>
+                                    {% include 'frontend/pagination.html' %}
                                 </nav>
                             </div>
                         </div>

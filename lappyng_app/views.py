@@ -224,7 +224,7 @@ def detail_page(request, slug):
 def category_grid(request,  category_slug):
     category = get_object_or_404(Category, slug=category_slug)
     products = Products.objects.filter(category=category)
-    paginated_filter = Paginator(products, 16)
+    paginated_filter = Paginator(products, 4)
     page_number = request.GET.get('page')
     about_us = About.objects.all()
     person_page_obj = paginated_filter.get_page(page_number)
@@ -243,7 +243,7 @@ def category_grid(request,  category_slug):
 def brand_list(request,  brand_slug):
     brand = get_object_or_404(Brand, slug=brand_slug)
     products = Products.objects.filter(brand=brand)
-    paginated_filter = Paginator(products, 16)
+    paginated_filter = Paginator(products, 4)
     page_number = request.GET.get('page')
     about_us = About.objects.all()
     person_page_obj = paginated_filter.get_page(page_number)
