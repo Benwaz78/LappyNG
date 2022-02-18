@@ -40,6 +40,8 @@ class BlogPost(models.Model):
     def img_url(self):
         if self.pst_image:
             return self.pst_image.url
+        else:
+            return ''
     
     @property
     def get_comments(self):

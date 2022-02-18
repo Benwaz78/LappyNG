@@ -8,24 +8,24 @@ admin.site.site_header = 'LappyNG'
 
 
 
-@admin.register(BlogPost)
-class BlogPost(admin.ModelAdmin):
+admin.site.register(BlogPost)
+# class BlogPost(admin.ModelAdmin):
 
-    def img(self, obj):
-        return format_html('<img src="{}" width="100" />'.format(obj.pst_image.url))
-    img.short_description = 'Blog Post'
-
-    list_display = [
-        'pst_title',
-        'slug',
-        'img',
-        'user',
-        'time',
-        'created',
+#     def show_img(self, obj):
+#         return format_html('<img src="{}" width="100" />'.format(obj.img_url()))
         
-        ]
+#     # show_img.short_description = 'Blog Post'
 
-    prepopulated_fields = {'slug': ('pst_title',)}
+#     list_display = [
+#         'pst_title',
+#         'slug',
+#         'show_img',
+#         'user',
+#         'time',
+#         'created',
+#         ]
+
+#     prepopulated_fields = {'slug': ('pst_title',)}
     
 
 @admin.register(Comment)
